@@ -313,11 +313,10 @@ body.home { background: #1A302B; }
 .mh-sale-hero__tag { font-size: 11px; color: #d8b876; }
 .mh-sale-hero__meta { color: color-mix(in srgb, var(--cream) 90%, transparent); }
 
-/* ── Mobile: CTA obok siebie + scroll clearance (scroll nie najeżdża na przyciski) ── */
+/* ── Mobile: CTA obok siebie + clearance pod scroll-hint ── */
 @media (max-width: 640px) {
 	.mh-hero__inner { padding-bottom: 110px; }
 	.mh-hero__cta .iab-btn,
 	.mh-intro__cta .iab-btn,
 	.mh-resto__cta .iab-btn { flex: 1; text-align: center; }
-	.mh-booking__scroll { top: -20px; }
 }
