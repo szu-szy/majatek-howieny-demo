@@ -2,6 +2,7 @@
  * Entry ES module — ładuje moduły interakcji po DOM ready.
  * @package iab
  */
+import { initLoader } from './modules/loader.js';
 import { initDrawer } from './modules/mobile-drawer.js';
 import { initReveal } from './modules/scroll-reveal.js';
 import { initHeader } from './modules/header.js';
@@ -21,6 +22,7 @@ import { initMhBooking } from './modules/mh-booking.js';
 import { initMhGallery } from './modules/mh-gallery.js';
 
 const boot = () => {
+	initLoader();   // pierwsze — blokuje scroll, musi uruchomić się jak najszybciej
 	initHeader();
 	initDrawer();
 	initReveal();
