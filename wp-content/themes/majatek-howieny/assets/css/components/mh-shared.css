@@ -329,7 +329,7 @@
 /* Akceptacja RODO pod paskiem rezerwacji */
 .mh-bk__rodo { margin: 14px 4px 0 !important; font-size: var(--text-xs); }
 .mh-bk__rodo .wpcf7-list-item { margin: 0; }
-.mh-bk__rodo label { display: flex; gap: 10px; align-items: flex-start; justify-content: center; max-width: 560px; margin-inline: auto; }
+.mh-bk__rodo label { display: flex; gap: 10px; align-items: flex-start; }
 
 @media (max-width: 880px) {
 	.mh-booking { margin-top: clamp(-44px, -7vw, -28px); }

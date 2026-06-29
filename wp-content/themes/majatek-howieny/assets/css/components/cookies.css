@@ -93,4 +93,5 @@ input.cky-switch-input:checked + .cky-switch-bar,
 @media (max-width: 540px) {
 	.cky-consent-bar { padding: 24px !important; border-radius: 18px !important; }
 	.cky-btn { flex: 1 1 100% !important; }
+	.cky-btn-revisit-wrapper { display: none !important; }
 }

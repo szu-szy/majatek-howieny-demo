@@ -1,0 +1,76 @@
+/* ════ PAGE LOADER — full-screen forest curtain, złoty łuk SVG ════
+   Wchodzi natychmiast (CSS anim), znika na window.load (curtain rise ↑).
+   ════════════════════════════════════════════════════════════════ */
+
+.mh-loader {
+	position: fixed; inset: 0; z-index: 9999;
+	display: flex; flex-direction: column;
+	align-items: center; justify-content: center; gap: 22px;
+	background: #1A302B;
+	/* subtelne poświaty — głębia, nie płaska plansza */
+	background-image:
+		radial-gradient(ellipse 70% 50% at 50% 110%, rgba(197,160,89,.08), transparent 65%),
+		radial-gradient(ellipse 100% 60% at 50% -10%, rgba(255,255,255,.03), transparent 60%);
+	transition: transform .75s cubic-bezier(.76,0,.24,1);
+	will-change: transform;
+}
+
+/* ── Exit: kurtyna wyjeżdża w górę ── */
+.mh-loader--out { transform: translateY(-100%); pointer-events: none; }
+
+/* ── Kontener logo + ring ── */
+.mh-loader__inner {
+	position: relative; width: 120px; height: 120px;
+	display: flex; align-items: center; justify-content: center;
+}
+
+/* ── Logo ── */
+.mh-loader__logo {
+	width: 80px; height: 80px; object-fit: contain; display: block;
+	opacity: 0; transform: scale(.82);
+	animation: mh-ld-logo .55s cubic-bezier(.34,1.56,.64,1) .08s forwards;
+}
+@keyframes mh-ld-logo { to { opacity: 1; transform: scale(1); } }
+
+/* ── Ring SVG ── */
+.mh-loader__ring {
+	position: absolute; inset: 0; width: 100%; height: 100%;
+	overflow: visible;
+	transform: rotate(-90deg);   /* start łuku = góra */
+}
+/* ciągły łuk (circumference r=52 → 2π×52 ≈ 327) */
+.mh-loader__arc {
+	stroke-dasharray: 327;
+	stroke-dashoffset: 327;
+	animation: mh-ld-arc 1.15s cubic-bezier(.4,0,.15,1) .18s forwards;
+}
+@keyframes mh-ld-arc { to { stroke-dashoffset: 0; } }
+
+/* ── Nazwa ── */
+.mh-loader__name {
+	font-family: 'Montserrat', system-ui, sans-serif;
+	font-size: 10px; font-weight: 600;
+	letter-spacing: .32em; text-transform: uppercase;
+	color: rgba(197,160,89,.82);
+	display: flex; align-items: center; gap: 14px;
+	opacity: 0;
+	animation: mh-ld-name .55s ease-out .7s forwards;
+}
+/* złote kreski po bokach nazwy */
+.mh-loader__name::before,
+.mh-loader__name::after {
+	content: ''; display: block;
+	width: 22px; height: 1px;
+	background: rgba(197,160,89,.45);
+	flex: none;
+}
+@keyframes mh-ld-name { to { opacity: 1; } }
+
+/* ── Prefers reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+	.mh-loader { transition: opacity .35s ease; background-image: none; }
+	.mh-loader--out { opacity: 0; transform: none; }
+	.mh-loader__logo,
+	.mh-loader__name { animation: none; opacity: 1; transform: none; }
+	.mh-loader__arc { animation: none; stroke-dashoffset: 0; }
+}
