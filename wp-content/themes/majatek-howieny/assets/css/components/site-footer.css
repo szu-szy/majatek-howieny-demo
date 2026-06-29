@@ -1,0 +1,79 @@
+/* ============================================================
+   FOOTER — Majątek Howieny (ciepła paleta, kontrast AA na zieleni).
+   ============================================================ */
+.iab-footer { background: var(--c-dark-deep); color: color-mix(in srgb, var(--c-on-brand) 76%, transparent); margin-top: 0; }
+.iab-footer a { color: color-mix(in srgb, var(--c-on-brand) 80%, transparent); transition: color var(--dur-fast) var(--ease); }
+.iab-footer a:hover { color: #fff; }
+
+.iab-footer__grid {
+	display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.3fr; gap: var(--sp-7);
+	padding-block: var(--sp-9) var(--sp-8);
+}
+@media (max-width: 980px)  { .iab-footer__grid { grid-template-columns: 1fr 1fr; gap: var(--sp-7); } }
+@media (max-width: 560px)  { .iab-footer__grid { grid-template-columns: 1fr; gap: var(--sp-6); } }
+
+/* Marka */
+.iab-footer__logo { display: inline-block; }
+.iab-footer__logo img { height: 104px; width: auto; display: block; filter: drop-shadow(0 2px 8px rgba(0,0,0,.35)); }
+.iab-footer__desc { margin-top: var(--sp-4); max-width: 40ch; line-height: 1.65;
+	color: color-mix(in srgb, var(--c-on-brand) 66%, transparent); font-size: var(--text-sm); }
+.iab-footer__social { display: flex; flex-wrap: wrap; gap: var(--sp-3); margin-top: var(--sp-5); }
+.iab-footer__soc {
+	display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 50%;
+	border: 1px solid color-mix(in srgb, var(--c-accent) 45%, transparent); color: var(--c-on-brand) !important;
+	transition: background .25s var(--ease), border-color .25s var(--ease), color .25s var(--ease), transform .25s var(--ease);
+}
+.iab-footer__soc .iab-ico { width: 20px; height: 20px; }
+.iab-footer__soc:hover { background: var(--c-accent); border-color: var(--c-accent); color: #1F2A22 !important; transform: translateY(-2px); }
+
+/* Nagłówki kolumn */
+.iab-footer__h { color: #fff; font-family: var(--font-display); font-size: var(--text-base); font-weight: var(--fw-semibold);
+	letter-spacing: .01em; margin-bottom: var(--sp-4); position: relative; padding-bottom: 10px; }
+.iab-footer__h::after { content: ""; position: absolute; left: 0; bottom: 0; width: 28px; height: 2px; background: var(--c-accent); border-radius: 2px; }
+
+/* Listy linków */
+.iab-footer__list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.iab-footer__list a { font-size: var(--text-sm); }
+
+/* Kontakt — ikony mosiężne */
+.iab-footer__contact li { display: flex; align-items: flex-start; gap: 10px; line-height: 1.5; }
+.iab-footer__contact svg { width: 18px; height: 18px; flex: none; margin-top: 2px; color: var(--c-accent); }
+.iab-footer__contact span { color: color-mix(in srgb, var(--c-on-brand) 76%, transparent); font-size: var(--text-sm); }
+.iab-footer__cta { margin-top: var(--sp-5); }
+.iab-footer__cta.iab-btn--accent { color: #fff !important; }   /* biały na głębokim złocie = AA, bez czarnego tekstu */
+
+/* Pasek dolny */
+.iab-footer__bottom { border-top: 1px solid color-mix(in srgb, var(--c-accent) 22%, transparent); }
+.iab-footer__bottom-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--sp-3) var(--sp-5);
+	padding-block: var(--sp-5); font-size: var(--text-xs); color: color-mix(in srgb, var(--c-on-brand) 58%, transparent); }
+.iab-footer__legal { display: flex; flex-wrap: wrap; gap: var(--sp-4); }
+.iab-footer__legal a { font-size: var(--text-xs); }
+.iab-footer__credit a { color: #fff; }
+@media (max-width: 720px) { .iab-footer__bottom-inner { flex-direction: column; align-items: flex-start; } }
+
+/* Godziny otwarcia — czytelne wiersze (dzień | godzina) */
+.iab-footer__hours { align-items: flex-start; }
+.iab-footer__contact .iab-footer__hours-list { display: flex; flex-direction: column; gap: 5px; }
+.iab-footer__contact .iab-footer__hrow { display: flex; justify-content: space-between; gap: 20px; }
+.iab-footer__contact .iab-footer__hday { color: color-mix(in srgb, var(--c-on-brand) 90%, transparent); font-weight: 500; white-space: nowrap; }
+.iab-footer__contact .iab-footer__htime { color: var(--c-accent); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* Stopka — godziny per dział (Restauracja + Biuro) */
+.iab-footer__hgroup { display: block; margin-bottom: 9px; }
+.iab-footer__hgroup:last-child { margin-bottom: 0; }
+.iab-footer__hglabel { display: block; font-weight: 600; font-size: .82rem; color: var(--c-ink, #F9F7F2); letter-spacing: .01em; }
+.iab-footer__hgtime { display: block; font-size: .8rem; line-height: 1.5; color: var(--c-ink-soft, rgba(249,247,242,.7)); }
+
+/* ── Godziny w stopce: label-eyebrow (złoto) + czytelne czasy ── */
+.iab-footer__hours { align-items: flex-start; }
+.iab-footer__hgroup { margin-bottom: 12px; }
+.iab-footer__hglabel { font-size: .68rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--c-accent, #C5A059); margin-bottom: 3px; }
+.iab-footer__hgtime { font-size: .82rem; line-height: 1.6; color: rgba(249,247,242,.72); }
+
+/* ── Footer mobilny zwięźlej: brand(full) → Oferta|Odwiedź (2-kol) → Kontakt(full) ── */
+@media (max-width: 560px) {
+	.iab-footer__grid { grid-template-columns: 1fr 1fr; gap: clamp(26px,6vw,38px) var(--sp-5); }
+	.iab-footer__col--brand { grid-column: 1 / -1; }
+	.iab-footer__col--contact { grid-column: 1 / -1; padding-top: clamp(20px,4vw,28px); border-top: 1px solid var(--c-line); }
+	.iab-footer__h { margin-bottom: 12px; }
+}

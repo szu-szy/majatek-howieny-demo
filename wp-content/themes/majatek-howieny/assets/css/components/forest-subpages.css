@@ -1,0 +1,30 @@
+/* ════════════════════════════════════════════════════════════════════
+   FOREST-DEEP na PODSTRONACH — flip tokenów kolorów (treść body).
+   Home (.mh-home) ma własny motyw; tu lecą wszystkie pozostałe strony.
+   ════════════════════════════════════════════════════════════════════ */
+
+body:not(.home) {
+	--c-bg:         #1A302B;   /* forest — tło strony */
+	--c-bg-alt:     #223B36;   /* fd-2 — sekcje naprzemienne */
+	--c-card:       #223B36;   /* karty na ciemnym */
+	--c-ink:        #F9F7F2;   /* cream — tekst/nagłówki */
+	--c-ink-soft:   rgba(249,247,242,.74);
+	--c-muted:      rgba(249,247,242,.56);
+	--c-line:       rgba(249,247,242,.14);
+	--c-brand-soft: rgba(197,160,89,.16);  /* hover tint → gold */
+	--c-brand-ink:  #C5A059;   /* akcent tekstowy → gold */
+	--c-accent:     #C5A059;   /* gold (zamiast mosiądzu na jasnym) */
+	--c-accent-deep: #C5A059;  /* był ciemny mosiądz #7A5A2E — na ciemnym musi być jasny gold (eyebrow/linki) */
+
+	background: #1A302B;
+	color: #F9F7F2;
+}
+
+/* Przyciski primary/secondary → beż/gold + outline (spójne z home; nie zieleń na zieleni) */
+body:not(.home) .iab-btn--primary { background: #E6D6B8; color: #1A302B; border-color: #E6D6B8; }
+body:not(.home) .iab-btn--primary:hover { background: #C5A059; border-color: #C5A059; color: #1A302B; }
+body:not(.home) .iab-btn--secondary { background: transparent; color: #F9F7F2; border-color: rgba(249,247,242,.4); }
+body:not(.home) .iab-btn--secondary:hover { background: #F9F7F2; color: #1A302B; border-color: #F9F7F2; }
+
+/* Sekcje „dark" (mh-section--dark) na ciemnej stronie — lekko jaśniejszy fd-2, by się odcinały */
+body:not(.home) .mh-section--dark { background: #223B36; }

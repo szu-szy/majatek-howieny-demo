@@ -1,0 +1,606 @@
+/* ════════════════════════════════════════════════════════════════════
+   DOPRACOWANIE PODSTRON — hero ciemniejszy · kafelki czytelne · sekcja wyceny · ikony
+   ════════════════════════════════════════════════════════════════════ */
+
+/* ── Hero podstron: MOCNE przyciemnienie (tytuł czytelny, ciemny klimat) — w tym brakujący of-hero ── */
+.mh-phero__scrim,
+.mh-of-hero__scrim { background: linear-gradient(176deg, rgba(10,18,15,.78) 0%, rgba(10,18,15,.6) 42%, rgba(7,13,10,.94) 100%) !important; }
+.mh-rs-hero__scrim { background: linear-gradient(176deg, rgba(10,18,15,.74) 0%, rgba(10,18,15,.58) 42%, rgba(7,13,10,.92) 100%) !important; }
+.mh-ob-hero__scrim { background: linear-gradient(176deg, rgba(10,18,15,.7) 0%, rgba(10,18,15,.56) 42%, rgba(7,13,10,.9) 100%) !important; }
+
+/* ── Kafelki (hub + powiązane): spacing + czytelność (tekst nie wtopiony w zdjęcie) ── */
+.mh-cards { gap: clamp(18px, 2.2vw, 30px); }
+.mh-card { min-height: 300px; border-color: color-mix(in srgb, var(--c-accent) 32%, transparent); }
+.mh-card__scrim { background: linear-gradient(180deg, rgba(12,20,16,.14) 0%, rgba(12,20,16,.4) 42%, rgba(8,14,11,.95) 100%) !important; }
+.mh-card__body { padding: clamp(20px, 2.4vw, 28px); gap: 7px; }
+.mh-card__title { font-size: clamp(1.15rem, 1.5vw, 1.42rem); line-height: 1.2; text-shadow: 0 2px 14px rgba(0,0,0,.5); }
+.mh-card__desc { font-size: .9rem; line-height: 1.5; color: rgba(255,255,255,.84); }
+.mh-card__more { margin-top: 10px; color: #E6C77A; letter-spacing: .04em; }
+.mh-card:hover .mh-card__more { color: #fff; }
+
+/* ── Sekcja „Zapytaj o wycenę": dane kontaktowe + mapa + formularz ── */
+.mh-quote { padding-block: clamp(56px, 8vw, 96px); }
+.mh-quote__lead { max-width: 620px; margin: 14px auto 0; color: var(--c-ink-soft); line-height: 1.7; }
+.mh-quote__grid { display: grid; grid-template-columns: 1fr; gap: clamp(28px, 4vw, 52px); margin-top: clamp(34px, 4.5vw, 56px); align-items: start; }
+@media (min-width: 920px) { .mh-quote__grid { grid-template-columns: 1fr minmax(420px, 520px); } }
+.mh-quote__info { display: flex; flex-direction: column; gap: clamp(22px, 3vw, 32px); }
+.mh-quote__socials { display: flex; gap: 12px; }
+.mh-quote__socials a { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; border: 1px solid var(--c-line); color: var(--c-accent); transition: background .25s var(--ease), color .25s var(--ease), transform .25s var(--ease); }
+.mh-quote__socials a:hover { background: var(--c-accent); color: #1A302B; transform: translateY(-2px); }
+.mh-quote__socials svg { width: 18px; height: 18px; }
+.mh-quote__form.iab-card { background: rgba(12,22,18,.46); border: 1px solid var(--c-line); border-radius: var(--radius-lg); padding: clamp(24px, 3vw, 38px); box-shadow: 0 30px 70px -34px rgba(0,0,0,.7); }
+.mh-quote__form .wpcf7-form > p { margin: 0 0 14px; }
+.mh-quote__form .wpcf7-submit { width: 100%; margin-top: 6px; }
+
+/* ── Natywna ikona kalendarza (date/month) na ciemnych polach → jasna/gold, nie czarna ── */
+.mhx-fsmenu__form input[type=date]::-webkit-calendar-picker-indicator,
+.mhx-fsmenu__form input[type=month]::-webkit-calendar-picker-indicator,
+.mh-form input[type=date]::-webkit-calendar-picker-indicator,
+.mh-form input[type=month]::-webkit-calendar-picker-indicator,
+.mh-quote input[type=date]::-webkit-calendar-picker-indicator,
+.mh-quote input[type=month]::-webkit-calendar-picker-indicator,
+body:not(.home) .mh-booking input[type=date]::-webkit-calendar-picker-indicator,
+body:not(.home) .wpcf7 input[type=date]::-webkit-calendar-picker-indicator,
+body:not(.home) .wpcf7 input[type=month]::-webkit-calendar-picker-indicator {
+	filter: invert(82%) sepia(26%) saturate(560%) hue-rotate(2deg) brightness(92%);
+	cursor: pointer; opacity: .92;
+}
+
+/* ── Sekcja kafelków hub: oddech od hero (nie sklejone do góry) + dół ── */
+.mh-hub__grid-wrap { padding-block: clamp(48px, 7vw, 88px); }
+
+/* ════ Bento kafelków hub — układ zależny od LICZBY (pierwszy = featured, rzędy zawsze pełne, zero dziur) ════ */
+/* Mobile: pojedyncza kolumna (brak osamotnionych kafelków przy nieparzystej liczbie) */
+@media (max-width: 759px) { .mh-cards--bento { grid-template-columns: 1fr; } }
+@media (min-width: 760px) {
+	.mh-cards--bento[data-count="3"],
+	.mh-cards--bento[data-count="4"],
+	.mh-cards--bento[data-count="5"],
+	.mh-cards--bento[data-count="6"] { grid-template-columns: repeat(6, 1fr); }
+	.mh-cards--bento[data-count="3"] > .mh-card,
+	.mh-cards--bento[data-count="4"] > .mh-card,
+	.mh-cards--bento[data-count="5"] > .mh-card,
+	.mh-cards--bento[data-count="6"] > .mh-card { grid-column: span 3; }
+
+	/* 3 → [6] / [3][3] (hero pełnej szerokości + 2 połówki) */
+	.mh-cards--bento[data-count="3"] > .mh-card:nth-child(1) { grid-column: span 6; min-height: 340px; }
+
+	/* 4 → [4][2] / [3][3] */
+	.mh-cards--bento[data-count="4"] > .mh-card:nth-child(1) { grid-column: span 4; }
+	.mh-cards--bento[data-count="4"] > .mh-card:nth-child(2) { grid-column: span 2; }
+
+	/* 5 → [4][2] / [2][2][2] */
+	.mh-cards--bento[data-count="5"] > .mh-card:nth-child(1) { grid-column: span 4; }
+	.mh-cards--bento[data-count="5"] > .mh-card:nth-child(2) { grid-column: span 2; }
+	.mh-cards--bento[data-count="5"] > .mh-card:nth-child(n+3) { grid-column: span 2; }
+
+	/* 6 → [4][2] / [3][3] / [3][3] */
+	.mh-cards--bento[data-count="6"] > .mh-card:nth-child(1) { grid-column: span 4; }
+	.mh-cards--bento[data-count="6"] > .mh-card:nth-child(2) { grid-column: span 2; }
+
+	/* Featured (pierwszy) — większy tytuł, mocniejszy akcent */
+	.mh-cards--bento > .mh-card:nth-child(1) .mh-card__title { font-size: clamp(1.5rem, 2vw, 1.95rem); }
+	.mh-cards--bento > .mh-card:nth-child(1) .mh-card__desc { font-size: .98rem; }
+}
+
+/* ── „Powiązane oferty" — równy grid adaptacyjny do liczby (zero dziur, bez featured) ── */
+@media (min-width: 760px) {
+	.mh-cards--grid[data-count="1"] { grid-template-columns: minmax(0, 460px); justify-content: center; }
+	.mh-cards--grid[data-count="2"] { grid-template-columns: repeat(2, 1fr); max-width: 820px; margin-inline: auto; }
+	.mh-cards--grid[data-count="3"] { grid-template-columns: repeat(3, 1fr); }
+	.mh-cards--grid[data-count="4"] { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ════ Proces — EDYTORIALNIE: linia procesu (hairline) + duże serif liczby, zero pudełek ════ */
+body:not(.home) .mh-plan { gap: clamp(28px,4vw,56px); }
+body:not(.home) .mh-plan__item {
+	background: none; border: 0; border-radius: 0; box-shadow: none;
+	padding: clamp(26px,2.6vw,34px) 0 0; position: relative;
+	display: flex; flex-direction: column; gap: 10px;
+}
+/* hairline u góry — łączy się w ciągłą linię procesu przez wszystkie kroki */
+body:not(.home) .mh-plan__item::before { content: ""; position: absolute; top: 0; left: 0; right: clamp(-28px,-2vw,-56px); height: 1px; background: rgba(197,160,89,.28); }
+body:not(.home) .mh-plan__item:last-child::before { right: 0; }
+/* kropka węzła na linii */
+body:not(.home) .mh-plan__item::after { content: ""; position: absolute; top: -4px; left: 0; width: 9px; height: 9px; border-radius: 50%; background: #C5A059; box-shadow: 0 0 0 5px rgba(197,160,89,.12); }
+body:not(.home) .mh-plan__num {
+	width: auto; height: auto; background: none; box-shadow: none; border-radius: 0; place-items: start;
+	font-family: var(--font-display); font-weight: 400; font-size: clamp(2.8rem,4.2vw,3.8rem);
+	line-height: .9; color: rgba(197,160,89,.92); margin: 0 0 6px;
+}
+body:not(.home) .mh-plan__t { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.2rem,1.5vw,1.45rem); color: #F9F7F2; margin: 0; }
+body:not(.home) .mh-plan__d { color: rgba(249,247,242,.6); line-height: 1.65; font-size: .94rem; max-width: 30ch; }
+
+/* ════ „W cenie" — EDYTORIALNIE: lista z hairline dividerami, zero pudełek ════ */
+body:not(.home) .mh-checklist { gap: 0 clamp(32px,4vw,64px); }
+body:not(.home) .mh-checklist li {
+	background: none; border: 0; border-radius: 0; padding: 16px 0 16px 2px;
+	border-bottom: 1px solid rgba(249,247,242,.1);
+	align-items: baseline; gap: 14px; color: #F9F7F2; font-weight: 400; font-size: 1.02rem;
+	transition: color .25s var(--ease), padding-left .25s var(--ease);
+}
+body:not(.home) .mh-checklist li:hover { color: #fff; padding-left: 6px; }
+body:not(.home) .mh-checklist .mh-check { width: 17px; height: 17px; padding: 0; background: none; border-radius: 0; color: #C5A059; margin-top: 0; flex: none; transform: translateY(3px); }
+
+/* „Czym się zajmiemy" — wyśrodkowanie intro (mniej pustki) + CTA */
+@media (min-width: 900px) { .mh-of-incl__grid { align-items: center !important; } }
+.mh-of-incl__cta { margin-top: clamp(20px,2.4vw,28px); }
+.mh-of-incl__intro .mh-eyebrow { display: block; margin-bottom: 12px; }
+
+/* ── Każde tło-zdjęcie (te bez mh_bg) — cover + no-repeat + 50% (spójnie wszędzie) ── */
+.mhx-fsmenu__panel, .mh-final__bg, .mh-hero__media, .mh-event-card__media,
+.mh-photogrid__img, .iab-hero__media, .mh-rs-intro__media, .mh-noc-intro__media,
+.mh-of-hero__media, .mh-rs-hero__media, .mh-ob-hero__media, .mh-phero__media,
+[class*="__media"] {
+	background-size: cover; background-repeat: no-repeat; background-position: 50% 50%;
+}
+
+/* Link pobrania menu PDF pod nagłówkiem */
+.mh-rs-menu__pdf { margin-top: 18px; }
+
+/* ════ FAQ — płynny collapse (grid-rows 0fr↔1fr, in/out bez skoków) + editorial (hairline, bez pudełek) ════ */
+/* Animacja TYLKO gdy JS aktywny (.iab-js): treść zawsze display:grid (wyższa specyf. niż UA), collapse przez .is-open.
+   Bez JS = natywny <details> (treść pokazuje się na [open]). */
+.iab-js .mh-faq__item > .mh-faq__a { display: grid; grid-template-rows: 0fr; padding: 0; transition: grid-template-rows .38s var(--ease); }
+.iab-js .mh-faq__item.is-open > .mh-faq__a { grid-template-rows: 1fr; }
+.iab-js .mh-faq__item > .mh-faq__a > * { overflow: hidden; min-height: 0; margin: 0; }
+@media (prefers-reduced-motion: reduce) { .iab-js .mh-faq__item > .mh-faq__a { transition: none; } }
+/* marker +/× : bez JS przez [open], z JS przez .is-open (bo open trzymamy zawsze true) */
+.iab-js .mh-faq__item summary::after { transform: none; }
+.iab-js .mh-faq__item.is-open summary::after { transform: rotate(45deg); }
+/* editorial na podstronach: hairline dividery zamiast pudełek */
+body:not(.home) .mh-faq__item { background: none; border: 0; border-bottom: 1px solid rgba(249,247,242,.12); border-radius: 0; overflow: visible; }
+body:not(.home) .mh-faq__item summary { padding: 22px 2px; color: #F9F7F2; font-size: clamp(1rem,1.2vw,1.12rem); }
+body:not(.home) .mh-faq__item summary::after { color: #C5A059; }
+body:not(.home) .mh-faq__a-in > p { padding: 0 2px 24px; margin: 0; line-height: 1.7; color: rgba(249,247,242,.64); }
+
+/* ════ FAQ 2-kolumnowy: akordeon + karta pomocy (konwersja, bez duplikacji) ════ */
+.mh-faq-layout { display: grid; grid-template-columns: 1fr; gap: clamp(32px,5vw,64px); align-items: start; }
+@media (min-width: 920px) { .mh-faq-layout { grid-template-columns: 1.5fr .85fr; } }
+.mh-faq-main .mh-sec-head { margin-bottom: clamp(20px,2.5vw,32px); }
+.mh-faq-aside { position: sticky; top: calc(var(--header-h, 96px) + 20px); }
+.mh-faq-help { border-top: 2px solid #C5A059; padding-top: clamp(22px,2.4vw,30px); }
+.mh-faq-help__lead { color: rgba(249,247,242,.66); line-height: 1.7; margin: 10px 0 22px; font-size: .96rem; }
+.mh-faq-help__phone { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-display); font-size: clamp(1.5rem,2vw,1.85rem); color: #F9F7F2; text-decoration: none; transition: color .25s var(--ease); }
+.mh-faq-help__phone svg { color: #C5A059; }
+.mh-faq-help__phone:hover { color: #C5A059; }
+.mh-faq-help__link { display: block; margin-top: 16px; color: rgba(249,247,242,.55); text-decoration: none; font-size: .9rem; transition: color .25s var(--ease); }
+.mh-faq-help__link:hover { color: #C5A059; }
+@media (max-width: 919px) { .mh-faq-aside { position: static; } }
+
+/* ════ Date picker w formularzu wyceny — label + ładne pole (gold ikona z reguł wyżej) ════ */
+.mh-wdate { display: flex; flex-direction: column; }
+.mh-wlbl { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: rgba(249,247,242,.6); margin-bottom: 6px; }
+
+/* ════ „Oferta w PDF" — EDYTORIALNIE: banner z hairline'ami, bez wypełnionego boxa ════ */
+body:not(.home) .mh-pdf { background: none; border: 0; border-radius: 0; padding: clamp(28px,3vw,40px) 0 0; border-top: 1px solid rgba(197,160,89,.26); }
+body:not(.home) .mh-pdf__t { color: #F9F7F2; font-size: clamp(1.3rem,1.8vw,1.65rem); }
+body:not(.home) .mh-pdf__d { color: rgba(249,247,242,.6); max-width: 52ch; }
+
+/* ════ Udogodnienia (noclegi) — EDYTORIALNIE: bez pudełek, ikona + tekst + hairline ════ */
+body:not(.home) .mh-amen {
+	background: none; border: 0; border-radius: 0; padding: clamp(22px,2vw,28px) 0 0;
+	border-top: 1px solid rgba(249,247,242,.13); box-shadow: none;
+}
+body:not(.home) .mh-amen:hover { transform: none; box-shadow: none; }
+body:not(.home) .mh-amen__ico { width: auto; height: auto; background: none; border-radius: 0; color: #C5A059; margin-bottom: 10px; place-items: start; }
+body:not(.home) .mh-amen__ico svg { width: 28px; height: 28px; }
+body:not(.home) .mh-amen__t { color: #F9F7F2; }
+body:not(.home) .mh-amen__d { color: rgba(249,247,242,.6); }
+
+/* ════ Specs obiektu (Szczegóły sali) — EDYTORIALNIE: gold top-rule + hairline rows, bez heavy card ════ */
+body:not(.home) .mh-ob-params { background: none; border: 0; border-radius: 0; padding: clamp(22px,2vw,30px) 0 0; border-top: 2px solid #C5A059; }
+body:not(.home) .mh-ob-params__h { color: #F9F7F2; }
+body:not(.home) .mh-paramlist__row { border-bottom-color: rgba(249,247,242,.12); }
+body:not(.home) .mh-paramlist dt { color: rgba(249,247,242,.55); }
+body:not(.home) .mh-paramlist dd { color: #F9F7F2; }
+
+/* ════ EFEKT TŁA podstron — atmosferyczna głębia (dryf poświaty) + interaktywna poświata za kursorem ════ */
+body:not(.home)::before {
+	content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+	background:
+		radial-gradient(40% 40% at 16% 20%, rgba(197,160,89,.07), transparent 72%),
+		radial-gradient(46% 46% at 84% 80%, rgba(74,135,112,.16), transparent 72%);
+	animation: mh-ambient 28s ease-in-out infinite alternate;
+}
+body:not(.home)::after {
+	content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+	background: radial-gradient(260px 260px at var(--mx, 50%) var(--my, 24%), rgba(197,160,89,.06), transparent 68%);
+	opacity: var(--mglow, 0); transition: opacity .5s var(--ease);
+}
+@keyframes mh-ambient {
+	0%   { transform: translate3d(-2%, -1.5%, 0) scale(1); }
+	100% { transform: translate3d(2%, 1.5%, 0) scale(1.1); }
+}
+/* delikatny ken-burns na hero podstron (życie zamiast statycznego zdjęcia) */
+.mh-of-hero__media, .mh-phero__media, .mh-rs-hero__media, .mh-ob-hero__media {
+	animation: mh-kb 26s ease-in-out infinite alternate;
+}
+@keyframes mh-kb { from { transform: scale(1); } to { transform: scale(1.06); } }
+@media (prefers-reduced-motion: reduce) {
+	body:not(.home)::before, .mh-of-hero__media, .mh-phero__media, .mh-rs-hero__media, .mh-ob-hero__media { animation: none; }
+	body:not(.home)::after { display: none; }
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   POPRAWKI HURTOWE (wszystkie podstrony) — booking/menu/checkbox/przycisk/FAB/cookie/obrazy/ambient
+   ════════════════════════════════════════════════════════════════════ */
+
+/* Booking bar na ciemnych podstronach (był jasny kremowy „stary box") → dark glass jak na home */
+body:not(.home) .mh-booking__card { background: rgba(18,32,26,.86) !important; -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border: 1px solid rgba(197,160,89,.3) !important; box-shadow: 0 30px 70px -30px rgba(0,0,0,.6); }
+body:not(.home) .mh-booking__card input, body:not(.home) .mh-booking__card select { background: rgba(0,0,0,.22); border-color: rgba(249,247,242,.18); color: #F9F7F2; }
+body:not(.home) .mh-bk__lbl, body:not(.home) .mh-bk__ico { color: #C5A059; }
+body:not(.home) .mh-bk__field { border-color: rgba(249,247,242,.12); }
+body:not(.home) .mh-booking__card .wpcf7-submit { background: #C5A059; color: #1A302B; border-color: #C5A059; }
+
+/* „Zarezerwuj" w booking — był za wysoki → cap wysokości + wyśrodkowanie (home + podstrony) */
+.mh-bk__action .iab-btn, .mh-bk__action input.wpcf7-submit, .mh-bk__action .wpcf7-submit { height: auto !important; max-height: 56px; align-self: center; padding-block: 15px !important; }
+
+/* Checkbox „checked" — równy ptaszek (był krzywy) */
+.iab-rodo input[type=checkbox]:checked::after { left: 7px; top: 3px; width: 5px; height: 10px; border-width: 0 2.5px 2.5px 0; }
+
+/* Consent — bez brzydkiego zawijania: mniejszy, ciaśniej */
+.iab-rodo label, .mh-bk__rodo label, .mh-form__consent, .mhx-fsmenu__consent { font-size: 12px; line-height: 1.45; }
+
+/* Menu restauracji — tytuły kategorii NIECZYTELNE (były zieleń var(--c-brand) na ciemnym) → cream + złota kreska + mniej pustki */
+body:not(.home) .mh-menu__cat-t { color: #F9F7F2 !important; border-bottom: 1px solid rgba(197,160,89,.32); padding-bottom: 10px; }
+body:not(.home) .mh-menu__name { color: #F9F7F2; }
+body:not(.home) .mh-menu__price { color: #C5A059; }
+body:not(.home) .mh-menu__desc { color: rgba(249,247,242,.6); }
+.mh-menu { column-gap: clamp(32px,4vw,56px); }
+.mh-menu__cat { margin-bottom: clamp(26px,3vw,38px); }
+
+/* FAB telefon — pulsujący pierścień (jak magic gym / stalver) */
+.iab-fab { position: fixed; isolation: isolate; }
+.iab-fab::before { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--c-brand, #2B3A2E); animation: iab-fab-pulse 2.2s var(--ease) infinite; z-index: -1; }
+.iab-fab svg, .iab-fab .iab-ico { fill: currentColor; }
+@keyframes iab-fab-pulse { 0% { transform: scale(1); opacity: .55; } 70%, 100% { transform: scale(1.9); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .iab-fab::before { animation: none; } }
+
+/* Cookie reopener — border (zlewa się z tłem) */
+.cky-btn-revisit-wrapper { border: 1.5px solid rgba(197,160,89,.6) !important; box-shadow: 0 6px 18px -6px rgba(0,0,0,.5) !important; }
+
+/* Każde zdjęcie standalone — box shadow (głębia 3D) */
+.mh-rs-intro__media, .mh-noc-intro__media, .mh-intro__photo, .mh-gallery__item,
+.mh-photogrid__item, .mh-room__media, .mh-of-gallery .mh-gallery__item, .iab-card img,
+.mh-quote__form, .wp-block-image img { box-shadow: 0 24px 50px -24px rgba(0,0,0,.55); }
+
+/* Ambient 3D na tle — mocniej widoczny (było za subtelnie) */
+body:not(.home)::before { background:
+	radial-gradient(42% 42% at 14% 18%, rgba(197,160,89,.1), transparent 70%),
+	radial-gradient(48% 48% at 86% 82%, rgba(74,135,112,.22), transparent 72%) !important; }
+
+/* CTA z przyciskiem + tło-zdjęcie (np. „Zarezerwuj nocleg") */
+.mh-cta-bg { position: relative; overflow: hidden; isolation: isolate; }
+.mh-cta-bg__media { position: absolute; inset: 0; z-index: -2; background-size: cover; background-repeat: no-repeat; background-position: 50% 50%; }
+.mh-cta-bg__scrim { position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(10,18,15,.86), rgba(10,18,15,.78)); }
+
+/* ── Kontakt: działy (osobne nr/email/godziny per miejsce) ── */
+.mh-depts__lead { max-width: 560px; margin: 12px auto 0; color: var(--c-ink-soft); line-height: 1.7; }
+.mh-depts__grid { display: grid; grid-template-columns: 1fr; gap: clamp(14px,2vw,22px); margin-top: clamp(32px,4vw,52px); }
+@media (min-width: 640px) { .mh-depts__grid { grid-template-columns: repeat(2,1fr); } }
+@media (min-width: 1000px) { .mh-depts__grid { grid-template-columns: repeat(3,1fr); } }
+.mh-dept { background: rgba(255,255,255,.055); border: 1px solid rgba(197,160,89,.18); border-radius: 6px; padding: clamp(22px,2.6vw,30px); display: flex; flex-direction: column; gap: 12px; transition: border-color .25s var(--ease), transform .25s var(--ease), background .25s var(--ease); }
+.mh-dept:hover { border-color: rgba(197,160,89,.5); background: rgba(255,255,255,.08); transform: translateY(-3px); }
+.mh-dept__name { font-family: var(--font-display); font-size: 1.18rem; color: #F9F7F2; margin: 0 0 4px; padding-bottom: 12px; border-bottom: 1px solid rgba(197,160,89,.22); line-height: 1.25; }
+.mh-dept__row { display: flex; align-items: flex-start; gap: 10px; color: var(--c-ink-soft); font-size: .92rem; text-decoration: none; margin: 0; line-height: 1.45; }
+.mh-dept__row svg { flex: none; margin-top: 2px; color: var(--c-accent); }
+.mh-dept__phone span { color: var(--c-accent); font-weight: 600; letter-spacing: .01em; }
+a.mh-dept__row:hover span { color: var(--c-accent); }
+.mh-dept__hours span { font-size: .85rem; }
+
+/* ── Nagrody i wyróżnienia (jasny pas — logo Poland 100 / Slow Food red/black na białym) ── */
+.mh-awards { background: #FBFAF7; padding: clamp(44px,6vw,80px) 0; text-align: center; }
+.mh-awards__eyebrow { font-family: 'Montserrat', sans-serif; letter-spacing: .16em; text-transform: uppercase; font-size: .76rem; font-weight: 600; color: #8F6E2C; margin: 0 0 10px; }
+.mh-awards__title { font-family: var(--font-display); font-size: clamp(1.6rem,2.6vw,2.2rem); color: #1A302B; margin: 0 0 12px; }
+.mh-awards__note { max-width: 640px; margin: 0 auto clamp(26px,3vw,40px); color: #4a4f5c; font-size: .96rem; line-height: 1.65; }
+.mh-awards__note strong { color: #1A302B; }
+.mh-awards__img { max-width: min(820px, 94%); height: auto; display: block; margin: 0 auto; }
+
+/* ── Galeria restauracji: kategorie + grid + lightbox ── */
+.mh-galcat { margin-top: clamp(34px,4vw,52px); }
+.mh-galcat__h { font-family: var(--font-display); font-size: clamp(1.2rem,1.7vw,1.5rem); color: var(--c-ink); margin: 0 0 16px; padding-bottom: 10px; border-bottom: 1px solid rgba(197,160,89,.24); }
+.mh-galgrid { display: grid; grid-template-columns: repeat(2,1fr); gap: clamp(8px,1.2vw,14px); }
+@media (min-width: 600px) { .mh-galgrid { grid-template-columns: repeat(3,1fr); } }
+@media (min-width: 1000px) { .mh-galgrid { grid-template-columns: repeat(4,1fr); } }
+.mh-galitem { display: block; position: relative; aspect-ratio: 4/3; overflow: hidden; border-radius: var(--radius-md); cursor: zoom-in; box-shadow: 0 14px 32px -20px rgba(0,0,0,.6); }
+.mh-galitem img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s var(--ease); }
+.mh-galitem::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 60%, rgba(10,18,15,.35)); opacity: 0; transition: opacity .3s var(--ease); }
+.mh-galitem:hover img { transform: scale(1.06); }
+.mh-galitem:hover::after { opacity: 1; }
+
+/* ── „Polecają nas" — karuzela badge'ów (CSS marquee, bez JS) ── */
+.mh-recs { padding: clamp(40px,5vw,64px) 0; overflow: hidden; }
+.mh-recs__eyebrow { text-align: center; font-family: 'Montserrat', sans-serif; letter-spacing: .16em; text-transform: uppercase; font-size: .76rem; font-weight: 600; color: var(--c-accent, #C5A059); margin: 0 0 clamp(22px,3vw,34px); }
+.mh-recs__viewport { position: relative; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.mh-recs__track { display: flex; align-items: center; gap: clamp(32px,5vw,72px); width: max-content; animation: mh-marquee 40s linear infinite; }
+.mh-recs:hover .mh-recs__track { animation-play-state: paused; }
+.mh-rec { flex: none; display: grid; place-items: center; }
+.mh-rec img { height: clamp(64px,8vw,104px); width: auto; object-fit: contain; opacity: .9; transition: opacity .25s var(--ease), transform .25s var(--ease); }
+a.mh-rec:hover img { opacity: 1; transform: scale(1.05); }
+@keyframes mh-marquee { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .mh-recs__track { animation: none; flex-wrap: wrap; justify-content: center; width: auto; } }
+
+/* ── 404 redesign ── */
+.mh-404__inner { max-width: 760px; }
+.mh-404__search { margin-top: clamp(20px,3vw,32px); max-width: 460px; }
+.mh-404__search .search-form { display: flex; gap: 8px; }
+.mh-404__search .search-field { flex: 1; min-width: 0; background: rgba(255,255,255,.1); border: 1px solid rgba(249,247,242,.3); border-radius: var(--radius-md); padding: 13px 16px; color: #F9F7F2; font: inherit; }
+.mh-404__search .search-field::placeholder { color: rgba(249,247,242,.6); }
+.mh-404__search .search-submit { flex: none; background: #C5A059; color: #1A302B; border: 0; border-radius: var(--radius-md); padding: 0 20px; font-weight: 600; cursor: pointer; }
+.mh-404__grid { display: grid; grid-template-columns: repeat(2,1fr); gap: clamp(10px,1.5vw,18px); margin-top: clamp(28px,4vw,44px); }
+@media (min-width: 720px) { .mh-404__grid { grid-template-columns: repeat(3,1fr); } }
+.mh-404card { position: relative; display: block; aspect-ratio: 16/10; border-radius: var(--radius-lg); overflow: hidden; text-decoration: none; box-shadow: 0 18px 40px -24px rgba(0,0,0,.6); }
+.mh-404card__media { position: absolute; inset: 0; background-size: cover; background-position: 50% 50%; transition: transform .5s var(--ease); }
+.mh-404card:hover .mh-404card__media { transform: scale(1.06); }
+.mh-404card__scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,18,15,.2), rgba(10,18,15,.78)); }
+.mh-404card__label { position: absolute; left: 16px; bottom: 14px; right: 16px; color: #F9F7F2; font-family: var(--font-display); font-size: clamp(1.05rem,1.4vw,1.3rem); display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.mh-404card__arrow { color: #C5A059; transition: transform .25s var(--ease); }
+.mh-404card:hover .mh-404card__arrow { transform: translateX(4px); }
+.mh-404__cta { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: clamp(28px,4vw,44px); }
+
+/* ── #6: consent w booking (restauracja/home) — checkbox wyśrodkowany w pionie do tekstu ── */
+.mh-booking .wpcf7-acceptance label,
+.mh-booking .iab-rodo label,
+.mh-bk__rodo label,
+.mh-booking__card .wpcf7-acceptance .wpcf7-list-item label { display: flex; align-items: center; gap: 11px; }
+.mh-booking .wpcf7-acceptance input[type=checkbox],
+.mh-bk__rodo input[type=checkbox] { flex: 0 0 auto; margin-top: 0; }
+
+/* ── Strona menu restauracji (karta dań): 70/30 + sticky sidebar ── */
+.mh-menu-layout { display: grid; grid-template-columns: 1fr; gap: clamp(28px,4vw,52px); align-items: start; }
+@media (min-width: 980px) { .mh-rs-menu--aside .mh-menu-layout { grid-template-columns: minmax(0,1fr) 300px; } }
+.mh-rs-menu--aside .mh-menu { columns: 1; }
+@media (min-width: 1300px) { .mh-rs-menu--aside .mh-menu { columns: 2; column-gap: clamp(32px,4vw,56px); } }
+.mh-menu-aside { display: flex; flex-direction: column; gap: 16px; }
+@media (min-width: 980px) { .mh-menu-aside { position: sticky; top: 100px; } }
+.mh-menu-aside__box { background: rgba(255,255,255,.04); border: 1px solid var(--c-line); border-radius: var(--radius-lg); padding: clamp(22px,2.4vw,28px); text-align: center; }
+.mh-menu-aside__box .mh-eyebrow { color: var(--c-accent); }
+.mh-menu-aside__h { font-family: var(--font-display); font-size: 1.45rem; color: var(--c-ink); margin: 6px 0 10px; }
+.mh-menu-aside__lead { color: var(--c-ink-soft); font-size: .92rem; line-height: 1.6; margin: 0 0 18px; }
+.mh-menu-aside__phone { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; color: var(--c-accent); font-weight: 600; text-decoration: none; }
+.mh-menu-aside__phone svg { color: var(--c-accent); }
+.mh-menu-aside__links { background: rgba(255,255,255,.04); border: 1px solid var(--c-line); border-radius: var(--radius-lg); padding: clamp(18px,2vw,24px); }
+.mh-menu-aside__links-h { font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; color: var(--c-accent); margin: 0 0 8px; }
+.mh-menu-aside__links a { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 11px 0; color: var(--c-ink); text-decoration: none; border-bottom: 1px solid rgba(249,247,242,.08); transition: color .2s var(--ease), padding-left .2s var(--ease); }
+.mh-menu-aside__links a:last-child { border-bottom: 0; }
+.mh-menu-aside__links a:hover { color: var(--c-accent); padding-left: 4px; }
+.mh-menu-aside__links a span { color: var(--c-accent); }
+
+/* ── Nagrody — przeprojektowane (spójnie wyśrodkowane, dopracowane) ── */
+.mh-awards { background: #FBFAF7; padding: clamp(48px,6vw,84px) 0; }
+.mh-awards__head { max-width: 640px; margin: 0 auto; text-align: center; }
+.mh-awards__eyebrow { font-family: 'Montserrat', sans-serif; letter-spacing: .18em; text-transform: uppercase; font-size: .74rem; font-weight: 600; color: #8F6E2C; margin: 0 0 14px; text-align: center; }
+.mh-awards__title { font-family: var(--font-display); font-size: clamp(1.7rem,2.8vw,2.4rem); color: #1A302B; margin: 0; line-height: 1.12; }
+.mh-awards__note { color: #4a4f5c; font-size: .98rem; line-height: 1.7; margin: 16px 0 0; }
+.mh-awards__note strong { color: #1A302B; font-weight: 600; }
+.mh-awards__logos { margin-top: clamp(34px,4.5vw,56px); display: flex; justify-content: center; }
+.mh-awards__logos img { max-width: min(880px,100%); height: auto; display: block; }
+
+/* Anchor scroll pod sticky header (klik „Zarezerwuj" z sidebara nie chowa boxa) */
+#rezerwacja, .mh-booking { scroll-margin-top: clamp(80px, 9vh, 104px); }
+
+/* ── Galeria — filtry (taby) ── */
+.mh-galfilters { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: clamp(24px,3vw,38px) 0 clamp(22px,2.5vw,32px); }
+.mh-galfilter { background: transparent; border: 1px solid var(--c-line); color: var(--c-ink-soft); border-radius: var(--radius-pill); padding: 9px 20px; font: inherit; font-size: .88rem; cursor: pointer; transition: background .2s var(--ease), color .2s var(--ease), border-color .2s var(--ease); }
+.mh-galfilter:hover { color: var(--c-ink); border-color: var(--c-accent); }
+.mh-galfilter.is-active { background: var(--c-accent); color: #1A302B; border-color: var(--c-accent); font-weight: 600; }
+.mh-galitem[hidden] { display: none !important; }
+
+/* ── Pasek wyróżnień w hero restauracji (Poland 100 + Slow Food) ── */
+.mh-rs-hero__awards { margin-top: clamp(22px,3vw,34px); display: inline-flex; align-items: center; gap: 14px; background: rgba(255,255,255,.95); border-radius: 14px; padding: 9px 18px; box-shadow: 0 18px 44px -20px rgba(0,0,0,.65); max-width: 100%; }
+.mh-rs-hero__awards-lbl { font-family: 'Montserrat', sans-serif; font-size: .62rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #8F6E2C; flex: none; line-height: 1.2; }
+.mh-rs-hero__awards img { height: clamp(26px,3.4vw,38px); width: auto; display: block; }
+@media (max-width: 540px) { .mh-rs-hero__awards { gap: 9px; padding: 9px 14px; } .mh-rs-hero__awards-lbl { display: none; } }
+
+/* ── Restauracja (główna): sekcja-przekierowanie do karty dań ── */
+.mh-menu-cta { position: relative; overflow: hidden; padding: clamp(66px,9vw,118px) 0; text-align: center; }
+.mh-menu-cta__media { position: absolute; inset: 0; background-size: cover; background-position: 50% 50%; transform: scale(1.02); }
+.mh-menu-cta__scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,18,15,.80) 0%, rgba(10,18,15,.90) 100%); }
+.mh-menu-cta__inner { position: relative; max-width: 720px; margin: 0 auto; }
+.mh-menu-cta .mh-sec-title { color: #F9F7F2; }
+.mh-menu-cta__lead { color: rgba(249,247,242,.86); font-size: 1.05rem; line-height: 1.7; margin: 16px auto clamp(26px,3vw,34px); max-width: 580px; }
+.mh-menu-cta__cats { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 0 0 clamp(28px,3.5vw,40px); padding: 0; list-style: none; }
+.mh-menu-cta__cats li { border: 1px solid rgba(197,160,89,.45); color: var(--c-accent); border-radius: var(--radius-pill); padding: 7px 18px; font-size: .86rem; font-family: var(--font-display); letter-spacing: .02em; }
+.mh-menu-cta__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+
+/* ── Fix: pill wyróżnień w hero — czytelne logo ── */
+.mh-rs-hero__awards { background: #fff; padding: 11px 18px; gap: 16px; box-shadow: 0 18px 44px -20px rgba(0,0,0,.7); }
+.mh-rs-hero__awards img { height: clamp(42px, 4.6vw, 56px); }
+.mh-rs-hero__awards-lbl { font-size: .64rem; color: #8F6E2C; }
+
+/* ── Fix: checkbox „Akceptuję politykę" na home (był overflow) ── */
+.mh-form__consent { display: flex; align-items: flex-start; gap: 9px; }
+.mh-form__consent input[type="checkbox"] { flex: none; margin-top: 2px; width: 16px; height: 16px; }
+.mh-form__consent a { text-decoration: underline; }
+
+/* ── Fix: licznik kategorii w sidebar w jednej linii (był zbijany niżej) ── */
+.mh-blog-aside__cats li { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; padding: 9px 4px; border-bottom: 1px solid rgba(249,247,242,.06); color: rgba(249,247,242,.74); font-size: .82rem; }
+.mh-blog-aside__cats a { display: inline; padding: 0; border-bottom: 0; font-size: .9rem; }
+.mh-blog-aside__cats a:hover { padding-left: 0; color: var(--c-accent); }
+
+/* ── Restauracja hero: rząd CTA + wyróżnienia (prawo), większe logo ── */
+.mh-rs-hero__row { display: flex; justify-content: space-between; align-items: center; gap: clamp(20px,3vw,44px); flex-wrap: wrap; margin-top: clamp(22px,3vw,32px); }
+.mh-rs-hero__row .mh-rs-hero__cta { margin: 0; }
+.mh-rs-hero__row .mh-rs-hero__awards { margin: 0; }
+.mh-rs-hero__row .mh-rs-hero__awards img { height: clamp(50px, 5.2vw, 64px); }
+@media (max-width: 720px) { .mh-rs-hero__row { gap: 18px; } }
+
+/* ── Home: Wyróżnienia i rekomendacje (zastępuje dubel nagrody+polecają) ── */
+.mh-recog { padding: clamp(58px,8vw,104px) 0; background: #FFFFFF; }
+.mh-recog__awards { width: fit-content; max-width: 100%; margin: clamp(34px,4.5vw,52px) auto clamp(18px,2.5vw,26px); }
+.mh-recog__awards img { display: block; height: clamp(66px,9vw,114px); width: auto; max-width: 100%; }
+.mh-recog__note { text-align: center; max-width: 58ch; margin: 0 auto clamp(34px,4.5vw,50px); color: var(--c-ink-soft); font-size: .95rem; line-height: 1.6; }
+.mh-recog__note strong { color: var(--c-ink); }
+.mh-recog__sep { display: flex; align-items: center; gap: 18px; max-width: 620px; margin: 0 auto clamp(26px,3.5vw,38px); color: var(--c-ink-soft); }
+.mh-recog__sep::before, .mh-recog__sep::after { content: ""; flex: 1; height: 1px; background: var(--c-line); }
+.mh-recog__sep span { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; }
+.mh-recog__partners { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: clamp(30px,5vw,64px); }
+.mh-recog__partners li { display: flex; }
+.mh-recog__partners img { height: clamp(48px,5.5vw,70px); width: auto; filter: grayscale(1); opacity: .5; transition: filter .3s var(--ease), opacity .3s var(--ease); }
+.mh-recog__partners img:hover { filter: grayscale(0); opacity: 1; }
+
+/* ════════════════════════════════════════════════════════════
+   MOBILE FIXES — kompleksowe (audyt wizualny 2026-06-28)
+   ════════════════════════════════════════════════════════════ */
+
+/* 1. Karty/gridy → 1 kolumna na telefonie (były ściśnięte 2–3 kol) */
+@media (max-width: 540px) {
+	.mh-cards, .mh-cards--3, .mh-cards--bento, .mh-cards--grid,
+	.mh-pillars, .mh-events__grid, .mh-sale-row,
+	.iab-grid--2, .iab-grid--3, .iab-grid--4, .iab-media-grid, .iab-process,
+	.mh-quote__grid, .mh-contact__grid, .mh-final__grid, .mh-hub__grid-wrap,
+	.mh-noc-intro__grid, .mh-rs-intro__grid, .mh-paramlist__row, .iab-beforeafter,
+	.mh-depts__grid {
+		grid-template-columns: 1fr !important;
+	}
+}
+
+/* 2. Przyciski hero: pełna szerokość w kolumnie (nie krzywe 2 rzędy) */
+@media (max-width: 480px) {
+	.mh-rs-hero__cta, .mh-ob-hero__cta, .mh-of-hero__cta, .mh-hero__cta,
+	.mh-menu-cta__actions, .mh-art-cta, .mh-rs-hero__row {
+		flex-direction: column; align-items: stretch;
+	}
+	.mh-rs-hero__cta .iab-btn, .mh-ob-hero__cta .iab-btn, .mh-of-hero__cta .iab-btn,
+	.mh-hero__cta .iab-btn, .mh-menu-cta__actions .iab-btn {
+		width: 100%; justify-content: center;
+	}
+	.mh-rs-hero__row .mh-rs-hero__awards { align-self: flex-start; }
+}
+
+/* 3. Mniejsze odstępy sekcji na mobile (były za duże) */
+@media (max-width: 600px) {
+	.iab-section { padding-top: clamp(38px, 9vw, 54px); padding-bottom: clamp(38px, 9vw, 54px); }
+	.mh-recog, .mh-menu-cta, .mh-rs-gallery, .mh-noc-rooms, .mh-noc-amen,
+	.mh-noc-intro, .mh-noc-cta, .mh-rs-menu, .mh-rs-wine, .mh-events, .mh-proof {
+		padding-top: clamp(40px, 10vw, 58px) !important; padding-bottom: clamp(40px, 10vw, 58px) !important;
+	}
+}
+
+/* 4. Header mobilny: logo LEWO, hamburger PRAWO, bez „Zarezerwuj" (jest bottom-bar) */
+@media (max-width: 768px) {
+	.mhx-nav__bar { grid-template-columns: 1fr auto; }
+	.mhx-nav__logo { order: -1; justify-self: start; }
+	.mhx-nav__cluster--left { order: 2; justify-self: end; }
+	.mhx-nav__cluster--right { display: none; }
+}
+
+/* 5. Drawer: X zawsze na GÓRZE (był na dole po zwinięciu paneli) */
+@media (max-width: 860px) {
+	.mhx-fsmenu__close { position: fixed; top: 14px; right: 14px; width: 46px; height: 46px; z-index: 10; }
+	.mhx-fsmenu__close svg { width: 22px; height: 22px; }
+	.mhx-fsmenu__main { padding-top: clamp(20px, 6vw, 34px); }
+}
+
+/* 6. Bottom-bar redesign — premium pill + animacja shine na „Zarezerwuj" */
+@media (max-width: 768px) {
+	.mh-mobar {
+		display: flex; gap: 10px; grid-template-columns: none;
+		background: rgba(26,48,43,.97); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+		border-top: 1px solid rgba(197,160,89,.32);
+		padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); box-shadow: 0 -10px 30px -12px rgba(0,0,0,.6);
+	}
+	.mh-mobar__btn { flex: 1; border-radius: 999px; min-height: 52px; font-weight: 600; transition: transform .18s var(--ease); }
+	.mh-mobar__btn:active { transform: scale(.97); }
+	.mh-mobar__btn--call { background: rgba(255,255,255,.06); border: 1px solid rgba(197,160,89,.45); color: #F9F7F2; }
+	.mh-mobar__btn--book { background: #8F6E2C; color: #FFFFFF; box-shadow: 0 8px 22px -8px rgba(143,110,44,.6); position: relative; overflow: hidden; }
+	.mh-mobar__btn--book::after { content: ""; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 35%, rgba(255,255,255,.45) 50%, transparent 65%); transform: translateX(-120%); animation: mh-mobar-shine 4s ease-in-out infinite; pointer-events: none; }
+	body { padding-bottom: calc(74px + env(safe-area-inset-bottom)); }
+}
+@keyframes mh-mobar-shine { 0%, 55% { transform: translateX(-120%); } 92%, 100% { transform: translateX(120%); } }
+@media (prefers-reduced-motion: reduce) { .mh-mobar__btn--book::after { animation: none; } }
+
+/* 7. Ikona cookie nad bottom-barem (zasłaniała „Zadzwoń") */
+@media (max-width: 768px) {
+	.cky-btn-revisit-wrapper, .cky-revisit-bottom-left, .wt-cli-reopen-btn,
+	#cookie-law-info-again, .cli-plugin-button, .cky-revisit-bottom {
+		bottom: calc(82px + env(safe-area-inset-bottom)) !important;
+	}
+}
+
+/* Form focus: złoty pierścień (premium micro-interakcja, nie generyczny outline) */
+.mh-form input:focus, .mh-form select:focus, .mh-form textarea:focus,
+body:not(.home) .wpcf7 input:focus, body:not(.home) .wpcf7 textarea:focus, body:not(.home) .wpcf7 select:focus {
+	box-shadow: 0 0 0 3px rgba(197,160,89,.18);
+}
+
+/* ── Drawer mobilny PRZEBUDOWA: czysta ciemna kolumna (nav + kontakt), bez formularza/foto/szklanej karty ── */
+@media (max-width: 860px) {
+	.mhx-fsmenu { flex-direction: column; background: #16291F; overflow-y: auto; }
+	.mhx-fsmenu__main { flex: none; background: transparent; padding: clamp(64px,16vw,84px) clamp(24px,6vw,40px) clamp(20px,5vw,32px); }
+	.mhx-fsmenu__logo { margin-bottom: clamp(24px,6vw,40px); }
+	/* panel: zdejmij foto/scrim/szklaną kartę → płaska ciemna kontynuacja */
+	.mhx-fsmenu__panel { flex: none; background-image: none !important; background-color: transparent; box-shadow: none; }
+	.mhx-fsmenu__panel-scrim { display: none; }
+	.mhx-fsmenu__panel-inner { background: none; -webkit-backdrop-filter: none; backdrop-filter: none; border: 0; border-radius: 0; box-shadow: none; margin: 0; padding: 0 clamp(24px,6vw,40px) clamp(40px,9vw,64px); max-width: none; width: 100%; }
+	/* ukryj formularz rezerwacji na mobile (jest bottom-bar „Zarezerwuj") */
+	.mhx-fsmenu__panel-inner > .mhx-fsmenu__eyebrow, .mhx-fsmenu__lead, .mhx-fsmenu__form { display: none; }
+	/* kontakt jako stopka drawera */
+	.mhx-fsmenu__contact { border-top: 1px solid rgba(249,247,242,.16); padding-top: clamp(22px,5vw,30px); margin-top: 4px; }
+	/* X: większy, wyraźny header drawera (góra-prawo) */
+	.mhx-fsmenu__close { position: fixed; top: clamp(16px,4vw,22px); right: clamp(16px,4vw,22px); width: 48px; height: 48px; z-index: 20; }
+}
+
+/* ── Hero H1 → Playfair (serif), reszta nagłówków zostaje Montserrat (per życzenie) ── */
+.mh-hero__title, .mh-phero__title, .mh-rs-hero__title, .mh-art-hero__title, .mh-ob-hero__title, .mh-of-hero__title {
+	font-family: var(--font-hero);
+}
+
+/* ── Footer godziny czytelniej: większe, wyższy kontrast, każdy zakres w osobnej linii ── */
+.iab-footer__hglabel { font-size: .72rem; }
+.iab-footer__hgtime { font-size: .9rem; line-height: 1.5; color: rgba(249,247,242,.86); }
+.iab-footer__hgtime span { display: block; }
+
+/* ── Kontrast prozy na ciemnych podstronach: 74%→88% kremu (WCAG AA) ── */
+body:not(.home) .iab-prose, body:not(.home) .iab-prose p, body:not(.home) .iab-prose li { color: rgba(249,247,242,.88); }
+
+/* ── P0 fix: sekcja „Wyróżnienia i rekomendacje" jest BIAŁA → tytuł/tekst ciemne (był ivory=niewidoczny) ── */
+.mh-home .mh-recog .mh-sec-title { color: #1A302B; }
+.mh-home .mh-recog .mh-eyebrow { color: #8F6E2C; }
+.mh-recog__note { color: #4A4639; }
+
+/* ── Submity formularzy: mocne złoto (były blade #E6D6B8 = wyglądały na disabled) ── */
+body:not(.home) .wpcf7-submit, body:not(.home) input.wpcf7-submit, body:not(.home) button.wpcf7-submit {
+	background: #C5A059 !important; color: #1A302B !important; border-color: #C5A059 !important;
+}
+body:not(.home) .wpcf7-submit:hover, body:not(.home) input.wpcf7-submit:hover, body:not(.home) button.wpcf7-submit:hover {
+	background: #b08d45 !important; border-color: #b08d45 !important;
+}
+
+/* ── Lead w hero sal (obiekt) — spójny z innymi hero ── */
+.mh-ob-hero__lead { margin-top: clamp(14px,1.5vw,20px); max-width: 56ch; font-size: clamp(1.02rem,1.3vw,1.18rem); line-height: 1.7; color: rgba(249,247,242,.9); text-shadow: 0 1px 16px rgba(0,0,0,.45); }
+
+/* ── Tła z danych: custom property --mh-bg (zastępuje inline background-image w PHP); pusty → gradient z CSS ── */
+[style*="--mh-bg"] { background-image: var(--mh-bg) !important; background-size: cover !important; background-repeat: no-repeat !important; background-position: 50% 50% !important; }
+
+/* ── Godziny otwarcia jako czytelny grafik (dzień ↔ godzina) ── */
+.mh-hours { display: grid; gap: 5px; min-width: 0; max-width: 300px; }
+.mh-hours__row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; line-height: 1.35; }
+.mh-hours__time { font-variant-numeric: tabular-nums; white-space: nowrap; }
+/* w sekcji formularza */
+.mh-contact__list li.mh-contact__li--block { align-items: flex-start; }
+.mh-contact__li--block .mh-contact__ico { margin-top: 2px; }
+.mh-contact__txt .mh-hours { margin-top: 4px; }
+.mh-contact__txt .mh-hours__day { color: var(--c-muted); font-weight: 400; font-size: var(--text-sm); }
+.mh-contact__txt .mh-hours__time { color: var(--c-ink); font-weight: 600; font-size: var(--text-sm); }
+/* w kafelkach działów */
+.mh-dept__hours { align-items: flex-start; }
+.mh-dept__hours .mh-hours { font-size: .85rem; }
+.mh-dept__hours .mh-hours__day { color: var(--c-ink-soft); opacity: .82; }
+.mh-dept__hours .mh-hours__time { color: var(--c-ink-soft); font-weight: 600; }
+
+/* ── Foto (lotnicze) jako tło sekcji „Kontakt bezpośredni", mocno przyciemnione ── */
+.mh-depts--photo { position: relative; isolation: isolate; }
+.mh-depts__media { position: absolute; inset: 0; z-index: -2; }
+.mh-depts__scrim { position: absolute; inset: 0; z-index: -1; background: linear-gradient(160deg, rgba(20,36,28,.86), rgba(14,25,20,.93)); }
+
+.mh-of-content { padding: clamp(44px,6vw,80px) 0; }
+.mh-of-content .iab-prose { max-width: 72ch; margin-inline: auto; }
+.mh-of-content .iab-prose h2 { margin-top: 1.7em; }
+.mh-of-content .iab-prose h2:first-child { margin-top: 0; }
+
+/* ── QA: link polityki w karcie rezerwacji (był ciemny na ciemnym = niewidoczny) ── */
+.mh-booking__card a { color: var(--gold); text-decoration: underline; text-underline-offset: 2px; }
+.mh-booking__card a:hover { color: var(--cream); }
+

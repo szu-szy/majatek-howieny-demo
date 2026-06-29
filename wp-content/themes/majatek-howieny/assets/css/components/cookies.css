@@ -1,0 +1,96 @@
+/* ── CookieYes (cookie-law-info) — centered modal w palecie Majątku ──────────
+   Wymuszamy: fullscreen backdrop blur + wyśrodkowana karta (NIE dolny banner),
+   układ BLOKOWY (opis pełna szerokość, przyciski w rzędzie pod spodem),
+   nadpisanie inline-styli wtyczki (białe tło / niebieskie przyciski) przez !important. */
+
+/* ───── Backdrop ───── */
+.cky-consent-container,
+.cky-consent-container.cky-classic-bottom {
+	position: fixed !important; inset: 0 !important;
+	width: 100% !important; max-width: none !important; height: 100% !important;
+	display: flex !important; align-items: center !important; justify-content: center !important;
+	padding: clamp(16px, 4vw, 40px) !important; margin: 0 !important;
+	z-index: 99999 !important;
+	background: rgba(18, 16, 12, 0.62) !important;
+	-webkit-backdrop-filter: blur(9px) !important; backdrop-filter: blur(9px) !important;
+}
+.cky-consent-container.cky-hide { display: none !important; }
+
+/* ───── Karta ───── */
+.cky-consent-bar {
+	position: relative !important; transform: none !important; margin: 0 auto !important;
+	inset: auto !important; left: auto !important; right: auto !important; top: auto !important; bottom: auto !important;
+	width: 100% !important; max-width: 500px !important; max-height: 90vh !important; overflow-y: auto !important;
+	background: var(--c-on-brand, #F7F3EC) !important;
+	border: 1px solid color-mix(in srgb, var(--c-accent) 26%, transparent) !important;
+	border-top: 4px solid var(--c-accent) !important;
+	border-radius: 22px !important;
+	box-shadow: 0 40px 90px -28px rgba(20, 16, 12, .6), 0 6px 18px -10px rgba(20, 16, 12, .4) !important;
+	color: var(--c-ink) !important;
+	padding: clamp(26px, 4vw, 40px) !important;
+	font-family: var(--font-body) !important;
+	animation: cky-pop .4s cubic-bezier(.22, 1, .36, 1) both;
+}
+@keyframes cky-pop { from { opacity: 0; transform: translateY(12px) scale(.97); } to { opacity: 1; transform: none; } }
+
+.cky-notice { padding: 0 !important; margin: 0 !important; }
+.cky-title {
+	font-family: var(--font-display) !important; font-weight: 600 !important;
+	font-size: clamp(1.35rem, 3vw, 1.6rem) !important; line-height: 1.2 !important;
+	color: var(--c-ink) !important; letter-spacing: var(--ls-tight) !important;
+	margin: 0 0 12px 0 !important;
+}
+
+/* Układ blokowy: opis pełna szerokość, przyciski w rzędzie pod spodem */
+.cky-notice-group { display: block !important; }
+.cky-notice-des, .cky-notice-des * {
+	color: var(--c-ink-soft) !important; font-size: .94rem !important; line-height: 1.6 !important; margin: 0 !important;
+	background: transparent !important;
+}
+.cky-notice-des a, .cky-policy {
+	color: var(--c-accent-deep) !important; background: transparent !important; border: 0 !important;
+	text-decoration: underline !important; text-underline-offset: 2px !important; font-weight: 500 !important;
+}
+
+/* ───── Przyciski ───── */
+.cky-notice-btn-wrapper { display: flex !important; flex-wrap: wrap !important; gap: 10px !important; margin-top: 24px !important; }
+.cky-btn {
+	flex: 1 1 130px !important; min-width: 120px !important;
+	display: inline-flex !important; align-items: center !important; justify-content: center !important;
+	border-radius: var(--radius-pill, 999px) !important;
+	font-family: var(--font-body) !important; font-weight: 600 !important; font-size: .9rem !important;
+	padding: 13px 18px !important; min-height: 48px !important; cursor: pointer !important;
+	border: 1.5px solid transparent !important; transition: background .2s, border-color .2s, transform .2s, color .2s !important;
+	text-decoration: none !important;
+}
+/* Akceptuję = primary (zieleń marki) */
+.cky-btn-accept { order: 3 !important; flex-grow: 1.5 !important; background: var(--c-brand) !important; color: var(--c-on-brand) !important; border-color: var(--c-brand) !important; }
+.cky-btn-accept:hover { background: var(--c-brand-hover) !important; border-color: var(--c-brand-hover) !important; transform: translateY(-2px) !important; }
+/* Odrzuć = outline */
+.cky-btn-reject { order: 2 !important; background: transparent !important; color: var(--c-ink) !important; border-color: color-mix(in srgb, var(--c-ink) 24%, transparent) !important; }
+.cky-btn-reject:hover { background: color-mix(in srgb, var(--c-accent) 12%, transparent) !important; border-color: var(--c-accent) !important; }
+/* Dostosuj = ghost/tekst (mosiądz) */
+.cky-btn-customize, .cky-btn-preferences { order: 1 !important; flex-grow: .8 !important; background: transparent !important; color: var(--c-accent-deep) !important; border-color: transparent !important; }
+.cky-btn-customize:hover, .cky-btn-preferences:hover { background: color-mix(in srgb, var(--c-accent) 12%, transparent) !important; color: var(--c-accent-deep) !important; }
+
+/* ───── Centrum preferencji (Dostosuj) ───── */
+.cky-overlay { background: rgba(18, 16, 12, 0.62) !important; -webkit-backdrop-filter: blur(9px) !important; backdrop-filter: blur(9px) !important; }
+.cky-modal, .cky-preference-center { border-radius: 20px !important; box-shadow: 0 40px 90px -28px rgba(20,16,12,.6) !important; font-family: var(--font-body) !important; }
+.cky-preference-title, .cky-preference-header { font-family: var(--font-display) !important; color: var(--c-ink) !important; }
+.cky-accordion-header-des, .cky-preference-content-wrapper, .cky-preference-body-wrapper { color: var(--c-ink-soft) !important; }
+.cky-preference-header .cky-btn-preferences, .cky-prefrence-btn-wrapper .cky-btn-accept { background: var(--c-brand) !important; color: var(--c-on-brand) !important; border-color: var(--c-brand) !important; }
+.cky-accordion-header-skin .cky-accordion-chevron i::before { border-color: var(--c-accent-deep) !important; }
+
+/* Toggle kategorii zgód → zieleń marki gdy włączone */
+input.cky-switch-input:checked + .cky-switch-bar,
+.cky-switch input:checked + label,
+.cky-switch input:checked ~ .cky-switch-bar { background: var(--c-brand) !important; }
+
+/* Przycisk „revisit” (ponowne otwarcie) — paleta marki, lewy dolny róg (FAB telefon jest po prawej) */
+.cky-btn-revisit-wrapper { background: var(--c-brand) !important; }
+.cky-revisit-bottom-left { left: clamp(16px, 2vw, 28px) !important; }
+
+@media (max-width: 540px) {
+	.cky-consent-bar { padding: 24px !important; border-radius: 18px !important; }
+	.cky-btn { flex: 1 1 100% !important; }
+}

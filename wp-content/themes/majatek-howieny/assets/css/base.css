@@ -1,0 +1,113 @@
+/* ============================================================
+   BASE — reset, elementy bazowe, typografia, 2 typy buttonów, formularze.
+   ============================================================ */
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+	font-family: var(--font-body);
+	font-size: var(--text-base);
+	line-height: var(--lh-body);
+	color: var(--c-ink);
+	background: var(--c-bg);
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+img, picture, svg, video { display: block; max-width: 100%; height: auto; }
+ul, ol { padding: 0; list-style-position: inside; }
+a { color: var(--c-brand-ink); text-decoration: none; transition: color var(--dur-fast) var(--ease); }
+a:hover { color: var(--c-ink); }
+strong { font-weight: var(--fw-semibold); }
+
+/* ── Nagłówki ── */
+h1, h2, h3, h4 {
+	font-family: var(--font-display);
+	font-weight: var(--fw-bold);
+	line-height: var(--lh-tight);
+	letter-spacing: var(--ls-tight);
+	color: var(--c-ink);
+	text-wrap: balance;
+}
+h1 { font-size: var(--text-2xl); }
+h2 { font-size: var(--text-xl); }
+h3 { font-size: var(--text-lg); }
+p { max-width: 70ch; }
+
+/* ── Focus (a11y) ── */
+:focus-visible { outline: 3px solid var(--c-brand); outline-offset: 2px; border-radius: var(--radius-sm); }
+
+/* ── Skip link ── */
+.iab-skip { position: absolute; left: -9999px; top: 0; z-index: var(--z-toast); background: #16291F; color:#fff; padding: var(--sp-3) var(--sp-4); border-radius: 0 0 var(--radius-md) 0; }
+.iab-skip:focus { left: 0; color:#fff; }
+
+/* ============================================================
+   BUTTONY — DOKŁADNIE 2 typy. Każdy: default/hover/active/disabled/focus.
+   ============================================================ */
+.iab-btn {
+	display: inline-flex; align-items: center; justify-content: center; gap: var(--sp-2);
+	font-family: var(--font-body);   /* sans (Inter) — czytelność na buttonach > display serif */
+	font-size: var(--text-sm);
+	font-weight: var(--fw-semibold);
+	letter-spacing: .01em;
+	line-height: 1;
+	min-height: 56px;            /* Fitts — duży target (research: +22% CTR) */
+	padding: 0 28px;             /* szerokość ≈ 2× wysokość */
+	border: 1.5px solid transparent;
+	border-radius: var(--radius-pill);
+	cursor: pointer;
+	text-align: center;
+	position: relative; overflow: hidden; isolation: isolate;
+	transition: transform .28s cubic-bezier(.22, 1, .36, 1), background .25s ease,
+	            border-color .25s ease, box-shadow .32s ease, color .2s ease;
+	will-change: transform;
+}
+/* Premium sheen — połysk przesuwa się przez przycisk na hover */
+.iab-btn::after {
+	content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; border-radius: inherit;
+	background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, .28) 48%, transparent 66%);
+	transform: translateX(-135%); transition: transform .65s cubic-bezier(.22, 1, .36, 1);
+}
+.iab-btn:hover::after { transform: translateX(135%); }
+@media (prefers-reduced-motion: reduce) { .iab-btn::after { display: none; } }
+.iab-btn:active { transform: translateY(0) scale(.985); }
+.iab-btn[disabled], .iab-btn.is-disabled { opacity: .5; pointer-events: none; }
+.iab-btn .iab-ico { width: 20px; height: 20px; }
+
+/* 1) PRIMARY (solid) */
+.iab-btn--primary { background: var(--c-brand); color: var(--c-on-brand); border-color: var(--c-brand); box-shadow: var(--shadow-card); }
+.iab-btn--primary:hover { background: var(--c-brand-hover); border-color: var(--c-brand-hover); color: var(--c-on-brand); box-shadow: var(--shadow-lift); transform: translateY(-1px); }
+
+/* 2) SECONDARY (ghost / outline) */
+.iab-btn--secondary { background: transparent; color: var(--c-ink); border-color: var(--c-line); }
+.iab-btn--secondary:hover { background: var(--c-brand-soft); border-color: var(--c-brand); color: var(--c-brand-ink); transform: translateY(-1px); }
+
+.iab-btn--block { width: 100%; }
+.iab-btn--sm { min-height: 44px; padding: 0 18px; }
+
+/* ── Formularze ── */
+input, textarea, select, button { font: inherit; color: inherit; }
+input[type=text], input[type=email], input[type=tel], input[type=url],
+input[type=number], input[type=search], textarea, select {
+	width: 100%;
+	padding: 14px 16px;
+	background: var(--c-bg);
+	border: 1.5px solid var(--c-line);
+	border-radius: var(--radius-md);
+	transition: border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+}
+input:focus, textarea:focus, select:focus { border-color: var(--c-brand); box-shadow: 0 0 0 4px var(--c-brand-soft); outline: none; }
+textarea { min-height: 140px; resize: vertical; }
+label { font-weight: var(--fw-medium); font-size: var(--text-sm); }
+
+/* ── Prose (treść artykułu / strony) ── */
+.iab-prose { color: var(--c-ink-soft); }
+.iab-prose > * + * { margin-top: var(--sp-4); }
+.iab-prose h2 { margin-top: var(--sp-7); color: var(--c-ink); }
+.iab-prose h3 { margin-top: var(--sp-5); color: var(--c-ink); }
+.iab-prose a { text-decoration: underline; text-underline-offset: 3px; }
+.iab-prose img { border-radius: var(--radius-lg); margin: var(--sp-5) 0; }
+.iab-prose blockquote { border-left: 4px solid var(--c-brand); padding-left: var(--sp-4); color: var(--c-ink); font-style: italic; }
+.iab-prose ul, .iab-prose ol { padding-left: var(--sp-5); list-style-position: outside; }
+.iab-prose li + li { margin-top: var(--sp-2); }

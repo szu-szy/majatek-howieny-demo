@@ -1,0 +1,48 @@
+/* ============================================================
+   BLOG — index (karty), single (lewy sidebar), reading-progress.
+   ============================================================ */
+
+/* ── Reading progress (pasek na górze) ── */
+.iab-reading-progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: calc(var(--z-header) + 1); background: transparent; }
+.iab-reading-progress > span { display: block; height: 100%; width: 0; background: var(--c-brand); transition: width 80ms linear; }
+
+/* ── Karta wpisu ── */
+.iab-blog-card { padding: 0; overflow: hidden; }
+.iab-blog-card .iab-card__media { margin: 0; border-radius: 0; aspect-ratio: 16/10; }
+.iab-blog-card__link { display: block; padding: var(--sp-5); }
+.iab-blog-card .iab-card__media + .iab-badge,
+.iab-blog-card .iab-badge { margin: var(--sp-4) 0 var(--sp-2); }
+.iab-blog-card__title { margin-bottom: var(--sp-2); color: var(--c-ink); }
+.iab-blog-card__excerpt { color: var(--c-ink-soft); font-size: var(--text-sm); }
+.iab-blog-card__meta { display: block; margin-top: var(--sp-3); color: var(--c-muted); font-size: var(--text-xs); }
+
+/* ── Single: lewy sidebar ── */
+.iab-blog-sidebar { display: flex; flex-direction: column; gap: var(--sp-5); position: sticky; top: calc(var(--header-h) + var(--sp-4)); align-self: start; }
+.iab-blog-sidebar__h { font-size: var(--text-sm); text-transform: uppercase; letter-spacing: .04em; color: var(--c-muted); margin-bottom: var(--sp-3); }
+.iab-blog-sidebar__box { border-bottom: 1px solid var(--c-line); padding-bottom: var(--sp-4); }
+.iab-blog-sidebar__cats, .iab-blog-sidebar__recent { list-style: none; display: flex; flex-direction: column; gap: var(--sp-2); }
+.iab-blog-sidebar__cats a, .iab-blog-sidebar__recent a { color: var(--c-ink); font-size: var(--text-sm); }
+.iab-blog-sidebar__cats a:hover, .iab-blog-sidebar__recent a:hover { color: var(--c-brand); }
+.iab-blog-sidebar__cta { background: var(--c-brand-soft); border-color: transparent; }
+.iab-blog-sidebar__cta h3 { font-size: var(--text-base); }
+.iab-blog-sidebar__cta p { font-size: var(--text-sm); color: var(--c-ink-soft); margin: var(--sp-2) 0 var(--sp-4); }
+
+/* ── Post ── */
+.iab-post__head { margin-bottom: var(--sp-5); }
+.iab-post__head h1 { margin-top: var(--sp-2); }
+.iab-post__meta { color: var(--c-muted); font-size: var(--text-sm); margin-top: var(--sp-3); }
+.iab-post__hero { border-radius: var(--radius-lg); overflow: hidden; margin-bottom: var(--sp-6); }
+.iab-post__hero img { width: 100%; }
+.iab-post__tags { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-top: var(--sp-6); }
+.iab-post__tags a { font-size: var(--text-xs); padding: 4px 12px; border-radius: var(--radius-pill); background: var(--c-bg-alt); color: var(--c-ink-soft); }
+.iab-post__share { display: flex; align-items: center; gap: var(--sp-4); margin-top: var(--sp-6); padding-top: var(--sp-5); border-top: 1px solid var(--c-line); font-size: var(--text-sm); }
+.iab-post__share span { color: var(--c-muted); }
+.iab-post__author { display: flex; gap: var(--sp-4); align-items: center; margin-top: var(--sp-6); }
+.iab-post__avatar { border-radius: var(--radius-pill); }
+.iab-post__related { margin-top: var(--sp-8); }
+.iab-post__related h2 { margin-bottom: var(--sp-5); }
+
+@media (max-width: 1024px) {
+	.iab-blog-sidebar { position: static; flex-direction: row; flex-wrap: wrap; }
+	.iab-blog-sidebar__box, .iab-blog-sidebar__cta { flex: 1 1 240px; }
+}

@@ -1,0 +1,86 @@
+/* ============================================================
+   TOKENS — Majątek Howieny („rustic glamour"). Źródło: _seo/DESIGN.md
+   Redefiniuje kontrakt zmiennych startera `uslugowa` wartościami brandu.
+   JEDYNY plik do podmiany koloru/typografii — reszta CSS dopasuje się sama.
+   ============================================================ */
+:root {
+	/* ── KOLORY ── */
+	--c-brand:        #2B3A2E;   /* zieleń butelkowa — primary CTA, sekcje ciemne */
+	--c-brand-hover:  #1F2A22;   /* ciemniejsza zieleń (hover) */
+	--c-brand-soft:   #ECE6D8;   /* ciepły tint — hover secondary, drobne tła */
+	--c-brand-ink:    #2B3A2E;   /* AKCENT TEKSTOWY (eyebrow/linki/ikony) — zieleń, AA-safe na ivory */
+	--c-ink:          #1E1C19;   /* tekst główny / nagłówki (grafit) */
+	--c-ink-soft:     #4A4639;   /* tekst drugorzędny */
+	--c-muted:        #6B6453;   /* opisy/meta */
+	--c-line:         rgba(176,138,79,.34); /* MOSIĘŻNY hairline — obramowania/dividery */
+	--c-bg:           #F7F3EC;   /* ivory — tło strony */
+	--c-bg-alt:       #EFE8DA;   /* piaskowy off-white — sekcje naprzemienne */
+	--c-card:         #FDFBF6;   /* ciepła biel — karty */
+	/* Akcent mosiężny (dekoracyjnie: linie, podkreślenia, ikony, badge) */
+	--c-accent:       #B08A4F;
+	--c-accent-deep:  #7A5A2E;   /* mosiądz ciemny — AA dla tekstu (eyebrow/linki) na ivory ~5.5:1 */
+	/* Sekcje ciemne (restauracja, finałowe CTA) */
+	--c-dark:         #2B3A2E;
+	--c-dark-deep:    #1F2A22;
+	/* Semantyczne */
+	--c-success:      #4F7A4A;
+	--c-warning:      #B8860B;
+	--c-danger:       #B5503C;
+	--c-on-brand:     #F7F3EC;   /* tekst na zieleni (ivory, kontrast ~10:1) */
+
+	/* ── TYPOGRAFIA ── */
+	--font-display: "Montserrat", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+	--font-hero: "Playfair Display", Cormorant, Georgia, "Times New Roman", serif;
+	--font-body:    "Inter", "Hind", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+	--fw-regular: 400;
+	--fw-medium:  500;
+	--fw-semibold:600;
+	--fw-bold:    700;
+	/* Skala — większy hero pod serif display (H1 do ~76px) */
+	--text-xs:  0.8125rem; /* 13 */
+	--text-sm:  0.9375rem; /* 15 */
+	--text-base:1.0625rem; /* 17 */
+	--text-lg:  1.45rem;   /* ~23 */
+	--text-xl:  clamp(1.9rem, 3vw + .5rem, 2.75rem); /* H2 ~44 */
+	--text-2xl: clamp(2.6rem, 5vw + 1rem, 4.75rem);  /* H1 hero ~76 */
+	--lh-tight: 1.08;
+	--lh-body:  1.6;
+	--ls-tight: -0.02em;
+	--ls-eyebrow: 0.12em;
+
+	/* ── SPACING (4/8) ── */
+	--sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px;
+	--sp-5: 24px; --sp-6: 32px; --sp-7: 48px; --sp-8: 64px; --sp-9: 96px;
+
+	/* ── ZAOKRĄGLENIA (organiczne 12–20) ── */
+	--radius-sm:  10px;
+	--radius-md:  14px;
+	--radius-lg:  20px;
+	--radius-xl:  28px;
+	--radius-pill: 999px;
+
+	/* ── CIENIE (miękkie, ciepłe, niskie opacity / duży blur) ── */
+	--shadow-card:  0 6px 18px rgba(30,28,25,.08);
+	--shadow-lift:  0 18px 48px rgba(30,28,25,.12);
+	--shadow-modal: 0 32px 80px rgba(30,28,25,.22);
+
+	/* ── MOTION (premium, powściągliwy) ── */
+	--dur-fast: 160ms;
+	--dur-base: 300ms;
+	--dur-slow: 460ms;
+	--ease: cubic-bezier(.4, 0, .2, 1);
+	--ease-out: cubic-bezier(.16, 1, .3, 1);
+
+	/* ── LAYOUT ── */
+	--container: 1200px;
+	--container-narrow: 760px;
+	--header-h: 96px;
+	--z-header: 100;
+	--z-drawer: 200;
+	--z-modal: 300;
+	--z-toast: 400;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	:root { --dur-fast: 0ms; --dur-base: 0ms; --dur-slow: 0ms; }
+}

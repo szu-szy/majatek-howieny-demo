@@ -1,0 +1,79 @@
+/* ── Formularze CF7 (bridge na tokenach, zero !important) ── */
+.wpcf7 .iab-rodo, .wpcf7 p { margin: 0 0 var(--sp-4); }
+.wpcf7-form-control-wrap { display: block; }
+
+/* Komunikaty CF7 */
+.wpcf7 .wpcf7-not-valid-tip { color: var(--c-danger); font-size: var(--text-xs); margin-top: var(--sp-1); display: block; }
+.wpcf7 .wpcf7-not-valid { border-color: var(--c-danger); }
+.wpcf7-response-output {
+	border-radius: var(--radius-md); padding: var(--sp-3) var(--sp-4); margin: var(--sp-4) 0 0; font-size: var(--text-sm);
+	border: 1.5px solid var(--c-line);
+}
+.wpcf7 form.invalid .wpcf7-response-output, .wpcf7 form.spam .wpcf7-response-output { border-color: var(--c-danger); background: #fdecea; color: var(--c-danger); }
+.wpcf7 form.sent .wpcf7-response-output { border-color: var(--c-success); background: #eafaf0; color: var(--c-success); }
+
+/* Spinner */
+.wpcf7 .wpcf7-spinner { margin-left: var(--sp-3); }
+
+/* ── Premium RODO checkbox ── */
+.iab-rodo .wpcf7-acceptance { display: block; }
+.iab-rodo .wpcf7-list-item { margin: 0; }
+.iab-rodo label { display: flex; gap: var(--sp-3); align-items: flex-start; cursor: pointer; font-size: var(--text-xs); color: var(--c-muted); font-weight: var(--fw-regular); line-height: 1.5; }
+.iab-rodo input[type=checkbox] {
+	appearance: none; -webkit-appearance: none;
+	flex: 0 0 auto; width: 22px; height: 22px; margin-top: 1px;
+	border: 1.5px solid var(--c-line); border-radius: var(--radius-sm);
+	background: var(--c-bg); cursor: pointer; position: relative;
+	transition: background var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+.iab-rodo input[type=checkbox]:checked { background: var(--c-brand); border-color: var(--c-brand); }
+.iab-rodo input[type=checkbox]:checked::after {
+	content: ""; position: absolute; left: 7px; top: 3px; width: 6px; height: 11px;
+	border: solid #fff; border-width: 0 2.5px 2.5px 0; transform: rotate(45deg);
+}
+.iab-rodo input[type=checkbox]:focus-visible { outline: 3px solid var(--c-brand); outline-offset: 2px; }
+
+/* reCAPTCHA badge — dyskretnie (jeśli aktywne) */
+.grecaptcha-badge { opacity: .25; transition: opacity var(--dur-base) var(--ease); }
+.grecaptcha-badge:hover { opacity: 1; }
+
+/* ════════════════════════════════════════════════════════════════════
+   Pola CF7 na ciemnych podstronach (forest) — WYRAŹNE, nie zlewają się z tłem.
+   ════════════════════════════════════════════════════════════════════ */
+body:not(.home) .wpcf7 input.wpcf7-form-control:not([type=checkbox]):not([type=radio]):not([type=submit]),
+body:not(.home) .wpcf7 select.wpcf7-form-control,
+body:not(.home) .wpcf7 textarea.wpcf7-form-control {
+	width: 100%; box-sizing: border-box;
+	background: rgba(255,255,255,.06);
+	border: 1.5px solid rgba(249,247,242,.24);
+	border-radius: var(--radius-md);
+	padding: 13px 16px;
+	color: #F9F7F2; font-family: inherit; font-size: var(--text-sm);
+	transition: background var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+body:not(.home) .wpcf7 input.wpcf7-form-control:not([type=checkbox]):hover,
+body:not(.home) .wpcf7 select.wpcf7-form-control:hover,
+body:not(.home) .wpcf7 textarea.wpcf7-form-control:hover { border-color: rgba(249,247,242,.4); background: rgba(255,255,255,.09); }
+body:not(.home) .wpcf7 input.wpcf7-form-control:focus,
+body:not(.home) .wpcf7 select.wpcf7-form-control:focus,
+body:not(.home) .wpcf7 textarea.wpcf7-form-control:focus { outline: none; border-color: #C5A059; background: rgba(255,255,255,.1); }
+body:not(.home) .wpcf7 ::placeholder { color: rgba(249,247,242,.5); }
+/* Select — custom chevron złoty z ODSTĘPEM od krawędzi (nie przyklejony) */
+body:not(.home) .wpcf7 select.wpcf7-form-control {
+	-webkit-appearance: none; appearance: none;
+	padding-right: 44px;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23C5A059' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+	background-repeat: no-repeat; background-position: right 18px center; background-size: 12px 8px;
+}
+/* RODO checkbox — tło wyraźne (było var(--c-bg)=forest, zlewało się) */
+body:not(.home) .iab-rodo input[type=checkbox] { background: rgba(255,255,255,.08); border-color: rgba(249,247,242,.34); }
+body:not(.home) .iab-rodo input[type=checkbox]:checked { background: #C5A059; border-color: #C5A059; }
+body:not(.home) .iab-rodo input[type=checkbox]:checked::after { border-color: #1A302B; }
+body:not(.home) .iab-rodo label { color: rgba(249,247,242,.72); }
+body:not(.home) .iab-rodo a { color: #C5A059; }
+
+/* „Zapytaj o wycenę" — osadzony formularz #590 na podstronach oferty (sekcja dark, wyśrodkowany) */
+.mh-wycena-form { max-width: 560px; margin: clamp(26px,3vw,38px) auto 0; text-align: left; }
+.mh-wycena-form .wpcf7-form p { margin: 0 0 14px; }
+.mh-wycena-form .wpcf7-submit { width: 100%; margin-top: 6px; }
+.mh-wycena-form .iab-rodo { margin-top: 2px; }

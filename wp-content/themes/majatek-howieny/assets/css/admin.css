@@ -1,0 +1,39 @@
+/* Style panelu admina (meta boxy) — wydzielone z inline <style>/style="". @package iab */
+
+/* Meta box „Artykuł SEO" (post-meta.php) */
+.mh-asb label { font-weight: 600; display: block; margin: 14px 0 6px; }
+.mh-asb textarea { width: 100%; font-size: 14px; line-height: 1.55; }
+.mh-asb .mh-asb__hint { color: #646970; font-size: 12px; margin: 4px 0 0; }
+.mh-asb__struct { background: #f6f7f7; border: 1px solid #dcdcde; border-radius: 6px; padding: 10px 14px; margin: 4px 0 12px; font-size: 12px; line-height: 1.7; }
+.mh-asb__struct b { color: #1d2327; }
+
+/* Pola meta boxów (szerokości/rozmiary) — wydzielone z inline style="" */
+.iab-af-full { width: 100%; }
+.iab-af-120 { width: 120px; }
+.iab-af-140 { width: 140px; }
+.iab-af-15 { font-size: 15px; }
+
+/* Lead CPT + config + page-meta meta boxy */
+.iab-lead-empty { color: #a7aaad; }
+.iab-bare-table { border: 0; }
+.iab-lead-th { width: 240px; color: #50575e; font-weight: 600; }
+.iab-lead-td { font-size: 14px; color: #1d2327; }
+.iab-lead-total { font-size: 28px; font-weight: 700; margin: 0; }
+.iab-lead-total-sub { font-size: 13px; font-weight: 400; color: #666; }
+.iab-lead-list { margin: 12px 0; }
+.iab-muted-admin { color: #999; }
+.iab-cfg-card { max-width: none; margin: 14px 0; padding: 14px 18px; }
+.iab-m0-top { margin-top: 0; }
+.iab-mb-10 { margin-bottom: 10px; }
+.iab-mt-10 { margin-top: 10px; }
+.iab-mt-8 { margin-top: 8px; }
+.iab-af-p { margin: 0 0 14px; }
+.iab-af-label { display: block; font-weight: 600; margin-bottom: 4px; }
+.iab-af-hr { margin: 16px 0; }
+
+/* page-meta repeater + grid */
+.iab-grid-2-admin { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.iab-rep-row { display: flex; gap: 8px; margin-bottom: 8px; align-items: center; }
+.iab-rep-rm { flex: none; color: #b32d2e; }
+.iab-rep-box { margin: 0 0 22px; padding: 14px; border: 1px solid #dcdcde; border-radius: 6px; background: #fff; }
+.iab-m-0010 { margin: 0 0 10px; }

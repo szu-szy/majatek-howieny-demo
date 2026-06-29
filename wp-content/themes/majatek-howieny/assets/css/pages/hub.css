@@ -1,0 +1,9 @@
+/* HUB — rozdzielnik działu. Karty/atomy z components/mh-shared.css. */
+.mh-hub__head { padding-block: var(--sp-8) var(--sp-6); }
+.mh-hub__title { font-family: var(--font-display); font-size: var(--text-2xl); line-height: var(--lh-tight);
+	letter-spacing: var(--ls-tight); max-width: 18ch; }
+.mh-hub__lead { margin-top: var(--sp-4); max-width: 60ch; font-size: var(--text-lg); color: var(--c-ink-soft); }
+.mh-hub__grid-wrap { padding-bottom: var(--sp-9); }
+.mh-hub__cta { padding-block: var(--sp-8); }
+.mh-hub__cta-inner { text-align: center; display: flex; flex-direction: column; align-items: center; gap: var(--sp-4); }
+.mh-hub__cta-inner p { color: color-mix(in srgb, var(--c-on-brand) 84%, transparent); max-width: 52ch; }

@@ -1,0 +1,174 @@
+/* ============================================================
+   SECTIONS — style biblioteki sekcji.
+   ============================================================ */
+
+/* ── Hero (full-bleed, „pływający" zaokrąglony — wzorzec magic/stalver) ── */
+.iab-hero {
+	position: relative; isolation: isolate; overflow: hidden;
+	min-height: clamp(540px, 78vh, 820px);
+	display: flex; align-items: center;
+	border-radius: var(--radius-xl);
+	margin: var(--sp-4) var(--sp-4) 0;        /* „pływa" — odsunięty od krawędzi */
+	box-shadow: var(--shadow-lift);
+}
+.iab-hero__media { position: absolute; inset: 0; z-index: -2; background-color: var(--c-bg-alt); background-size: cover; background-position: center; }
+.iab-hero__overlay { position: absolute; inset: 0; z-index: -1; }
+/* Wariant ze zdjęciem/wideo w tle: ciemny overlay + jasny tekst */
+.iab-hero--media .iab-hero__overlay { background: linear-gradient(180deg, rgba(15,18,28,.25) 0%, rgba(15,18,28,.65) 100%); }
+/* Wariant wideo — <video> jako pełnoekranowe tło */
+.iab-hero__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+.iab-hero--media .iab-hero__title, .iab-hero--media .iab-hero__lead, .iab-hero--media .iab-hero__proof { color: #fff; }
+.iab-hero--media .iab-eyebrow { color: #fff; }
+
+.iab-hero__inner { width: 100%; padding-block: var(--sp-8); }
+.iab-hero__copy { max-width: 720px; }
+.iab-hero__title { font-size: var(--text-2xl); margin: var(--sp-2) 0 var(--sp-4); }
+.iab-hero__lead { font-size: var(--text-lg); color: var(--c-ink-soft); max-width: 56ch; }
+.iab-hero .iab-flow-cta { margin-top: var(--sp-6); }
+
+.iab-hero__proof { display: flex; align-items: center; flex-wrap: wrap; gap: var(--sp-4); margin-top: var(--sp-6); padding-top: var(--sp-5); border-top: 1px solid var(--c-line); }
+.iab-hero__rating { display: flex; align-items: center; gap: var(--sp-2); font-size: var(--text-sm); }
+.iab-hero__stars { display: inline-flex; color: #f5a623; }
+.iab-hero__rating strong { font-size: var(--text-base); }
+.iab-hero__rating-sub, .iab-hero__proof-note { color: var(--c-muted); font-size: var(--text-sm); display: inline-flex; align-items: center; gap: var(--sp-2); }
+.iab-hero__proof-note .iab-ico { color: var(--c-success); }
+.iab-hero__proof-sep { width: 1px; height: 28px; background: var(--c-line); }
+
+@media (max-width: 720px) {
+	.iab-hero { margin: 0; border-radius: 0; min-height: auto; }
+	.iab-hero__inner { padding-block: var(--sp-8) var(--sp-7); }
+	.iab-hero__proof { gap: var(--sp-3); }
+}
+
+/* ── Karty generyczne (blog/realizacje/cennik) ── */
+.iab-card h3 { margin-bottom: var(--sp-2); }
+.iab-card p { color: var(--c-ink-soft); font-size: var(--text-sm); }
+.iab-card__price { display: inline-block; margin-top: var(--sp-3); font-weight: var(--fw-semibold); color: var(--c-brand-ink); }
+
+/* ── Oferta: media-cards (TŁO na kafelku, overlay, ZERO ikon) ── */
+.iab-media-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-5); grid-auto-rows: 300px; }
+.iab-media-card { position: relative; isolation: isolate; display: flex; align-items: flex-end; border-radius: var(--radius-lg); overflow: hidden; background-size: cover; background-position: center; box-shadow: var(--shadow-card); color: #fff; transition: transform var(--dur-base) var(--ease), box-shadow var(--dur-base) var(--ease); }
+.iab-media-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
+.iab-media-card--lg { grid-row: span 2; }
+.iab-media-card__bg { position: absolute; inset: 0; z-index: -2; }
+/* Kafelek bez zdjęcia: spójny z marką gradient zieleń→czarny (ZERO tęczy/losowych hue).
+   Tekst (białe nagłówki) czyta się dzięki ciemnemu dołowi gradientu + nakładce ::after. */
+.iab-media-card__bg[data-gradient] { background: linear-gradient(150deg, var(--c-brand-hover) 0%, var(--c-ink) 100%); }
+.iab-media-card::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, transparent 25%, rgba(10,12,20,.82) 100%); }
+.iab-media-card__body { padding: var(--sp-5); }
+.iab-media-card__title { color: #fff; }
+.iab-media-card__desc { color: rgba(255,255,255,.85); font-size: var(--text-sm); margin-top: var(--sp-2); }
+.iab-media-card__arrow { display: inline-flex; align-items: center; gap: 6px; margin-top: var(--sp-3); font-weight: var(--fw-semibold); font-size: var(--text-sm); }
+.iab-media-card__arrow .iab-ico { transition: transform var(--dur-base) var(--ease); }
+.iab-media-card:hover .iab-media-card__arrow .iab-ico { transform: translateX(4px); }
+@media (max-width: 1024px) { .iab-media-grid { grid-template-columns: repeat(2, 1fr); } .iab-media-card--lg { grid-row: auto; } }
+@media (max-width: 640px) { .iab-media-grid { grid-template-columns: 1fr; grid-auto-rows: 240px; } }
+
+/* ── Dlaczego my (split: intro + lista) ── */
+.iab-why { display: grid; grid-template-columns: 1fr 1.15fr; gap: var(--sp-8); align-items: center; }
+.iab-why__intro p { color: var(--c-ink-soft); margin: var(--sp-3) 0 var(--sp-5); }
+.iab-why__list { list-style: none; display: grid; gap: var(--sp-4); }
+.iab-why__item { display: flex; gap: var(--sp-4); align-items: flex-start; background: var(--c-card); border: 1px solid var(--c-line); border-radius: var(--radius-lg); padding: var(--sp-4) var(--sp-5); transition: transform var(--dur-base) var(--ease), box-shadow var(--dur-base) var(--ease); }
+.iab-why__item:hover { transform: translateY(-2px); box-shadow: var(--shadow-lift); }
+.iab-why__check { flex: 0 0 auto; display: inline-flex; width: 40px; height: 40px; align-items: center; justify-content: center; border-radius: var(--radius-pill); background: var(--c-brand-soft); color: var(--c-brand-ink); }
+.iab-why__item strong { display: block; }
+.iab-why__item p { color: var(--c-ink-soft); font-size: var(--text-sm); margin-top: 2px; }
+@media (max-width: 1024px) { .iab-why { grid-template-columns: 1fr; gap: var(--sp-6); } }
+
+/* ── Proces (stepper z linią łączącą) ── */
+.iab-process { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-5); position: relative; }
+.iab-process::before { content: ""; position: absolute; top: 24px; left: 12%; right: 12%; height: 2px; background: linear-gradient(90deg, var(--c-brand-soft), var(--c-brand), var(--c-brand-soft)); z-index: 0; }
+.iab-process__step { text-align: center; position: relative; z-index: 1; }
+.iab-process__num { display: inline-flex; width: 48px; height: 48px; align-items: center; justify-content: center; border-radius: var(--radius-pill); background: var(--c-brand); color: var(--c-on-brand); font-family: var(--font-display); font-weight: var(--fw-bold); font-size: var(--text-lg); box-shadow: 0 0 0 6px var(--c-bg); transition: transform var(--dur-base) var(--ease); }
+.iab-process__step:hover .iab-process__num { transform: scale(1.08); }
+.iab-process__step h3 { margin: var(--sp-3) 0 var(--sp-1); font-size: var(--text-base); }
+.iab-process__step p { color: var(--c-ink-soft); font-size: var(--text-sm); max-width: 26ch; margin-inline: auto; }
+@media (max-width: 860px) {
+	.iab-process { grid-template-columns: 1fr; gap: var(--sp-5); padding-left: var(--sp-6); }
+	.iab-process::before { top: 0; bottom: 0; left: 24px; right: auto; width: 2px; height: auto; background: linear-gradient(180deg, var(--c-brand-soft), var(--c-brand), var(--c-brand-soft)); }
+	.iab-process__step { text-align: left; display: grid; grid-template-columns: auto 1fr; gap: var(--sp-4); align-items: start; }
+	.iab-process__num { box-shadow: 0 0 0 6px var(--c-bg-alt); }
+	.iab-process__step h3 { margin-top: 8px; }
+	.iab-process__step p { margin-inline: 0; max-width: none; }
+}
+
+/* ── Liczniki: ciemny pas marki ── */
+.iab-counters-band { background: linear-gradient(135deg, var(--c-ink) 0%, #1d2740 100%); border-radius: var(--radius-xl); margin-inline: var(--sp-4); }
+.iab-counters-band .iab-counter__num { color: #fff; }
+.iab-counters-band .iab-counter__label { color: rgba(255,255,255,.6); }
+.iab-counter { text-align: center; }
+.iab-counter__num { display: block; font-family: var(--font-display); font-size: var(--text-xl); font-weight: var(--fw-bold); color: var(--c-brand-ink); letter-spacing: var(--ls-tight); }
+.iab-counter__label { color: var(--c-muted); font-size: var(--text-sm); }
+@media (max-width: 720px) { .iab-counters-band { margin-inline: 0; } }
+
+/* ── Opinie (cytaty z avatarem) ── */
+.iab-review { background: var(--c-card); border: 1px solid var(--c-line); border-radius: var(--radius-lg); padding: var(--sp-5); box-shadow: var(--shadow-card); }
+.iab-review__stars { display: flex; gap: 2px; color: #f5a623; margin-bottom: var(--sp-3); }
+.iab-review blockquote { font-size: var(--text-base); color: var(--c-ink); }
+.iab-review__author { display: flex; align-items: center; gap: var(--sp-3); margin-top: var(--sp-4); font-weight: var(--fw-semibold); font-size: var(--text-sm); }
+.iab-review__avatar { display: inline-flex; width: 40px; height: 40px; align-items: center; justify-content: center; border-radius: var(--radius-pill); background: var(--c-brand-soft); color: var(--c-brand-ink); font-family: var(--font-display); }
+
+/* ── Zaufanie (uczciwy fallback bez fabrykowanych opinii) ── */
+.iab-trust { max-width: 720px; margin: 0 auto; text-align: center; background: var(--c-card); border: 1px solid var(--c-line); border-radius: var(--radius-lg); padding: var(--sp-6); box-shadow: var(--shadow-card); }
+.iab-trust__lead { font-size: var(--text-base); color: var(--c-ink-soft, var(--c-muted)); margin: 0 auto var(--sp-5); max-width: 56ch; }
+.iab-trust__signals { list-style: none; display: flex; flex-wrap: wrap; gap: var(--sp-3) var(--sp-5); justify-content: center; margin: 0 0 var(--sp-5); padding: 0; }
+.iab-trust__signals li { display: inline-flex; align-items: center; gap: var(--sp-2); font-weight: var(--fw-medium); font-size: var(--text-sm); color: var(--c-ink); }
+.iab-trust__signals li .iab-ico, .iab-trust__signals li svg { color: var(--c-brand-ink); flex: 0 0 auto; }
+
+/* ── FAQ / accordion ── */
+.iab-accordion__item { border: 1px solid var(--c-line); border-radius: var(--radius-md); margin-bottom: var(--sp-3); overflow: hidden; background: var(--c-card); }
+.iab-accordion__head { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3); padding: var(--sp-4) var(--sp-5); background: none; border: 0; cursor: pointer; text-align: left; font-family: var(--font-display); font-weight: var(--fw-semibold); font-size: var(--text-base); color: var(--c-ink); }
+.iab-accordion__head .iab-ico { transition: transform var(--dur-base) var(--ease); flex: 0 0 auto; }
+.iab-accordion__head[aria-expanded="true"] .iab-ico { transform: rotate(90deg); }
+.iab-accordion__panel { padding: 0 var(--sp-5) var(--sp-5); color: var(--c-ink-soft); }
+
+/* ── CTA band ── */
+.iab-cta-band { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--sp-5); background: linear-gradient(135deg, var(--c-brand) 0%, var(--c-brand-hover) 100%); color: var(--c-on-brand); border-radius: var(--radius-xl); padding: var(--sp-7); box-shadow: var(--shadow-lift); }
+.iab-cta-band h2 { color: var(--c-on-brand); }
+.iab-cta-band p { color: var(--c-on-brand); opacity: .82; margin-top: var(--sp-2); }
+.iab-cta-band .iab-btn--secondary { color: var(--c-on-brand); border-color: var(--c-on-brand); }
+.iab-cta-band .iab-btn--secondary:hover { background: rgba(0,0,0,.10); border-color: var(--c-on-brand); color: var(--c-on-brand); }
+
+/* ── Zespół — grid ── */
+.iab-member { text-align: center; }
+.iab-member__photo { aspect-ratio: 1; border-radius: var(--radius-lg); background: linear-gradient(135deg, var(--c-brand-soft), var(--c-bg-alt)); margin-bottom: var(--sp-3); }
+.iab-member h3 { margin-bottom: 2px; }
+.iab-member p { color: var(--c-muted); font-size: var(--text-sm); }
+/* ── Solo ekspert ── */
+.iab-expert { display: flex; gap: var(--sp-8); align-items: center; }
+.iab-expert__photo { flex: 0 0 200px; aspect-ratio: 1; border-radius: var(--radius-lg); background: linear-gradient(135deg, var(--c-brand-soft), var(--c-bg-alt)); }
+.iab-expert__body h2 { margin: var(--sp-2) 0 var(--sp-3); }
+.iab-expert__bio { color: var(--c-text); font-size: var(--text-base); max-width: 56ch; }
+@media (max-width: 640px) {
+  .iab-expert { flex-direction: column; }
+  .iab-expert__photo { flex: 0 0 auto; width: 140px; align-self: center; }
+}
+
+/* ── Kontakt ── */
+.iab-contact.iab-split { grid-template-columns: 1fr 1fr; }
+.iab-contact__list { list-style: none; display: flex; flex-direction: column; gap: var(--sp-3); }
+.iab-contact__list li { display: flex; align-items: center; gap: var(--sp-3); }
+.iab-contact__list .iab-ico { color: var(--c-brand-ink); flex: 0 0 auto; }
+.iab-contact__map { margin-top: var(--sp-5); border-radius: var(--radius-lg); overflow: hidden; }
+.iab-contact__map iframe { width: 100%; min-height: 280px; border: 0; display: block; }
+@media (max-width: 1024px) { .iab-contact.iab-split { grid-template-columns: 1fr; } }
+
+/* ── Cennik ── */
+.iab-price-card { text-align: center; position: relative; display: flex; flex-direction: column; }
+.iab-price-card__amount { font-family: var(--font-display); font-size: var(--text-lg); font-weight: var(--fw-bold); color: var(--c-brand-ink); margin: var(--sp-2) 0 var(--sp-3); }
+.iab-price-card__desc { color: var(--c-muted); font-size: var(--text-sm); margin-bottom: var(--sp-4); }
+.iab-price-card__features { list-style: none; text-align: left; display: flex; flex-direction: column; gap: var(--sp-2); margin: 0 0 var(--sp-5); padding: 0; }
+.iab-price-card__features li { display: flex; align-items: flex-start; gap: var(--sp-2); font-size: var(--text-sm); color: var(--c-ink); }
+.iab-price-card__features li svg, .iab-price-card__features li .iab-ico { color: var(--c-brand-ink); flex: 0 0 auto; margin-top: 3px; }
+.iab-price-card__features li span { flex: 1; }
+.iab-price-card .iab-btn { margin-top: auto; }
+.iab-price-card__badge { position: absolute; top: calc(-1 * var(--sp-3)); left: 50%; transform: translateX(-50%); background: var(--c-brand); color: var(--c-on-brand); font-family: var(--font-display); font-weight: var(--fw-semibold); font-size: var(--text-xs); padding: 4px 14px; border-radius: var(--radius-pill); white-space: nowrap; }
+.iab-price-card--featured { border-color: var(--c-brand); box-shadow: var(--shadow-lift); }
+.iab-pricing-note { text-align: center; font-size: var(--text-sm); margin-top: var(--sp-5); }
+
+/* ── Filtr realizacji ── */
+.iab-filter { display: flex; flex-wrap: wrap; gap: var(--sp-2); justify-content: center; }
+.iab-filter__btn { padding: 8px 18px; border-radius: var(--radius-pill); border: 1.5px solid var(--c-line); font-size: var(--text-sm); font-weight: var(--fw-medium); color: var(--c-ink); }
+.iab-filter__btn:hover, .iab-filter__btn.is-active { background: var(--c-brand); border-color: var(--c-brand); color: var(--c-on-brand); }
+
+.iab-muted { color: var(--c-muted); }

@@ -1,0 +1,267 @@
+/* ============================================================
+   HEADER — Majątek Howieny. Layout: logo (lewo) · nav (środek) · CTA (prawo).
+   Scroll → wyśrodkowana, zaokrąglona „pigułka". CTA: gradient + sheen + glow.
+   ============================================================ */
+
+.iab-header {
+	position: fixed; top: 0; left: 0; right: 0; z-index: var(--z-header);
+	height: var(--header-h);
+	background: color-mix(in srgb, var(--c-bg) 90%, transparent);
+	backdrop-filter: saturate(1.5) blur(12px);
+	border: 1px solid transparent;
+	transition: top var(--dur-base) var(--ease), height var(--dur-base) var(--ease),
+		width var(--dur-base) var(--ease), background var(--dur-base) var(--ease),
+		box-shadow var(--dur-base) var(--ease), border-color var(--dur-base) var(--ease),
+		border-radius var(--dur-base) var(--ease);
+}
+.iab-header__inner {
+	display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+	height: 100%; gap: var(--sp-4);
+}
+.iab-header__brand { justify-self: start; display: flex; align-items: center; }
+.iab-header__nav   { justify-self: center; }
+.iab-header__actions { justify-self: end; display: flex; align-items: center; gap: var(--sp-3); }
+
+/* ── SCROLL → pigułka wyśrodkowana ── */
+.iab-header.is-scrolled {
+	top: 14px;
+	height: 64px;
+	width: min(1200px, calc(100% - 32px));
+	margin-inline: auto;
+	background: rgba(18,16,12,.85);            /* ciemne szkło — czytelne białe menu na każdej sekcji */
+	backdrop-filter: saturate(1.4) blur(14px);
+	border-color: rgba(255,255,255,.18);
+	border-radius: var(--radius-pill);
+	box-shadow: 0 16px 40px rgba(30,28,25,.16);
+}
+/* Po scrollu — biała czcionka w nawigacji (na ciemnym szkle) */
+.iab-header.is-scrolled .iab-menu > li > a { color: #fff; }
+.iab-header.is-scrolled .iab-burger span { background: #fff; }
+.iab-header.is-scrolled .iab-header__inner { padding-inline: 22px; }
+.iab-header.is-scrolled .iab-header__brand .mh-logo__img { height: 46px; width: 46px; }
+
+/* ── LOGO (realny emblem; kwadrat) ── */
+.iab-header__brand img { width: auto; }
+.mh-logo { display: inline-flex; align-items: center; }
+.iab-header__brand .mh-logo__img { display: block; height: 72px; width: 72px; object-fit: contain;
+	transition: height var(--dur-base) var(--ease), width var(--dur-base) var(--ease); }
+.iab-header__title { font-family: var(--font-display); font-weight: var(--fw-bold); font-size: var(--text-lg); color: var(--c-ink); }
+@media (max-width: 600px) { .iab-header__brand .mh-logo__img { height: 52px; width: 52px; } }
+
+/* ── NAV (wyśrodkowany) ── */
+.iab-menu { display: flex; align-items: center; gap: 26px; list-style: none; }
+.iab-menu > li > a { font-weight: var(--fw-medium); color: var(--c-ink); font-size: var(--text-sm);
+	position: relative; letter-spacing: .01em; padding: 6px 0; }
+.iab-menu > li > a::after { content: ""; position: absolute; left: 0; right: 100%; bottom: 0; height: 2px;
+	background: var(--c-accent); border-radius: 2px; transition: right var(--dur-base) var(--ease); }
+.iab-menu > li > a:hover::after,
+.iab-menu > li.current-menu-item > a::after,
+.iab-menu > li.current-menu-ancestor > a::after { right: 0; }
+@media (min-width: 1025px) and (max-width: 1240px) { .iab-menu { gap: 18px; } .iab-menu > li > a { font-size: var(--text-xs); } }
+
+/* ── CTA: zieleń + tekst ivory (kontrast ~9:1), mosiężna obwódka + poświata + sheen ──
+   (NIE brass+ciemny tekst — gradient brass psuł kontrast tekstu) */
+.iab-header__cta.iab-btn {
+	position: relative; overflow: hidden;
+	background: linear-gradient(135deg, #334536 0%, var(--c-brand) 55%, var(--c-brand-hover) 100%);
+	color: var(--c-on-brand);                 /* ivory na zieleni ≈ 9:1 */
+	border: 1.5px solid color-mix(in srgb, var(--c-accent) 75%, transparent); /* mosiężny ring = wyróżnienie */
+	font-weight: var(--fw-semibold);
+	box-shadow: 0 6px 18px rgba(43,58,46,.32);
+	animation: mh-cta-glow 3.6s var(--ease) infinite;
+}
+.iab-header__cta.iab-btn::before {
+	content: ""; position: absolute; top: 0; bottom: 0; left: -70%; width: 42%;
+	background: linear-gradient(120deg, transparent, rgba(255,255,255,.28), transparent);
+	transform: skewX(-20deg); animation: mh-cta-sheen 5s var(--ease) infinite; pointer-events: none;
+}
+.iab-header__cta.iab-btn:hover {
+	background: linear-gradient(135deg, var(--c-brand) 0%, var(--c-brand-hover) 100%);
+	border-color: var(--c-accent); color: #fff;
+	transform: translateY(-1px); box-shadow: 0 10px 26px rgba(176,138,79,.42);
+}
+@keyframes mh-cta-glow { 0%, 100% { box-shadow: 0 6px 18px rgba(43,58,46,.30); } 50% { box-shadow: 0 8px 26px rgba(176,138,79,.40); } }
+@keyframes mh-cta-sheen { 0%, 60% { left: -70%; } 80%, 100% { left: 130%; } }
+@media (prefers-reduced-motion: reduce) {
+	.iab-header__cta.iab-btn { animation: none; }
+	.iab-header__cta.iab-btn::before { display: none; }
+}
+
+/* ── BURGER ── */
+.iab-burger { display: none; width: 44px; height: 44px; border: 0; background: transparent; flex-direction: column;
+	gap: 5px; align-items: center; justify-content: center; cursor: pointer; border-radius: var(--radius-md); }
+.iab-burger span { width: 24px; height: 2px; background: var(--c-ink); border-radius: 2px; transition: transform var(--dur-base) var(--ease), opacity var(--dur-base) var(--ease); }
+@media (max-width: 1024px) { .iab-header__nav { display: none; } .iab-header__cta { display: none; } .iab-burger { display: flex; } }
+
+/* ── DROPDOWN L2 (panel pod itemem) ── */
+.iab-menu .menu-item-has-children { position: relative; }
+.iab-menu > li.menu-item-has-children > a { padding-right: 15px; }
+.iab-menu > li.menu-item-has-children > a::before {
+	content: ""; position: absolute; right: 0; top: 50%; width: 6px; height: 6px; margin-top: -4px;
+	border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor;
+	transform: rotate(45deg); opacity: .6; transition: transform var(--dur-base) var(--ease);
+}
+.iab-menu > li.menu-item-has-children:hover > a::before { transform: rotate(225deg); }
+
+.iab-menu .sub-menu {
+	position: absolute; top: calc(100% + 16px); left: 50%; transform: translateX(-50%) translateY(10px);
+	min-width: 248px; list-style: none; display: flex; flex-direction: column; gap: 2px;
+	background: var(--c-card); border: 1px solid var(--c-line); border-radius: var(--radius-lg);
+	box-shadow: 0 20px 48px rgba(30,28,25,.18); padding: 10px; z-index: var(--z-header);
+	opacity: 0; visibility: hidden; pointer-events: none;
+	transition: opacity var(--dur-base) var(--ease), transform var(--dur-base) var(--ease), visibility var(--dur-base);
+}
+.iab-menu .sub-menu::before { content: ""; position: absolute; left: 0; right: 0; top: -16px; height: 16px; } /* mostek hover */
+.iab-menu .menu-item-has-children:hover > .sub-menu,
+.iab-menu .menu-item-has-children:focus-within > .sub-menu {
+	opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0);
+}
+.iab-menu .sub-menu a { display: flex; justify-content: space-between; align-items: center; gap: 12px;
+	padding: 11px 14px; border-radius: var(--radius-md); font-size: var(--text-sm); color: var(--c-ink); white-space: nowrap; }
+.iab-menu .sub-menu a::after { display: none; }
+.iab-menu .sub-menu > li > a:hover,
+.iab-menu .sub-menu .menu-item-has-children:hover > a { background: var(--c-brand-soft); color: var(--c-brand-ink); }
+
+/* ── DROPDOWN L3 (flyout w bok) ── */
+.iab-menu .sub-menu .menu-item-has-children > a::after {
+	content: ""; display: inline-block; width: 6px; height: 6px;
+	border-right: 1.5px solid var(--c-accent-deep); border-bottom: 1.5px solid var(--c-accent-deep);
+	transform: rotate(-45deg); opacity: .8;
+}
+.iab-menu .sub-menu .sub-menu { top: -11px; left: calc(100% + 8px); transform: translateX(0) translateY(10px); }
+.iab-menu .sub-menu .menu-item-has-children:hover > .sub-menu,
+.iab-menu .sub-menu .menu-item-has-children:focus-within > .sub-menu { transform: translateX(0) translateY(0); }
+
+/* ── MEGA-PANEL two-pane („Oferta"): lewa lista kategorii + prawe oferty (zmiana na hover) ──
+   :has() rozpoznaje mega (Wydarzenia zostaje zwykłą listą). Pure-CSS: domyślnie 1. kategoria. */
+.iab-menu > li > .sub-menu:has(> li > .sub-menu) {
+	left: 0; transform: translateX(0) translateY(10px);
+	width: min(720px, calc(100vw - 48px)); min-height: 296px;
+	display: block; position: absolute; padding: 16px;
+}
+.iab-menu > li.menu-item-has-children:hover > .sub-menu:has(> li > .sub-menu),
+.iab-menu > li.menu-item-has-children:focus-within > .sub-menu:has(> li > .sub-menu) { transform: translateX(0) translateY(0); }
+.iab-menu > li > .sub-menu:has(> li > .sub-menu)::before { left: 0; right: 0; top: -16px; }
+
+/* LEWA LISTA kategorii (L2) */
+.iab-menu > li > .sub-menu:has(> li > .sub-menu) > li {
+	position: static; width: 224px;
+	border-right: 1px solid var(--c-line);     /* separator lewa|prawa */
+}
+.iab-menu > li > .sub-menu:has(> li > .sub-menu) > li > a {
+	font-family: var(--font-display); font-weight: var(--fw-semibold); font-size: var(--text-base);
+	color: var(--c-ink); padding: 11px 14px; margin: 0 8px 0 0; border-radius: var(--radius-md);
+	justify-content: space-between;
+}
+.iab-menu > li > .sub-menu:has(> li > .sub-menu) > li:hover > a,
+.iab-menu > li > .sub-menu:has(> li > .sub-menu) > li:first-child > a { background: var(--c-brand-soft); color: var(--c-brand-ink); }
+.iab-menu > li > .sub-menu:has(> li > .sub-menu):hover > li:first-child > a { background: transparent; color: var(--c-ink); }
+.iab-menu > li > .sub-menu:has(> li > .sub-menu) > li:hover > a { background: var(--c-brand-soft); color: var(--c-brand-ink); }
+.iab-menu > li > .sub-menu:has(> li > .sub-menu) > li > a::after { /* strzałka › */
+	content: ""; display: inline-block; width: 6px; height: 6px; border-right: 1.5px solid currentColor;
+	border-bottom: 1.5px solid currentColor; border-top: 0; border-left: 0; transform: rotate(-45deg); opacity: .55;
+}
+
+/* PRAWY PANEL — oferty kategorii (L3) wypełniają obszar po prawej; zmiana na hover */
+.iab-menu > li > .sub-menu:has(> li > .sub-menu) > li > .sub-menu {
+	position: absolute; top: 16px; left: 264px; right: 16px; bottom: 16px;
+	display: block; columns: 2; column-gap: 14px;
+	background: transparent; border: 0; box-shadow: none; padding: 4px 0; min-width: 0;
+	opacity: 0; visibility: hidden; pointer-events: none; transform: none; transition: opacity var(--dur-fast) var(--ease);
+}
+/* domyślnie pokaż 1. kategorię; po najechaniu na panel — chowaj 1., pokaż najechaną */
+/* Pierwsza kategoria widoczna TYLKO gdy Oferta jest hover/focus (inaczej niewidoczna pułapka hover nad hero) */
+.iab-menu > li.menu-item-has-children:hover > .sub-menu:has(> li > .sub-menu) > li:first-child > .sub-menu,
+.iab-menu > li.menu-item-has-children:focus-within > .sub-menu:has(> li > .sub-menu) > li:first-child > .sub-menu { opacity: 1; visibility: visible; pointer-events: auto; }
+.iab-menu > li > .sub-menu:has(> li > .sub-menu):hover > li:first-child:not(:hover) > .sub-menu { opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
+.iab-menu > li > .sub-menu:has(> li > .sub-menu) > li:hover > .sub-menu { opacity: 1 !important; visibility: visible !important; pointer-events: auto !important; }
+.iab-menu > li > .sub-menu:has(> li > .sub-menu) > li > .sub-menu a {
+	break-inside: avoid; padding: 8px 10px; font-size: var(--text-sm); color: var(--c-ink-soft); border-radius: var(--radius-sm);
+	white-space: normal; line-height: 1.35;
+}
+.iab-menu > li > .sub-menu:has(> li > .sub-menu) > li > .sub-menu a::after { display: none; }
+.iab-menu > li > .sub-menu:has(> li > .sub-menu) > li > .sub-menu a:hover { background: var(--c-brand-soft); color: var(--c-brand-ink); }
+
+/* ── Nad CIEMNYM hero (home + podstrony z hero, przed scrollem): jasny tekst ── */
+.home .iab-header:not(.is-scrolled),
+.mh-has-hero .iab-header:not(.is-scrolled) {
+	background: rgba(18,16,12,.55);            /* płaskie ciemne tło z lekkim opacity (nie gradient-cień) */
+	backdrop-filter: saturate(1.4) blur(10px);
+	border-color: transparent;
+	border-bottom: 1px solid rgba(255,255,255,.16);   /* hairline na dole headera */
+}
+.home .iab-header:not(.is-scrolled) .iab-menu > li > a,
+.mh-has-hero .iab-header:not(.is-scrolled) .iab-menu > li > a { color: #fff; }
+.home .iab-header:not(.is-scrolled) .iab-burger span,
+.mh-has-hero .iab-header:not(.is-scrolled) .iab-burger span { background: #fff; }
+/* Logo nad jasnym hero — drop-shadow, by kolorowy emblem odbił się od tła */
+.home .iab-header:not(.is-scrolled) .mh-logo__img,
+.mh-has-hero .iab-header:not(.is-scrolled) .mh-logo__img { filter: drop-shadow(0 2px 10px rgba(0,0,0,.65)); }
+
+/* ════════════════════════════════════════════════════════════════════
+   FOREST-DEEP RESTYLE — header + mega-menu w stylu home (motyw ciemny).
+   forest #1A302B · fd-2 #223B36 · cream #F9F7F2 · gold #C5A059
+   ════════════════════════════════════════════════════════════════════ */
+
+/* Pasek — ciemny forest */
+.iab-header { background: rgba(26,48,43,.93); -webkit-backdrop-filter: saturate(1.3) blur(12px); backdrop-filter: saturate(1.3) blur(12px); border-bottom: 1px solid rgba(249,247,242,.1); }
+.iab-header.is-scrolled { background: rgba(26,48,43,.96); border-color: rgba(197,160,89,.32); box-shadow: 0 16px 40px -16px rgba(0,0,0,.55); }
+
+/* Linki menu — cream, Montserrat uppercase, gold underline */
+.iab-menu > li > a { color: #F9F7F2; font-family: 'Montserrat', system-ui, sans-serif; font-weight: 500; text-transform: uppercase; letter-spacing: .09em; font-size: 12px; }
+.iab-menu > li > a::after { background: #C5A059; }
+.iab-header.is-scrolled .iab-menu > li > a,
+.mh-has-hero .iab-header:not(.is-scrolled) .iab-menu > li > a { color: #F9F7F2; }
+.iab-burger span,
+.iab-header.is-scrolled .iab-burger span,
+.mh-has-hero .iab-header:not(.is-scrolled) .iab-burger span { background: #F9F7F2; }
+
+/* CTA — gold (jak home), biały tekst, bez starej animacji */
+.iab-header__cta.iab-btn { background: #8F6E2C; border: 1px solid #8F6E2C; color: #fff; box-shadow: 0 8px 24px -8px rgba(197,160,89,.5); animation: none; }
+.iab-header__cta.iab-btn::before { display: none; }
+.iab-header__cta.iab-btn:hover { background: #7E5E24; border-color: #7E5E24; color: #fff; transform: translateY(-2px); box-shadow: 0 14px 36px -8px rgba(197,160,89,.72); }
+
+/* Dropdown / sub-menu — panel forest-deep */
+.iab-menu .sub-menu { background: #223B36; border: 1px solid rgba(197,160,89,.28); box-shadow: 0 30px 70px -28px rgba(0,0,0,.72); }
+.iab-menu .sub-menu a { color: rgba(249,247,242,.86); }
+.iab-menu .sub-menu > li > a:hover,
+.iab-menu .sub-menu .menu-item-has-children:hover > a { background: rgba(197,160,89,.16); color: #F9F7F2; }
+
+/* Mega two-pane — lewa lista kategorii (var(--font-display)) */
+.iab-menu > li > .sub-menu:has(> li > .sub-menu) > li { border-right-color: rgba(249,247,242,.12); }
+.iab-menu > li > .sub-menu:has(> li > .sub-menu) > li > a { color: #F9F7F2; font-family: var(--font-display); }
+.iab-menu > li > .sub-menu:has(> li > .sub-menu) > li:hover > a,
+.iab-menu > li > .sub-menu:has(> li > .sub-menu) > li:first-child > a { background: rgba(197,160,89,.16); color: #C5A059; }
+.iab-menu > li > .sub-menu:has(> li > .sub-menu):hover > li:first-child > a { background: transparent; color: #F9F7F2; }
+.iab-menu > li > .sub-menu:has(> li > .sub-menu) > li:hover > a { background: rgba(197,160,89,.16); color: #C5A059; }
+
+/* Mega — prawy panel ofert */
+.iab-menu > li > .sub-menu:has(> li > .sub-menu) > li > .sub-menu a { color: rgba(249,247,242,.78); }
+.iab-menu > li > .sub-menu:has(> li > .sub-menu) > li > .sub-menu a:hover { background: rgba(197,160,89,.16); color: #F9F7F2; }
+
+/* Chevrony L3 → gold */
+.iab-menu .sub-menu .menu-item-has-children > a::after { border-color: #C5A059; }
+
+/* Nad hero (przezroczysty) — forest tint */
+.mh-has-hero .iab-header:not(.is-scrolled) { background: rgba(26,48,43,.5); border-bottom-color: rgba(249,247,242,.14); }
+
+/* Animowana świecąca obwódka gradientowa na CTA (efekt „generate", jak na home) */
+@property --iab-ang { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+.iab-header__cta.iab-btn::after {
+	content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1.6px; transform: none;
+	background: conic-gradient(from var(--iab-ang), rgba(246,226,172,0) 0%, #F6E2AC 16%, rgba(246,226,172,0) 34%, rgba(246,226,172,0) 100%);
+	-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+	-webkit-mask-composite: xor; mask-composite: exclude;
+	animation: iab-ang 3.4s linear infinite; pointer-events: none; opacity: 1;
+}
+@keyframes iab-ang { to { --iab-ang: 360deg; } }
+.iab-header__cta.iab-btn:hover::after { animation-duration: 1.2s; }
+@media (prefers-reduced-motion: reduce) { .iab-header__cta.iab-btn::after { animation: none; } }
+
+/* Feature-button w mega (np. „Atelier, wypożyczalnia dekoracji") — wyróżniony pill */
+.iab-menu .sub-menu .mh-mega-feature > a {
+	margin-top: 8px; border: 1px solid rgba(197,160,89,.55); border-radius: 999px;
+	background: rgba(197,160,89,.12); color: #C5A059 !important; font-weight: 600;
+	padding: 10px 16px; justify-content: flex-start; gap: 8px;
+}
+.iab-menu .sub-menu .mh-mega-feature > a:hover { background: #C5A059; color: #1A302B !important; }
