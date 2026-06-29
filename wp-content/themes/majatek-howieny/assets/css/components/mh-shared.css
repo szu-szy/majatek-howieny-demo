@@ -450,3 +450,9 @@
 
 /* Przycisk submit w formularzach-kartach (kontakt/wycena) — wyśrodkowany */
 .iab-card .wpcf7-form input.wpcf7-submit, .iab-card .wpcf7-form .wpcf7-submit { display: block; margin: var(--sp-3) auto 0; }
+
+/* ── Mobile: pary przycisków CTA obok siebie (nie stackuj na wąskim ekranie) ── */
+@media (max-width: 640px) {
+	.mh-ob-hero__cta .iab-btn,
+	.mh-rs-hero__cta .iab-btn { flex: 1; text-align: center; }
+}

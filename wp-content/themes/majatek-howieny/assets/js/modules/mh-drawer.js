@@ -10,6 +10,17 @@ export const initMhDrawer = () => {
 	backdrop?.removeAttribute('hidden');
 
 	const setOpen = (open) => {
+		if (!open && drawer.dataset.open === 'true') {
+			drawer.dataset.closing = 'true';
+			trigger.setAttribute('aria-expanded', 'false');
+			setTimeout(() => {
+				delete drawer.dataset.closing;
+				drawer.dataset.open = 'false';
+				if (backdrop) backdrop.dataset.open = 'false';
+				document.body.classList.remove('mh-drawer-open');
+			}, 220);
+			return;
+		}
 		const v = String(open);
 		drawer.dataset.open = v;
 		if (backdrop) backdrop.dataset.open = v;
