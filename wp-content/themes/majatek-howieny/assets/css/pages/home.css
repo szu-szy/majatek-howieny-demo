@@ -14,7 +14,7 @@ body.home { background: #1A302B; }
 /* ── Atomy (override na home) ── */
 .mh-home .mh-eyebrow { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .22em; color: var(--gold); }
 .mh-home .mh-eyebrow--light { color: var(--gold); }
-.mh-home .mh-sec-title { font-family: var(--font-display); font-weight: 400; font-size: clamp(2rem, 4.2vw, 3rem); line-height: 1.12; letter-spacing: -.01em; color: var(--cream); }
+.mh-home .mh-sec-title { font-family: var(--font-hero); font-weight: 400; font-size: clamp(2rem, 4.2vw, 3rem); line-height: 1.12; letter-spacing: -.01em; color: var(--cream); }
 .mh-home .mh-sec-lead { font-size: clamp(.95rem, 1.2vw, 1.05rem); font-weight: 300; line-height: 1.7; color: color-mix(in srgb, var(--cream) 66%, transparent); }
 .mh-home .mh-sec-head { max-width: 640px; }
 
@@ -27,7 +27,7 @@ body.home { background: #1A302B; }
 .mhx-fsmenu .iab-btn {
 	font-family: 'Montserrat', system-ui, sans-serif;
 	text-transform: uppercase; letter-spacing: .13em; font-size: 11px; font-weight: 600;
-	border-radius: 999px;
+	border-radius: 3px;
 }
 /* — Primary — */
 .mh-home .iab-btn--primary,
@@ -62,7 +62,7 @@ body.home { background: #1A302B; }
 .mh-hero__media { position: absolute; inset: 0; z-index: -2; background-size: cover; background-position: center; opacity: .55; }
 .mh-hero__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; }
 @keyframes mh-kenburns { from { transform: scale(1); } to { transform: scale(1.07); } }
-.mh-hero__scrim { position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(26,48,43,.82) 0%, rgba(26,48,43,.12) 45%, rgba(26,48,43,.94) 100%); }
+.mh-hero__scrim { position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(26,48,43,.2) 0%, rgba(26,48,43,.12) 45%, rgba(26,48,43,.2) 100%); }
 .mh-hero__inner { text-align: center; max-width: 920px; padding: 80px 24px 0; display: flex; flex-direction: column; align-items: center; }
 .mh-hero__eyebrow { letter-spacing: .3em !important; margin-bottom: 24px; color: color-mix(in srgb, var(--cream) 82%, transparent) !important; }
 .mh-hero__title { font-family: var(--font-hero); font-weight: 400; font-size: clamp(2.6rem, 7vw, 5rem); line-height: 1.08; letter-spacing: -.01em; color: var(--cream); margin: 0 0 26px; max-width: 18ch; }
@@ -175,7 +175,7 @@ body.home { background: #1A302B; }
 .mh-event-card__media { position: absolute; inset: 0; z-index: -2; background-size: cover; background-position: center; background-color: #2c3a30; transition: transform 1.1s var(--ease); }
 .mh-event-card::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(26,48,43,.05) 0%, rgba(26,48,43,.42) 50%, rgba(26,48,43,.86) 100%); }
 .mh-event-card:hover .mh-event-card__media { transform: scale(1.06); }
-.mh-event-card__tag { position: absolute; top: 18px; left: 18px; z-index: 1; display: inline-flex; align-items: center; padding: 7px 14px; border-radius: 999px; background: rgba(26,48,43,.55); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); border: 1px solid rgba(197,160,89,.5); color: var(--gold); font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .14em; }
+.mh-event-card__tag { position: absolute; top: 18px; left: 18px; z-index: 1; display: inline-flex; align-items: center; padding: 7px 14px; border-radius: 3px; background: rgba(26,48,43,.55); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); border: 1px solid rgba(197,160,89,.5); color: var(--gold); font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .14em; }
 .mh-event-card__body { padding: clamp(22px,2.4vw,30px); display: flex; flex-direction: column; gap: 8px; }
 .mh-event-card__name { font-family: var(--font-display); font-size: clamp(1.6rem,2.4vw,2rem); font-weight: 400; line-height: 1.15; color: #F9F7F2; }
 .mh-event-card__desc { font-size: .9rem; font-weight: 300; line-height: 1.6; color: rgba(249,247,242,.74); }
@@ -197,7 +197,7 @@ body.home { background: #1A302B; }
 .mh-final__intro .mh-sec-lead { margin-bottom: clamp(28px,3.5vw,40px); max-width: 46ch; }
 .mh-steps { list-style: none; margin: 0 0 clamp(28px,3.5vw,40px); padding: 0; display: flex; flex-direction: column; gap: clamp(16px,2vw,22px); }
 .mh-steps__item { display: flex; align-items: flex-start; gap: 16px; }
-.mh-steps__num { width: 44px; height: 44px; flex: none; display: inline-flex; align-items: center; justify-content: center; line-height: 1; border-radius: 50%; border: 1px solid color-mix(in srgb, var(--gold) 60%, transparent); color: var(--gold); font-family: var(--font-display); font-size: 1.05rem; background: rgba(26,48,43,.5); }
+.mh-steps__num { width: 44px; height: 44px; flex: none; display: inline-flex; align-items: center; justify-content: center; line-height: 1; border-radius: 4px; border: 1px solid color-mix(in srgb, var(--gold) 60%, transparent); color: var(--gold); font-family: var(--font-display); font-size: 1.05rem; background: rgba(26,48,43,.5); }
 .mh-steps__txt { display: flex; flex-direction: column; gap: 3px; padding-top: 4px; }
 .mh-steps__label { font-family: var(--font-display); font-size: 1.18rem; font-weight: 400; color: var(--cream); }
 .mh-steps__desc { font-size: .86rem; font-weight: 300; line-height: 1.5; color: color-mix(in srgb, var(--cream) 66%, transparent); }
@@ -210,7 +210,7 @@ body.home { background: #1A302B; }
 .mh-final__hours { font-size: .82rem; font-weight: 300; color: color-mix(in srgb, var(--cream) 60%, transparent); margin: 10px 0 0; }
 
 /* Prawa kolumna — szklana karta formularza (3D shadow) */
-.mh-final__card { background: rgba(26,48,43,.8); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); border: 1px solid rgba(197,160,89,.34); border-radius: 12px; padding: clamp(26px,3vw,42px); box-shadow: 0 44px 100px -44px rgba(0,0,0,.85), 0 10px 26px -18px rgba(0,0,0,.7); }
+.mh-final__card { background: rgba(26,48,43,.8); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); border: 1px solid rgba(197,160,89,.34); border-radius: 4px; padding: clamp(26px,3vw,42px); box-shadow: 0 44px 100px -44px rgba(0,0,0,.85), 0 10px 26px -18px rgba(0,0,0,.7); }
 .mh-final__card-head { font-family: var(--font-display); font-size: 1.5rem; color: var(--cream); margin: 0 0 22px; }
 .mh-form { display: flex; flex-direction: column; gap: 16px; }
 .mh-form__row { display: grid; grid-template-columns: 1fr; gap: 16px; }
@@ -320,3 +320,73 @@ body.home { background: #1A302B; }
 	.mh-intro__cta .iab-btn,
 	.mh-resto__cta .iab-btn { flex: 1; text-align: center; }
 }
+
+/* ════════════════════════════════════════════════════════════════════
+   LIGHT THEME — homepage „na jasno" (jak siedliskomorena.pl).
+   Sekcje płaskie (intro / pillars / sale-lista / proof / wydarzenia) → ivory + ciemny tekst.
+   Sekcje foto (hero / kafle / event-cards / finał CTA) i restauracja → BEZ ZMIAN (zostają ciemne).
+   Zmienne lokalne: --lt-bg ivory · --lt-bg-2 piaskowy · --lt-ink grafit-zieleń · --lt-soft muted · --lt-gold mosiądz głęboki (AA).
+   ════════════════════════════════════════════════════════════════════ */
+.mh-home {
+	--lt-bg: #FBF8F2; --lt-bg-2: #F4EEE2; --lt-ink: #23302A; --lt-soft: rgba(35,48,42,.72);
+	--lt-gold: #8A6A2E; --lt-line: rgba(43,58,46,.13); --lt-card: #FFFFFF;
+}
+.mh-home, body.home { background: var(--lt-bg); }
+.mh-home { color: var(--lt-ink); }
+
+/* Tła sekcji płaskich */
+.mh-intro, .mh-pillars, .mh-proof, .mh-events { background: var(--lt-bg); }
+.mh-sale { background: var(--lt-bg-2); }
+.mh-pillars, .mh-events { border-top-color: var(--lt-line); }
+
+/* Nagłówki / lead / eyebrow w jasnych sekcjach → ciemny tekst + głębszy mosiądz */
+.mh-intro .mh-sec-title, .mh-pillars .mh-sec-title, .mh-sale .mh-sec-title,
+.mh-proof .mh-sec-title, .mh-events .mh-sec-title,
+.mh-intro__title { color: var(--lt-ink); }
+.mh-intro .mh-sec-lead, .mh-pillars .mh-sec-lead, .mh-sale .mh-sec-lead,
+.mh-proof .mh-sec-lead, .mh-events .mh-sec-lead { color: var(--lt-soft); }
+.mh-intro__text { color: var(--lt-soft); }
+.mh-intro .mh-eyebrow, .mh-pillars .mh-eyebrow, .mh-sale .mh-eyebrow,
+.mh-proof .mh-eyebrow, .mh-events .mh-eyebrow,
+.mh-intro__eyebrow { color: var(--lt-gold); }
+
+/* SALE — lista pozycji na jasnym (hero z fotografią zostaje ciemny) */
+.mh-sale-row { color: var(--lt-ink); border-bottom-color: var(--lt-line); }
+.mh-sale-list li:first-child .mh-sale-row { border-top-color: var(--lt-line); }
+.mh-sale-row__name { color: var(--lt-ink); }
+.mh-sale-row__cap { color: rgba(35,48,42,.58); }
+.mh-sale-row:hover, .mh-sale-row:hover .mh-sale-row__name { color: var(--lt-gold); }
+
+/* PROOF — karty opinii na biało */
+.mh-home .mh-reviews__num { color: var(--lt-ink); }
+.mh-home .mh-reviews__src { color: rgba(35,48,42,.58); }
+.mh-home .mh-review { background: var(--lt-card); border-color: var(--lt-line); box-shadow: 0 18px 44px -28px rgba(20,30,26,.28); }
+.mh-home .mh-review__quote { color: rgba(35,48,42,.88); }
+
+/* Karty foto w jasnych sekcjach: cień ciemny (zamiast cream-glow z linii 305) */
+.mh-tile, .mh-event-card, .mh-sale-hero { box-shadow: 0 22px 48px -26px rgba(20,30,26,.34); }
+.mh-tile:hover, .mh-event-card:hover, .mh-sale-hero:hover { box-shadow: 0 30px 64px -26px rgba(20,30,26,.42); }
+
+/* Przyciski „secondary" na jasnym tle → CIEMNY outline (widoczne wszędzie poza
+   sekcją restauracji, która ma własny wariant na kremowym). Hover = ciemny fill. */
+.mh-home .iab-btn--secondary {
+	background: transparent; color: var(--lt-ink); border-color: rgba(43,58,46,.38);
+}
+.mh-home .iab-btn--secondary:hover {
+	background: var(--lt-ink); color: var(--lt-bg); border-color: var(--lt-ink); transform: translateY(-2px);
+}
+/* „ghost-light" tylko w jasnych sekcjach (w hero/foto zostaje jasny szklany) */
+.mh-intro .iab-btn--ghost-light, .mh-pillars .iab-btn--ghost-light,
+.mh-sale .iab-btn--ghost-light, .mh-proof .iab-btn--ghost-light,
+.mh-events .iab-btn--ghost-light {
+	background: transparent; color: var(--lt-ink); border-color: rgba(43,58,46,.38); -webkit-backdrop-filter: none; backdrop-filter: none;
+}
+.mh-intro .iab-btn--ghost-light:hover, .mh-pillars .iab-btn--ghost-light:hover,
+.mh-sale .iab-btn--ghost-light:hover, .mh-proof .iab-btn--ghost-light:hover,
+.mh-events .iab-btn--ghost-light:hover {
+	background: var(--lt-ink); color: var(--lt-bg); border-color: var(--lt-ink);
+}
+
+/* Focus-visible na jasnym tle (kontrast) */
+.mh-intro :focus-visible, .mh-pillars :focus-visible, .mh-sale :focus-visible,
+.mh-proof :focus-visible, .mh-events :focus-visible { outline-color: var(--lt-gold); }

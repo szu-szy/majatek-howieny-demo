@@ -1,0 +1,30 @@
+/* ============================================================
+   FONTY self-hosted — rodzina „Juana Extra" (display/nagłówki).
+   Pliki .woff2 wrzuć do /assets/fonts/ (patrz fonts/README.md).
+   Brak plików → graceful fallback na Playfair Display (zob. --font-hero).
+   ============================================================ */
+@font-face {
+	font-family: "Juana Extra";
+	src: url("../../fonts/JuanaExtra-Regular.woff2") format("woff2");
+	font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+	font-family: "Juana Extra";
+	src: url("../../fonts/JuanaExtra-Italic.woff2") format("woff2");
+	font-weight: 400; font-style: italic; font-display: swap;
+}
+@font-face {
+	font-family: "Juana Extra";
+	src: url("../../fonts/JuanaExtra-Medium.woff2") format("woff2");
+	font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+	font-family: "Juana Extra";
+	src: url("../../fonts/JuanaExtra-SemiBold.woff2") format("woff2");
+	font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+	font-family: "Juana Extra";
+	src: url("../../fonts/JuanaExtra-SemiBoldItalic.woff2") format("woff2");
+	font-weight: 600; font-style: italic; font-display: swap;
+}

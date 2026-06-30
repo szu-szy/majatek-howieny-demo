@@ -331,7 +331,7 @@ a.mh-rec:hover img { opacity: 1; transform: scale(1.05); }
 .mh-404__grid { display: grid; grid-template-columns: repeat(2,1fr); gap: clamp(10px,1.5vw,18px); margin-top: clamp(28px,4vw,44px); }
 @media (min-width: 720px) { .mh-404__grid { grid-template-columns: repeat(3,1fr); } }
 .mh-404card { position: relative; display: block; aspect-ratio: 16/10; border-radius: var(--radius-lg); overflow: hidden; text-decoration: none; box-shadow: 0 18px 40px -24px rgba(0,0,0,.6); }
-.mh-404card__media { position: absolute; inset: 0; background-size: cover; background-position: 50% 50%; transition: transform .5s var(--ease); }
+.mh-404card__media { position: absolute; inset: 0; background-color: #243a30; background-image: linear-gradient(150deg, #3a5142 0%, #1e3329 100%); background-size: cover; background-position: 50% 50%; transition: transform .5s var(--ease); }
 .mh-404card:hover .mh-404card__media { transform: scale(1.06); }
 .mh-404card__scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,18,15,.2), rgba(10,18,15,.78)); }
 .mh-404card__label { position: absolute; left: 16px; bottom: 14px; right: 16px; color: #F9F7F2; font-family: var(--font-display); font-size: clamp(1.05rem,1.4vw,1.3rem); display: flex; justify-content: space-between; align-items: center; gap: 10px; }
@@ -388,7 +388,7 @@ a.mh-rec:hover img { opacity: 1; transform: scale(1.05); }
 .mh-galitem[hidden] { display: none !important; }
 
 /* ── Pasek wyróżnień w hero restauracji (Poland 100 + Slow Food) ── */
-.mh-rs-hero__awards { margin-top: clamp(22px,3vw,34px); display: inline-flex; align-items: center; gap: 14px; background: rgba(255,255,255,.95); border-radius: 14px; padding: 9px 18px; box-shadow: 0 18px 44px -20px rgba(0,0,0,.65); max-width: 100%; }
+.mh-rs-hero__awards { margin-top: clamp(22px,3vw,34px); display: inline-flex; align-items: center; gap: 14px; background: rgba(255,255,255,.95); border-radius: 4px; padding: 9px 18px; box-shadow: 0 18px 44px -20px rgba(0,0,0,.65); max-width: 100%; }
 .mh-rs-hero__awards-lbl { font-family: 'Montserrat', sans-serif; font-size: .62rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #8F6E2C; flex: none; line-height: 1.2; }
 .mh-rs-hero__awards img { height: clamp(26px,3.4vw,38px); width: auto; display: block; }
 @media (max-width: 540px) { .mh-rs-hero__awards { gap: 9px; padding: 9px 14px; } .mh-rs-hero__awards-lbl { display: none; } }

@@ -20,10 +20,12 @@ import { initMhArticle } from './modules/mh-article.js';
 import { initMhLightbox } from './modules/mh-lightbox.js';
 import { initMhBooking } from './modules/mh-booking.js';
 import { initMhGallery } from './modules/mh-gallery.js';
+import { initNavDrop } from './modules/nav-drop.js';
 
 const boot = () => {
 	initLoader();   // pierwsze — blokuje scroll, musi uruchomić się jak najszybciej
 	initHeader();
+	initNavDrop();
 	initDrawer();
 	initReveal();
 	initForms();
