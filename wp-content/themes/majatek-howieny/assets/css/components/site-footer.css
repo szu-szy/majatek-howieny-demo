@@ -20,11 +20,11 @@
 .iab-footer__social { display: flex; flex-wrap: wrap; gap: var(--sp-3); margin-top: var(--sp-5); }
 .iab-footer__soc {
 	display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 50%;
-	border: 1px solid color-mix(in srgb, var(--c-accent) 45%, transparent); color: var(--c-on-brand) !important;
+	border: 1px solid color-mix(in srgb, var(--c-accent) 45%, transparent); color: var(--c-on-brand);
 	transition: background .25s var(--ease), border-color .25s var(--ease), color .25s var(--ease), transform .25s var(--ease);
 }
 .iab-footer__soc .iab-ico { width: 20px; height: 20px; }
-.iab-footer__soc:hover { background: var(--c-accent); border-color: var(--c-accent); color: #1F2A22 !important; transform: translateY(-2px); }
+.iab-footer__soc:hover { background: var(--c-accent); border-color: var(--c-accent); color: #1F2A22; transform: translateY(-2px); }
 
 /* Nagłówki kolumn */
 .iab-footer__h { color: #fff; font-family: var(--font-display); font-size: var(--text-base); font-weight: var(--fw-semibold);
@@ -40,7 +40,7 @@
 .iab-footer__contact svg { width: 18px; height: 18px; flex: none; margin-top: 2px; color: var(--c-accent); }
 .iab-footer__contact span { color: color-mix(in srgb, var(--c-on-brand) 76%, transparent); font-size: var(--text-sm); }
 .iab-footer__cta { margin-top: var(--sp-5); }
-.iab-footer__cta.iab-btn--accent { color: #fff !important; }   /* biały na głębokim złocie = AA, bez czarnego tekstu */
+.iab-footer__cta.iab-btn--accent { color: #fff; }   /* biały na głębokim złocie = AA, bez czarnego tekstu */
 
 /* Pasek dolny */
 .iab-footer__bottom { border-top: 1px solid color-mix(in srgb, var(--c-accent) 22%, transparent); }

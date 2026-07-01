@@ -173,8 +173,8 @@
 /* Pierwsza kategoria widoczna TYLKO gdy Oferta jest hover/focus (inaczej niewidoczna pułapka hover nad hero) */
 .iab-menu > li.menu-item-has-children:hover > .sub-menu:has(> li > .sub-menu) > li:first-child > .sub-menu,
 .iab-menu > li.menu-item-has-children:focus-within > .sub-menu:has(> li > .sub-menu) > li:first-child > .sub-menu { opacity: 1; visibility: visible; pointer-events: auto; }
-.iab-menu > li > .sub-menu:has(> li > .sub-menu):hover > li:first-child:not(:hover) > .sub-menu { opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
-.iab-menu > li > .sub-menu:has(> li > .sub-menu) > li:hover > .sub-menu { opacity: 1 !important; visibility: visible !important; pointer-events: auto !important; }
+.iab-menu > li > .sub-menu:has(> li > .sub-menu):hover > li:first-child:not(:hover) > .sub-menu { opacity: 0; visibility: hidden; pointer-events: none; }
+.iab-menu > li > .sub-menu:has(> li > .sub-menu) > li:hover > .sub-menu { opacity: 1; visibility: visible; pointer-events: auto; }
 .iab-menu > li > .sub-menu:has(> li > .sub-menu) > li > .sub-menu a {
 	break-inside: avoid; padding: 8px 10px; font-size: var(--text-sm); color: var(--c-ink-soft); border-radius: var(--radius-sm);
 	white-space: normal; line-height: 1.35;
@@ -261,7 +261,7 @@
 /* Feature-button w mega (np. „Atelier, wypożyczalnia dekoracji") — wyróżniony pill */
 .iab-menu .sub-menu .mh-mega-feature > a {
 	margin-top: 8px; border: 1px solid rgba(197,160,89,.55); border-radius: 999px;
-	background: rgba(197,160,89,.12); color: #C5A059 !important; font-weight: 600;
+	background: rgba(197,160,89,.12); color: #C5A059; font-weight: 600;
 	padding: 10px 16px; justify-content: flex-start; gap: 8px;
 }
-.iab-menu .sub-menu .mh-mega-feature > a:hover { background: #C5A059; color: #1A302B !important; }
+.iab-menu .sub-menu .mh-mega-feature > a:hover { background: #C5A059; color: #1A302B; }

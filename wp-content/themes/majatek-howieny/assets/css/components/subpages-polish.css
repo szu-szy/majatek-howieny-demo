@@ -4,14 +4,14 @@
 
 /* ── Hero podstron: MOCNE przyciemnienie (tytuł czytelny, ciemny klimat) — w tym brakujący of-hero ── */
 .mh-phero__scrim,
-.mh-of-hero__scrim { background: linear-gradient(176deg, rgba(10,18,15,.78) 0%, rgba(10,18,15,.6) 42%, rgba(7,13,10,.94) 100%) !important; }
-.mh-rs-hero__scrim { background: linear-gradient(176deg, rgba(10,18,15,.74) 0%, rgba(10,18,15,.58) 42%, rgba(7,13,10,.92) 100%) !important; }
-.mh-ob-hero__scrim { background: linear-gradient(176deg, rgba(10,18,15,.7) 0%, rgba(10,18,15,.56) 42%, rgba(7,13,10,.9) 100%) !important; }
+.mh-of-hero__scrim { background: linear-gradient(176deg, rgba(10,18,15,.78) 0%, rgba(10,18,15,.4) 42%, rgba(7,13,10,.65) 100%); }
+.mh-rs-hero__scrim { background: linear-gradient(176deg, rgba(10,18,15,.74) 0%, rgba(10,18,15,.4) 42%, rgba(7,13,10,.64) 100%); }
+.mh-ob-hero__scrim { background: linear-gradient(176deg, rgba(10,18,15,.7) 0%, rgba(10,18,15,.38) 42%, rgba(7,13,10,.62) 100%); }
 
 /* ── Kafelki (hub + powiązane): spacing + czytelność (tekst nie wtopiony w zdjęcie) ── */
 .mh-cards { gap: clamp(18px, 2.2vw, 30px); }
 .mh-card { min-height: 300px; border-color: color-mix(in srgb, var(--c-accent) 32%, transparent); }
-.mh-card__scrim { background: linear-gradient(180deg, rgba(12,20,16,.14) 0%, rgba(12,20,16,.4) 42%, rgba(8,14,11,.95) 100%) !important; }
+.mh-card__scrim { background: linear-gradient(180deg, rgba(12,20,16,.14) 0%, rgba(12,20,16,.4) 42%, rgba(8,14,11,.95) 100%); }
 .mh-card__body { padding: clamp(20px, 2.4vw, 28px); gap: 7px; }
 .mh-card__title { font-size: clamp(1.15rem, 1.5vw, 1.42rem); line-height: 1.2; text-shadow: 0 2px 14px rgba(0,0,0,.5); }
 .mh-card__desc { font-size: .9rem; line-height: 1.5; color: rgba(255,255,255,.84); }
@@ -123,7 +123,7 @@ body:not(.home) .mh-checklist li:hover { color: #fff; padding-left: 6px; }
 body:not(.home) .mh-checklist .mh-check { width: 17px; height: 17px; padding: 0; background: none; border-radius: 0; color: #C5A059; margin-top: 0; flex: none; transform: translateY(3px); }
 
 /* „Czym się zajmiemy" — wyśrodkowanie intro (mniej pustki) + CTA */
-@media (min-width: 900px) { .mh-of-incl__grid { align-items: center !important; } }
+@media (min-width: 900px) { .mh-of-incl__grid { align-items: center; } }
 .mh-of-incl__cta { margin-top: clamp(20px,2.4vw,28px); }
 .mh-of-incl__intro .mh-eyebrow { display: block; margin-bottom: 12px; }
 
@@ -227,14 +227,14 @@ body:not(.home)::after {
    ════════════════════════════════════════════════════════════════════ */
 
 /* Booking bar na ciemnych podstronach (był jasny kremowy „stary box") → dark glass jak na home */
-body:not(.home) .mh-booking__card { background: rgba(18,32,26,.86) !important; -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border: 1px solid rgba(197,160,89,.3) !important; box-shadow: 0 30px 70px -30px rgba(0,0,0,.6); }
+body:not(.home) .mh-booking__card { background: rgba(18,32,26,.86); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border: 1px solid rgba(197,160,89,.3); box-shadow: 0 30px 70px -30px rgba(0,0,0,.6); }
 body:not(.home) .mh-booking__card input, body:not(.home) .mh-booking__card select { background: rgba(0,0,0,.22); border-color: var(--c-ink-soft); color: var(--c-ink); }
 body:not(.home) .mh-bk__lbl, body:not(.home) .mh-bk__ico { color: #C5A059; }
 body:not(.home) .mh-bk__field { border-color: var(--c-ink-soft); }
 body:not(.home) .mh-booking__card .wpcf7-submit { background: #C5A059; color: #1A302B; border-color: #C5A059; }
 
 /* „Zarezerwuj" w booking — był za wysoki → cap wysokości + wyśrodkowanie (home + podstrony) */
-.mh-bk__action .iab-btn, .mh-bk__action input.wpcf7-submit, .mh-bk__action .wpcf7-submit { height: auto !important; max-height: 56px; align-self: center; padding-block: 15px !important; }
+.mh-bk__action .iab-btn, .mh-bk__action input.wpcf7-submit, .mh-bk__action .wpcf7-submit { height: auto; max-height: 56px; align-self: center; padding-block: 15px; }
 
 /* Checkbox „checked" — równy ptaszek (był krzywy) */
 .iab-rodo input[type=checkbox]:checked::after { left: 7px; top: 3px; width: 5px; height: 10px; border-width: 0 2.5px 2.5px 0; }
@@ -243,7 +243,7 @@ body:not(.home) .mh-booking__card .wpcf7-submit { background: #C5A059; color: #1
 .iab-rodo label, .mh-bk__rodo label, .mh-form__consent, .mhx-fsmenu__consent { font-size: 12px; line-height: 1.45; }
 
 /* Menu restauracji — tytuły kategorii NIECZYTELNE (były zieleń var(--c-brand) na ciemnym) → cream + złota kreska + mniej pustki */
-body:not(.home) .mh-menu__cat-t { color: var(--c-ink) !important; border-bottom: 1px solid rgba(197,160,89,.32); padding-bottom: 10px; }
+body:not(.home) .mh-menu__cat-t { color: var(--c-ink); border-bottom: 1px solid rgba(197,160,89,.32); padding-bottom: 10px; }
 body:not(.home) .mh-menu__name { color: var(--c-ink); }
 body:not(.home) .mh-menu__price { color: #C5A059; }
 body:not(.home) .mh-menu__desc { color: var(--c-ink-soft); }
@@ -268,7 +268,7 @@ body:not(.home) .mh-menu__desc { color: var(--c-ink-soft); }
 /* Ambient 3D na tle — mocniej widoczny (było za subtelnie) */
 body:not(.home)::before { background:
 	radial-gradient(42% 42% at 14% 18%, rgba(197,160,89,.1), transparent 70%),
-	radial-gradient(48% 48% at 86% 82%, rgba(74,135,112,.22), transparent 72%) !important; }
+	radial-gradient(48% 48% at 86% 82%, rgba(74,135,112,.22), transparent 72%); }
 
 /* CTA z przyciskiem + tło-zdjęcie (np. „Zarezerwuj nocleg") */
 .mh-cta-bg { position: relative; overflow: hidden; isolation: isolate; }
@@ -385,7 +385,7 @@ a.mh-rec:hover img { opacity: 1; transform: scale(1.05); }
 .mh-galfilter { background: transparent; border: 1px solid var(--c-line); color: var(--c-ink-soft); border-radius: var(--radius-sm); padding: 9px 20px; font: inherit; font-size: .88rem; cursor: pointer; transition: background .2s var(--ease), color .2s var(--ease), border-color .2s var(--ease); }
 .mh-galfilter:hover { color: var(--c-ink); border-color: var(--c-accent); }
 .mh-galfilter.is-active { background: var(--c-accent); color: #1A302B; border-color: var(--c-accent); font-weight: 600; }
-.mh-galitem[hidden] { display: none !important; }
+.mh-galitem[hidden] { display: none; }
 
 /* ── Pasek wyróżnień w hero restauracji (Poland 100 + Slow Food) ── */
 .mh-rs-hero__awards { margin-top: clamp(22px,3vw,34px); display: inline-flex; align-items: center; gap: 14px; background: rgba(255,255,255,.95); border-radius: 4px; padding: 9px 18px; box-shadow: 0 18px 44px -20px rgba(0,0,0,.65); max-width: 100%; }
@@ -452,7 +452,7 @@ a.mh-rec:hover img { opacity: 1; transform: scale(1.05); }
 	.mh-quote__grid, .mh-contact__grid, .mh-final__grid, .mh-hub__grid-wrap,
 	.mh-noc-intro__grid, .mh-rs-intro__grid, .mh-paramlist__row, .iab-beforeafter,
 	.mh-depts__grid {
-		grid-template-columns: 1fr !important;
+		grid-template-columns: 1fr;
 	}
 }
 
@@ -474,7 +474,7 @@ a.mh-rec:hover img { opacity: 1; transform: scale(1.05); }
 	.iab-section { padding-top: clamp(38px, 9vw, 54px); padding-bottom: clamp(38px, 9vw, 54px); }
 	.mh-recog, .mh-menu-cta, .mh-rs-gallery, .mh-noc-rooms, .mh-noc-amen,
 	.mh-noc-intro, .mh-noc-cta, .mh-rs-menu, .mh-rs-wine, .mh-events, .mh-proof {
-		padding-top: clamp(40px, 10vw, 58px) !important; padding-bottom: clamp(40px, 10vw, 58px) !important;
+		padding-top: clamp(40px, 10vw, 58px); padding-bottom: clamp(40px, 10vw, 58px);
 	}
 }
 
@@ -515,7 +515,7 @@ a.mh-rec:hover img { opacity: 1; transform: scale(1.05); }
 @media (max-width: 768px) {
 	.cky-btn-revisit-wrapper, .cky-revisit-bottom-left, .wt-cli-reopen-btn,
 	#cookie-law-info-again, .cli-plugin-button, .cky-revisit-bottom {
-		bottom: calc(82px + env(safe-area-inset-bottom)) !important;
+		bottom: calc(82px + env(safe-area-inset-bottom));
 	}
 }
 
@@ -531,7 +531,7 @@ body:not(.home) .wpcf7 input:focus, body:not(.home) .wpcf7 textarea:focus, body:
 	.mhx-fsmenu__main { flex: none; background: transparent; padding: clamp(64px,16vw,84px) clamp(24px,6vw,40px) clamp(20px,5vw,32px); }
 	.mhx-fsmenu__logo { margin-bottom: clamp(24px,6vw,40px); }
 	/* panel: zdejmij foto/scrim/szklaną kartę → płaska ciemna kontynuacja */
-	.mhx-fsmenu__panel { flex: none; background-image: none !important; background-color: transparent; box-shadow: none; }
+	.mhx-fsmenu__panel { flex: none; background-image: none; background-color: transparent; box-shadow: none; }
 	.mhx-fsmenu__panel-scrim { display: none; }
 	.mhx-fsmenu__panel-inner { background: none; -webkit-backdrop-filter: none; backdrop-filter: none; border: 0; border-radius: 0; box-shadow: none; margin: 0; padding: 0 clamp(24px,6vw,40px) clamp(40px,9vw,64px); max-width: none; width: 100%; }
 	/* ukryj formularz rezerwacji na mobile (jest bottom-bar „Zarezerwuj") */
@@ -562,10 +562,10 @@ body:not(.home) .iab-prose, body:not(.home) .iab-prose p, body:not(.home) .iab-p
 
 /* ── Submity formularzy: mocne złoto (były blade #E6D6B8 = wyglądały na disabled) ── */
 body:not(.home) .wpcf7-submit, body:not(.home) input.wpcf7-submit, body:not(.home) button.wpcf7-submit {
-	background: #C5A059 !important; color: #1A302B !important; border-color: #C5A059 !important;
+	background: #C5A059; color: #1A302B; border-color: #C5A059;
 }
 body:not(.home) .wpcf7-submit:hover, body:not(.home) input.wpcf7-submit:hover, body:not(.home) button.wpcf7-submit:hover {
-	background: #b08d45 !important; border-color: #b08d45 !important;
+	background: #b08d45; border-color: #b08d45;
 }
 
 /* ── Lead w hero sal (obiekt) — spójny z innymi hero ── */

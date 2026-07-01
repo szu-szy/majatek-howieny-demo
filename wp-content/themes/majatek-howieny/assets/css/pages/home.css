@@ -64,7 +64,7 @@ body.home { background: #1A302B; }
 @keyframes mh-kenburns { from { transform: scale(1); } to { transform: scale(1.07); } }
 .mh-hero__scrim { position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(26,48,43,.2) 0%, rgba(26,48,43,.12) 45%, rgba(26,48,43,.2) 100%); }
 .mh-hero__inner { text-align: center; max-width: 920px; padding: 80px 24px 0; display: flex; flex-direction: column; align-items: center; }
-.mh-hero__eyebrow { letter-spacing: .3em !important; margin-bottom: 24px; color: color-mix(in srgb, var(--cream) 82%, transparent) !important; }
+.mh-home .mh-hero__eyebrow { letter-spacing: .3em; margin-bottom: 24px; color: color-mix(in srgb, var(--cream) 82%, transparent); }
 .mh-hero__title { font-family: var(--font-hero); font-weight: 400; font-size: clamp(2.6rem, 7vw, 5rem); line-height: 1.08; letter-spacing: -.01em; color: var(--cream); margin: 0 0 26px; max-width: 18ch; }
 .mh-hero__title em { font-style: italic; color: var(--gold); }
 .mh-hero__lead { font-size: clamp(.92rem, 1.4vw, 1.05rem); font-weight: 300; color: color-mix(in srgb, var(--cream) 72%, transparent); max-width: 46ch; margin: 0 0 36px; }
@@ -226,7 +226,7 @@ body.home { background: #1A302B; }
 @media (max-width: 999px) { .mh-hero { min-height: 88svh; } }
 
 /* ════ Booking bar — forest glass (update do motywu) ════ */
-.mh-home .mh-booking__card { background: rgba(26,48,43,.72) !important; -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border: 1px solid rgba(197,160,89,.32); box-shadow: 0 30px 70px -30px rgba(0,0,0,.6); }
+.mh-home .mh-booking__card { background: rgba(26,48,43,.72); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border: 1px solid rgba(197,160,89,.32); box-shadow: 0 30px 70px -30px rgba(0,0,0,.6); }
 .mh-home .mh-booking__card label, .mh-home .mh-booking__card .wpcf7-form label { color: rgba(249,247,242,.72); }
 .mh-home .mh-booking__card input, .mh-home .mh-booking__card select { background: rgba(0,0,0,.2); border-color: rgba(249,247,242,.18); color: #F9F7F2; }
 .mh-home .mh-booking__card input::placeholder { color: rgba(249,247,242,.4); }
@@ -288,7 +288,7 @@ body.home { background: #1A302B; }
 .mh-home .mh-bk__lbl { color: var(--gold); letter-spacing: .12em; }
 .mh-home .mh-bk__field input, .mh-home .mh-bk__field select { color: var(--cream); }
 .mh-home .mh-bk__field input::placeholder { color: rgba(249,247,242,.42); }
-.mh-home .mh-bk__field select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23C5A059' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important; }
+.mh-home .mh-bk__field select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23C5A059' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
 .mh-home .mh-bk__field input[type="date"]::-webkit-calendar-picker-indicator { opacity: 0; cursor: pointer; }
 .mh-home .mh-bk__consent { border-top-color: rgba(249,247,242,.12); color: rgba(249,247,242,.55); }
 .mh-home .mh-bk__consent a { color: var(--gold); }

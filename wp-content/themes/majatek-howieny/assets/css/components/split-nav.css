@@ -31,7 +31,7 @@
 	z-index: 20;
 }
 .mhx-nav__drop-menu::before { content: ""; position: absolute; left: 0; right: 0; top: -14px; height: 14px; }
-.mhx-nav__drop-menu a { padding: 9px 14px !important; letter-spacing: .12em; color: rgba(249,247,242,.84); border-radius: 3px; transition: background .22s var(--ease), color .22s var(--ease); }
+.mhx-nav__drop-menu a { padding: 9px 14px; letter-spacing: .12em; color: rgba(249,247,242,.84); border-radius: 3px; transition: background .22s var(--ease), color .22s var(--ease); }
 .mhx-nav__drop-menu a::after { display: none; }
 .mhx-nav__drop-menu a:hover { background: rgba(197,160,89,.14); color: #F9F7F2; }
 .mhx-nav__drop:hover .mhx-nav__drop-menu,
@@ -82,15 +82,15 @@
 .mhx-fstree .sub-menu a:hover { color: #C5A059; padding-left: 6px; }
 .mhx-fstree > li.mhx-fsdefault > .sub-menu { opacity: 1; visibility: visible; transform: none; }
 .mhx-fstree > li.mhx-fsdefault > a { color: #F9F7F2; }
-.mhx-fstree:hover > li.mhx-fsdefault:not(:hover) > .sub-menu { opacity: 0 !important; visibility: hidden !important; }
-.mhx-fstree > li:hover > .sub-menu { opacity: 1 !important; visibility: visible !important; transform: none !important; }
+.mhx-fstree:hover > li.mhx-fsdefault:not(:hover) > .sub-menu { opacity: 0; visibility: hidden; }
+.mhx-fstree > li:hover > .sub-menu { opacity: 1; visibility: visible; transform: none; }
 /* Mobile — bez hovera: podstrony inline pod sekcją */
 @media (max-width: 860px) {
 	.mhx-fsmenu__nav { min-height: 0; }
 	.mhx-fstree { width: 100%; }
 	.mhx-fstree > li { margin-bottom: 18px; }
 	.mhx-fstree > li > a { color: #F9F7F2; font-size: clamp(1.4rem,5vw,1.8rem); }
-	.mhx-fstree .sub-menu { position: static; opacity: 1 !important; visibility: visible !important; transform: none !important; flex-direction: row; flex-wrap: wrap; gap: 5px 16px; margin-top: 6px; padding: 0 0 0 12px; }
+	.mhx-fstree .sub-menu { position: static; opacity: 1; visibility: visible; transform: none; flex-direction: row; flex-wrap: wrap; gap: 5px 16px; margin-top: 6px; padding: 0 0 0 12px; }
 	.mhx-fstree .sub-menu a { white-space: normal; font-size: .9rem; color: rgba(249,247,242,.62); }
 }
 /* Prawa ~40% — ZDJĘCIE w tle (przyciemnione) + formularz na wierzchu */
@@ -172,7 +172,7 @@
 	.mh-mobar__btn--call { background: #1A302B; color: #F9F7F2; }
 	.mh-mobar__btn--book { background: #C5A059; color: #1A302B; }
 	.mh-mobar__btn svg { flex: none; }
-	.iab-fab { display: none !important; }
+	.iab-fab { display: none; }
 	body { padding-bottom: calc(56px + env(safe-area-inset-bottom)); }
 }
 

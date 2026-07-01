@@ -307,27 +307,27 @@
 .mh-bk__lbl { font-size: 11px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--c-accent); }
 .mh-bk .wpcf7-form-control-wrap { display: block; width: 100%; margin: 0; }
 .mh-bk__field input, .mh-bk__field select {
-	border: 0 !important; background: transparent !important; box-shadow: none !important;
-	padding: 0 !important; margin: 0 !important; width: 100%; min-height: 0; height: auto;
+	border: 0; background: transparent; box-shadow: none;
+	padding: 0; margin: 0; width: 100%; min-height: 0; height: auto;
 	font-family: inherit; font-size: var(--text-md, 1.0625rem); font-weight: 600; color: var(--c-ink);
 	appearance: none; -webkit-appearance: none; cursor: pointer; text-overflow: ellipsis;
 }
 .mh-bk__field select {
-	padding-right: 28px !important;
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23B08A4F' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
-	background-repeat: no-repeat !important;
-	background-position: right 2px center !important;
-	background-size: 12px 8px !important;
+	padding-right: 28px;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23B08A4F' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: right 2px center;
+	background-size: 12px 8px;
 }
 .mh-bk__field input:focus, .mh-bk__field select:focus { outline: none; }
 .mh-bk__field input::placeholder { color: color-mix(in srgb, var(--c-ink) 45%, transparent); font-weight: 500; }
 .mh-bk__field input[type="date"]::-webkit-calendar-picker-indicator { cursor: pointer; opacity: .55; }
 .mh-bk__action { flex: none; display: flex; align-items: stretch; padding: 6px; }
 .mh-bk__action input.iab-btn, .mh-bk__action .iab-btn { display: inline-flex; align-items: center; justify-content: center; height: 100%; white-space: nowrap; border-radius: var(--radius-pill); padding-inline: clamp(20px, 2.4vw, 34px); }
-.mh-booking .wpcf7-response-output { margin: 14px 8px 6px !important; padding: 12px 16px !important; text-align: center; border-radius: 12px; font-size: var(--text-sm); }
+.mh-booking .wpcf7-response-output { margin: 14px 8px 6px; padding: 12px 16px; text-align: center; border-radius: 12px; font-size: var(--text-sm); }
 .mh-booking .wpcf7-spinner { margin: 0 0 0 8px; }
 /* Akceptacja RODO pod paskiem rezerwacji */
-.mh-bk__rodo { margin: 14px 4px 0 !important; font-size: var(--text-xs); }
+.mh-bk__rodo { margin: 14px 4px 0; font-size: var(--text-xs); }
 .mh-bk__rodo .wpcf7-list-item { margin: 0; }
 .mh-bk__rodo label { display: flex; gap: 10px; align-items: flex-start; }
 
