@@ -21,11 +21,13 @@ import { initMhLightbox } from './modules/mh-lightbox.js';
 import { initMhBooking } from './modules/mh-booking.js';
 import { initMhGallery } from './modules/mh-gallery.js';
 import { initNavDrop } from './modules/nav-drop.js';
+import { initSielskieModal } from './modules/sielskie-modal.js';
 
 const boot = () => {
 	initLoader();   // pierwsze — blokuje scroll, musi uruchomić się jak najszybciej
 	initHeader();
 	initNavDrop();
+	initSielskieModal();
 	initDrawer();
 	initReveal();
 	initForms();
