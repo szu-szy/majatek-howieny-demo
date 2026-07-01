@@ -35,6 +35,9 @@ body:not(.home) .mh-ob-hero,
 body:not(.home) .mh-phero,
 body:not(.home) .mh-hero,
 body:not(.home) .mh-quote__form,
+body:not(.home) .mh-menu-cta,
+body:not(.home) .mh-depts,
+body:not(.home) .mh-cta-bg,
 body:not(.home) .mh-section--dark {
 	--c-ink:         #F9F7F2;
 	--c-ink-soft:    rgba(249,247,242,.74);

@@ -1,17 +1,33 @@
 /**
- * Modal „Sielskie Wakacje" — otwierany klikiem świecącego linku w nawigacji.
+ * Modal „Sielskie Wakacje" — klik świecącego linku w nawigacji + AUTO raz na sesję.
  * Desktop: centered. Mobile: bottom-sheet. Zamknięcie: X / „Innym razem" / ESC / backdrop.
- * Wzorzec z Magic Gym (Les Mills), tu bez auto-popupu — wyłącznie na klik.
- * @package iab
+ * Auto-popup: po 8s LUB 35% scrolla, tylko raz na sesję (sessionStorage), poza
+ * stronami z blacklisty (sama /sielskie-wakacje/, /kontakt/, /podziekowanie/, /dziekujemy/).
+ * Wzorzec z Magic Gym (Les Mills), motyw Majątku. @package iab
  */
 const EXIT_MS = 300;
+const SESSION_KEY = 'mh_sw_modal_seen';
+const TIME_MS = 8000;
+const SCROLL_PCT = 35;
+const BLACKLIST = ['/sielskie-wakacje', '/kontakt', '/podziekowanie', '/dziekujemy'];
 
 const reducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const seenThisSession = () => {
+	try { return sessionStorage.getItem(SESSION_KEY) === '1'; } catch { return false; }
+};
+const markSeen = () => {
+	try { sessionStorage.setItem(SESSION_KEY, '1'); } catch { /* prywatny tryb → ignoruj */ }
+};
+const isBlacklisted = () => {
+	const path = window.location.pathname.replace(/\/$/, '') || '/';
+	return BLACKLIST.some((p) => path === p || path.startsWith(`${p}/`));
+};
 
 export function initSielskieModal() {
 	const modal = document.querySelector('[data-sw-modal]');
 	const openers = document.querySelectorAll('[data-sw-open]');
-	if (!modal || !openers.length) return;
+	if (!modal) return;
 
 	let shown = false;
 	let returnFocusTo = null;
@@ -19,6 +35,7 @@ export function initSielskieModal() {
 	const show = () => {
 		if (shown) return;
 		shown = true;
+		markSeen();
 		returnFocusTo = document.activeElement;
 		// Zamknij mobilny drawer, jeśli otwarty (żeby modal był nad wszystkim)
 		document.querySelector('[data-mh-drawer-close]')?.click();
@@ -48,6 +65,30 @@ export function initSielskieModal() {
 			show();
 		});
 	});
+
+	// AUTO-POPUP raz na sesję (po czasie lub scrollu), poza blacklistą.
+	if (!seenThisSession() && !isBlacklisted()) {
+		let autoFired = false;
+		const autoShow = () => {
+			if (autoFired || shown || seenThisSession()) return;
+			autoFired = true;
+			clearTimeout(timer);
+			window.removeEventListener('scroll', onScroll);
+			show();
+		};
+		const timer = setTimeout(autoShow, TIME_MS);
+		let rafQueued = false;
+		const onScroll = () => {
+			if (autoFired || rafQueued) return;
+			rafQueued = true;
+			requestAnimationFrame(() => {
+				rafQueued = false;
+				const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+				if ((window.scrollY / max) * 100 >= SCROLL_PCT) autoShow();
+			});
+		};
+		window.addEventListener('scroll', onScroll, { passive: true });
+	}
 
 	// Zamknięcia (X, „Innym razem")
 	modal.querySelectorAll('[data-sw-close]').forEach((el) => {
