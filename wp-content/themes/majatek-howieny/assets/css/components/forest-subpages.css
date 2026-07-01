@@ -1,30 +1,66 @@
 /* ════════════════════════════════════════════════════════════════════
-   FOREST-DEEP na PODSTRONACH — flip tokenów kolorów (treść body).
-   Home (.mh-home) ma własny motyw; tu lecą wszystkie pozostałe strony.
+   PODSTRONY NA JASNO — flip tokenów kolorów na light (spójnie z jasną home).
+   Treść na ivory + ciemny tekst. CIEMNE WYSPY (foto-hero + sekcje .mh-section--dark)
+   dostają z powrotem ciemne tokeny, więc jasny tekst na nich działa.
+   Hardkodowany kremowy tekst w komponentach = var(--c-ink) → tu ciemny, na wyspach kremowy.
    ════════════════════════════════════════════════════════════════════ */
 
 body:not(.home) {
-	--c-bg:         #1A302B;   /* forest — tło strony */
-	--c-bg-alt:     #223B36;   /* fd-2 — sekcje naprzemienne */
-	--c-card:       #223B36;   /* karty na ciemnym */
-	--c-ink:        #F9F7F2;   /* cream — tekst/nagłówki */
-	--c-ink-soft:   rgba(249,247,242,.74);
-	--c-muted:      rgba(249,247,242,.56);
-	--c-line:       rgba(249,247,242,.14);
-	--c-brand-soft: rgba(197,160,89,.16);  /* hover tint → gold */
-	--c-brand-ink:  #C5A059;   /* akcent tekstowy → gold */
-	--c-accent:     #C5A059;   /* gold (zamiast mosiądzu na jasnym) */
-	--c-accent-deep: #C5A059;  /* był ciemny mosiądz #7A5A2E — na ciemnym musi być jasny gold (eyebrow/linki) */
+	--c-bg:          #FBF8F2;   /* ivory — tło strony */
+	--c-bg-alt:      #F4EEE2;   /* piaskowy — sekcje naprzemienne */
+	--c-card:        #FFFFFF;   /* karty na jasnym */
+	--c-ink:         #23302A;   /* grafit-zieleń — tekst/nagłówki */
+	--c-ink-soft:    rgba(35,48,42,.74);
+	--c-muted:       rgba(35,48,42,.56);
+	--c-line:        rgba(43,58,46,.14);
+	--c-brand-soft:  rgba(138,106,46,.10);
+	--c-brand-ink:   #8A6A2E;   /* akcent tekstowy (eyebrow/linki) — AA na jasnym */
+	--c-accent:      #B08A4F;   /* mosiądz dekoracyjny (linie/ikony) */
+	--c-accent-deep: #7A5A2E;   /* mosiądz ciemny — tekst AA na jasnym */
 
-	background: #1A302B;
-	color: #F9F7F2;
+	background: #FBF8F2;
+	color: #23302A;
 }
 
-/* Przyciski primary/secondary → beż/gold + outline (spójne z home; nie zieleń na zieleni) */
-body:not(.home) .iab-btn--primary { background: #E6D6B8; color: #1A302B; border-color: #E6D6B8; }
-body:not(.home) .iab-btn--primary:hover { background: #C5A059; border-color: #C5A059; color: #1A302B; }
-body:not(.home) .iab-btn--secondary { background: transparent; color: #F9F7F2; border-color: rgba(249,247,242,.4); }
-body:not(.home) .iab-btn--secondary:hover { background: #F9F7F2; color: #1A302B; border-color: #F9F7F2; }
+/* Przyciski: primary = forest fill (jasny tekst), secondary = ciemny outline */
+body:not(.home) .iab-btn--primary { background: #23302A; color: #FBF8F2; border-color: #23302A; }
+body:not(.home) .iab-btn--primary:hover { background: #8A6A2E; border-color: #8A6A2E; color: #FBF8F2; }
+body:not(.home) .iab-btn--secondary { background: transparent; color: #23302A; border-color: rgba(43,58,46,.34); }
+body:not(.home) .iab-btn--secondary:hover { background: #23302A; color: #FBF8F2; border-color: #23302A; }
 
-/* Sekcje „dark" (mh-section--dark) na ciemnej stronie — lekko jaśniejszy fd-2, by się odcinały */
-body:not(.home) .mh-section--dark { background: #223B36; }
+/* ── CIEMNE WYSPY: foto-hero + sekcje dark — przywróć ciemne tokeny (jasny tekst OK) ── */
+body:not(.home) .mh-of-hero,
+body:not(.home) .mh-rs-hero,
+body:not(.home) .mh-ob-hero,
+body:not(.home) .mh-phero,
+body:not(.home) .mh-hero,
+body:not(.home) .mh-quote__form,
+body:not(.home) .mh-section--dark {
+	--c-ink:         #F9F7F2;
+	--c-ink-soft:    rgba(249,247,242,.74);
+	--c-muted:       rgba(249,247,242,.56);
+	--c-line:        rgba(249,247,242,.14);
+	--c-card:        #223B36;
+	--c-brand-ink:   #C5A059;
+	--c-accent:      #C5A059;
+	--c-accent-deep: #C5A059;
+}
+body:not(.home) .mh-section--dark { background: #223B36; color: #F9F7F2; }
+
+/* Przyciski w ciemnych wyspach → outline na jasnym tekście */
+body:not(.home) .mh-of-hero .iab-btn--secondary,
+body:not(.home) .mh-rs-hero .iab-btn--secondary,
+body:not(.home) .mh-ob-hero .iab-btn--secondary,
+body:not(.home) .mh-phero .iab-btn--secondary,
+body:not(.home) .mh-section--dark .iab-btn--secondary,
+body:not(.home) .iab-btn--ghost-light {
+	background: transparent; color: #F9F7F2; border-color: rgba(249,247,242,.4);
+}
+body:not(.home) .mh-of-hero .iab-btn--secondary:hover,
+body:not(.home) .mh-rs-hero .iab-btn--secondary:hover,
+body:not(.home) .mh-ob-hero .iab-btn--secondary:hover,
+body:not(.home) .mh-phero .iab-btn--secondary:hover,
+body:not(.home) .mh-section--dark .iab-btn--secondary:hover,
+body:not(.home) .iab-btn--ghost-light:hover {
+	background: #F9F7F2; color: #23302A; border-color: #F9F7F2;
+}

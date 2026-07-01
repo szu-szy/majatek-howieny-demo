@@ -70,7 +70,7 @@
 .iab-why__list { list-style: none; display: grid; gap: var(--sp-4); }
 .iab-why__item { display: flex; gap: var(--sp-4); align-items: flex-start; background: var(--c-card); border: 1px solid var(--c-line); border-radius: var(--radius-lg); padding: var(--sp-4) var(--sp-5); transition: transform var(--dur-base) var(--ease), box-shadow var(--dur-base) var(--ease); }
 .iab-why__item:hover { transform: translateY(-2px); box-shadow: var(--shadow-lift); }
-.iab-why__check { flex: 0 0 auto; display: inline-flex; width: 40px; height: 40px; align-items: center; justify-content: center; border-radius: var(--radius-pill); background: var(--c-brand-soft); color: var(--c-brand-ink); }
+.iab-why__check { flex: 0 0 auto; display: inline-flex; width: 40px; height: 40px; align-items: center; justify-content: center; border-radius: var(--radius-sm); background: var(--c-brand-soft); color: var(--c-brand-ink); }
 .iab-why__item strong { display: block; }
 .iab-why__item p { color: var(--c-ink-soft); font-size: var(--text-sm); margin-top: 2px; }
 @media (max-width: 1024px) { .iab-why { grid-template-columns: 1fr; gap: var(--sp-6); } }
@@ -79,7 +79,7 @@
 .iab-process { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-5); position: relative; }
 .iab-process::before { content: ""; position: absolute; top: 24px; left: 12%; right: 12%; height: 2px; background: linear-gradient(90deg, var(--c-brand-soft), var(--c-brand), var(--c-brand-soft)); z-index: 0; }
 .iab-process__step { text-align: center; position: relative; z-index: 1; }
-.iab-process__num { display: inline-flex; width: 48px; height: 48px; align-items: center; justify-content: center; border-radius: var(--radius-pill); background: var(--c-brand); color: var(--c-on-brand); font-family: var(--font-display); font-weight: var(--fw-bold); font-size: var(--text-lg); box-shadow: 0 0 0 6px var(--c-bg); transition: transform var(--dur-base) var(--ease); }
+.iab-process__num { display: inline-flex; width: 48px; height: 48px; align-items: center; justify-content: center; border-radius: var(--radius-sm); background: var(--c-brand); color: var(--c-on-brand); font-family: var(--font-display); font-weight: var(--fw-bold); font-size: var(--text-lg); box-shadow: 0 0 0 6px var(--c-bg); transition: transform var(--dur-base) var(--ease); }
 .iab-process__step:hover .iab-process__num { transform: scale(1.08); }
 .iab-process__step h3 { margin: var(--sp-3) 0 var(--sp-1); font-size: var(--text-base); }
 .iab-process__step p { color: var(--c-ink-soft); font-size: var(--text-sm); max-width: 26ch; margin-inline: auto; }
@@ -106,7 +106,7 @@
 .iab-review__stars { display: flex; gap: 2px; color: #f5a623; margin-bottom: var(--sp-3); }
 .iab-review blockquote { font-size: var(--text-base); color: var(--c-ink); }
 .iab-review__author { display: flex; align-items: center; gap: var(--sp-3); margin-top: var(--sp-4); font-weight: var(--fw-semibold); font-size: var(--text-sm); }
-.iab-review__avatar { display: inline-flex; width: 40px; height: 40px; align-items: center; justify-content: center; border-radius: var(--radius-pill); background: var(--c-brand-soft); color: var(--c-brand-ink); font-family: var(--font-display); }
+.iab-review__avatar { display: inline-flex; width: 40px; height: 40px; align-items: center; justify-content: center; border-radius: var(--radius-sm); background: var(--c-brand-soft); color: var(--c-brand-ink); font-family: var(--font-display); }
 
 /* ── Zaufanie (uczciwy fallback bez fabrykowanych opinii) ── */
 .iab-trust { max-width: 720px; margin: 0 auto; text-align: center; background: var(--c-card); border: 1px solid var(--c-line); border-radius: var(--radius-lg); padding: var(--sp-6); box-shadow: var(--shadow-card); }
@@ -162,13 +162,13 @@
 .iab-price-card__features li svg, .iab-price-card__features li .iab-ico { color: var(--c-brand-ink); flex: 0 0 auto; margin-top: 3px; }
 .iab-price-card__features li span { flex: 1; }
 .iab-price-card .iab-btn { margin-top: auto; }
-.iab-price-card__badge { position: absolute; top: calc(-1 * var(--sp-3)); left: 50%; transform: translateX(-50%); background: var(--c-brand); color: var(--c-on-brand); font-family: var(--font-display); font-weight: var(--fw-semibold); font-size: var(--text-xs); padding: 4px 14px; border-radius: var(--radius-pill); white-space: nowrap; }
+.iab-price-card__badge { position: absolute; top: calc(-1 * var(--sp-3)); left: 50%; transform: translateX(-50%); background: var(--c-brand); color: var(--c-on-brand); font-family: var(--font-display); font-weight: var(--fw-semibold); font-size: var(--text-xs); padding: 4px 14px; border-radius: var(--radius-sm); white-space: nowrap; }
 .iab-price-card--featured { border-color: var(--c-brand); box-shadow: var(--shadow-lift); }
 .iab-pricing-note { text-align: center; font-size: var(--text-sm); margin-top: var(--sp-5); }
 
 /* ── Filtr realizacji ── */
 .iab-filter { display: flex; flex-wrap: wrap; gap: var(--sp-2); justify-content: center; }
-.iab-filter__btn { padding: 8px 18px; border-radius: var(--radius-pill); border: 1.5px solid var(--c-line); font-size: var(--text-sm); font-weight: var(--fw-medium); color: var(--c-ink); }
+.iab-filter__btn { padding: 8px 18px; border-radius: var(--radius-sm); border: 1.5px solid var(--c-line); font-size: var(--text-sm); font-weight: var(--fw-medium); color: var(--c-ink); }
 .iab-filter__btn:hover, .iab-filter__btn.is-active { background: var(--c-brand); border-color: var(--c-brand); color: var(--c-on-brand); }
 
 .iab-muted { color: var(--c-muted); }

@@ -23,7 +23,7 @@ strong { font-weight: var(--fw-semibold); }
 
 /* ── Nagłówki ── */
 h1, h2, h3, h4 {
-	font-family: var(--font-display);
+	font-family: var(--font-hero);
 	font-weight: var(--fw-bold);
 	line-height: var(--lh-tight);
 	letter-spacing: var(--ls-tight);
@@ -55,7 +55,7 @@ p { max-width: 70ch; }
 	min-height: 56px;            /* Fitts — duży target (research: +22% CTR) */
 	padding: 0 28px;             /* szerokość ≈ 2× wysokość */
 	border: 1.5px solid transparent;
-	border-radius: var(--radius-pill);
+	border-radius: var(--radius-sm);
 	cursor: pointer;
 	text-align: center;
 	position: relative; overflow: hidden; isolation: isolate;
