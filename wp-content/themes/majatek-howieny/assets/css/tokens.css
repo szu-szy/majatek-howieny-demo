@@ -30,7 +30,7 @@
 
 	/* ── TYPOGRAFIA ── */
 	--font-display: "Montserrat", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-	--font-hero: "Juana Extra", "Playfair Display", Cormorant, Georgia, "Times New Roman", serif;
+	--font-hero: "Juana Extra", "Fraunces", "Playfair Display", Cormorant, Georgia, "Times New Roman", serif;
 	--font-body:    "Inter", "Hind", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 	--fw-regular: 400;
 	--fw-medium:  500;
