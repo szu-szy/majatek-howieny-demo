@@ -24,7 +24,7 @@
 	transition: background .25s var(--ease), border-color .25s var(--ease), color .25s var(--ease), transform .25s var(--ease);
 }
 .iab-footer__soc .iab-ico { width: 20px; height: 20px; }
-.iab-footer__soc:hover { background: var(--c-accent); border-color: var(--c-accent); color: #1F2A22; transform: translateY(-2px); }
+.iab-footer__soc:hover { background: var(--c-accent); border-color: var(--c-accent); color: #1e1c19; transform: translateY(-2px); }
 
 /* Nagłówki kolumn */
 .iab-footer__h { color: #fff; font-family: var(--font-display); font-size: var(--text-base); font-weight: var(--fw-semibold);

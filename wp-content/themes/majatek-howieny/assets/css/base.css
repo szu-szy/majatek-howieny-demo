@@ -40,7 +40,7 @@ p { max-width: 70ch; }
 :focus-visible { outline: 3px solid var(--c-brand); outline-offset: 2px; border-radius: var(--radius-sm); }
 
 /* ── Skip link ── */
-.iab-skip { position: absolute; left: -9999px; top: 0; z-index: var(--z-toast); background: #16291F; color:#fff; padding: var(--sp-3) var(--sp-4); border-radius: 0 0 var(--radius-md) 0; }
+.iab-skip { position: absolute; left: -9999px; top: 0; z-index: var(--z-toast); background: #1e1c19; color:#fff; padding: var(--sp-3) var(--sp-4); border-radius: 0 0 var(--radius-md) 0; }
 .iab-skip:focus { left: 0; color:#fff; }
 
 /* ============================================================

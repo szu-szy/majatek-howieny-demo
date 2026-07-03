@@ -1,30 +1,36 @@
 /* ============================================================
-   FONTY self-hosted — rodzina „Juana Extra" (display/nagłówki).
-   Pliki .woff2 wrzuć do /assets/fonts/ (patrz fonts/README.md).
-   Brak plików → graceful fallback na Playfair Display (zob. --font-hero).
+   FONTY nagłówków (display).
+   Rodzina „Juana Extra" NIE jest jeszcze wgrana (brak plików .woff2),
+   a poprzednie @font-face z url() do nieistniejących plików powodowały
+   nieudane żądania (301→błąd routera) i błędy w konsoli.
+
+   Rozwiązanie: src: local() — jeśli font jest zainstalowany w systemie
+   klienta, zostanie użyty; w przeciwnym razie przeglądarka BEZ żądania
+   sieciowego przechodzi do „Fraunces" (self-hosted, --font-hero).
+   Gdy klient dostarczy pliki, dopisz url("../../fonts/JuanaExtra-*.woff2").
    ============================================================ */
 @font-face {
 	font-family: "Juana Extra";
-	src: url("../../fonts/JuanaExtra-Regular.woff2") format("woff2");
+	src: local("Juana Extra"), local("JuanaExtra-Regular");
 	font-weight: 400; font-style: normal; font-display: swap;
 }
 @font-face {
 	font-family: "Juana Extra";
-	src: url("../../fonts/JuanaExtra-Italic.woff2") format("woff2");
+	src: local("Juana Extra Italic"), local("JuanaExtra-Italic");
 	font-weight: 400; font-style: italic; font-display: swap;
 }
 @font-face {
 	font-family: "Juana Extra";
-	src: url("../../fonts/JuanaExtra-Medium.woff2") format("woff2");
+	src: local("Juana Extra Medium"), local("JuanaExtra-Medium");
 	font-weight: 500; font-style: normal; font-display: swap;
 }
 @font-face {
 	font-family: "Juana Extra";
-	src: url("../../fonts/JuanaExtra-SemiBold.woff2") format("woff2");
+	src: local("Juana Extra SemiBold"), local("JuanaExtra-SemiBold");
 	font-weight: 600; font-style: normal; font-display: swap;
 }
 @font-face {
 	font-family: "Juana Extra";
-	src: url("../../fonts/JuanaExtra-SemiBoldItalic.woff2") format("woff2");
+	src: local("Juana Extra SemiBold Italic"), local("JuanaExtra-SemiBoldItalic");
 	font-weight: 600; font-style: italic; font-display: swap;
 }

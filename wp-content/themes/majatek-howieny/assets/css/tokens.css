@@ -4,11 +4,17 @@
    JEDYNY plik do podmiany koloru/typografii — reszta CSS dopasuje się sama.
    ============================================================ */
 :root {
-	/* ── KOLORY ── */
-	--c-brand:        #2B3A2E;   /* zieleń butelkowa — primary CTA, sekcje ciemne */
-	--c-brand-hover:  #1F2A22;   /* ciemniejsza zieleń (hover) */
+	/* ── KOLORY ──
+	   Zmiana 2026-07-02: zieleń butelkowa #2B3A2E → greige klienta #CFC6BB.
+	   Ponieważ greige jest JASNY, rozdzielono role zieleni:
+	   • primary CTA / elementy interaktywne → GRAFIT #1E1C19 (kotwica, tekst ivory ~15:1)
+	   • akcent tekstowy (eyebrow/linki/ikony)  → CIEMNY MOSIĄDZ #7A5A2E (AA na ivory ~5.6:1)
+	   • płaskie sekcje „dark"                   → GREIGE #CFC6BB (tekst grafit ~10:1)
+	   • sekcje foto/hero pozostają ciemne (grafit) — tinty zneutralizowane z zieleni. */
+	--c-brand:        #1E1C19;   /* GRAFIT — primary CTA, elementy interaktywne (kotwica) */
+	--c-brand-hover:  #3A352D;   /* ciepły grafit jaśniejszy (hover) */
 	--c-brand-soft:   #ECE6D8;   /* ciepły tint — hover secondary, drobne tła */
-	--c-brand-ink:    #2B3A2E;   /* AKCENT TEKSTOWY (eyebrow/linki/ikony) — zieleń, AA-safe na ivory */
+	--c-brand-ink:    #7A5A2E;   /* AKCENT TEKSTOWY (eyebrow/linki/ikony) — ciemny mosiądz, AA na ivory */
 	--c-ink:          #1E1C19;   /* tekst główny / nagłówki (grafit) */
 	--c-ink-soft:     #4A4639;   /* tekst drugorzędny */
 	--c-muted:        #6B6453;   /* opisy/meta */
@@ -19,14 +25,15 @@
 	/* Akcent mosiężny (dekoracyjnie: linie, podkreślenia, ikony, badge) */
 	--c-accent:       #B08A4F;
 	--c-accent-deep:  #7A5A2E;   /* mosiądz ciemny — AA dla tekstu (eyebrow/linki) na ivory ~5.5:1 */
-	/* Sekcje ciemne (restauracja, finałowe CTA) */
-	--c-dark:         #2B3A2E;
-	--c-dark-deep:    #1F2A22;
+	/* Płaskie sekcje „dark" → GREIGE klienta (tekst grafit) */
+	--c-dark:         #CFC6BB;   /* GREIGE #CFC6BB — kolor klienta, płaskie sekcje */
+	--c-dark-deep:    #26231F;   /* grafit — stopka (ciemne grounding, tekst kremowy ~13:1) */
 	/* Semantyczne */
 	--c-success:      #4F7A4A;
 	--c-warning:      #B8860B;
 	--c-danger:       #B5503C;
-	--c-on-brand:     #F7F3EC;   /* tekst na zieleni (ivory, kontrast ~10:1) */
+	--c-on-brand:     #F7F3EC;   /* tekst na GRAFICIE (ivory, kontrast ~15:1) */
+	--c-on-dark:      #1E1C19;   /* tekst na GREIGE (grafit, kontrast ~10:1) */
 
 	/* ── TYPOGRAFIA ── */
 	--font-display: "Montserrat", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;

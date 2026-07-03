@@ -3,7 +3,7 @@
 /* HOOK / hero (ciemny pas pod ivory headerem) */
 .mh-of-hero { position: relative; overflow: hidden; isolation: isolate; color: #fff; padding-block: var(--sp-9); }
 .mh-of-hero__media { position: absolute; inset: 0; z-index: -2;
-	background: radial-gradient(120% 120% at 70% 20%, #6c7a52, #3a472f 50%, #232a1d); }
+	background: radial-gradient(120% 120% at 70% 20%, #a89a80, #514a3c 50%, #26231f); }
 .mh-of-hero__scrim { position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(20,18,14,.25), rgba(20,18,14,.6)); }
 .mh-of-hero__title { font-family: var(--font-hero); color: #fff; font-size: var(--text-2xl); line-height: var(--lh-tight);
 	letter-spacing: var(--ls-tight); max-width: 18ch; }
@@ -13,7 +13,7 @@
 /* Wariant dzieci — cieplejszy hero */
 .mh-oferta--dzieci .mh-of-hero__media { background: radial-gradient(120% 120% at 40% 25%, #b08a4f, #6a4f24 55%, #3a2c14); }
 /* Wariant B2B — chłodniejszy, bardziej rzeczowy */
-.mh-oferta--b2b .mh-of-hero__media { background: radial-gradient(120% 120% at 65% 25%, #4a5641, #2a3122 55%, #1d231a); }
+.mh-oferta--b2b .mh-of-hero__media { background: radial-gradient(120% 120% at 65% 25%, #625a4a, #35322a 55%, #221f1a); }
 
 /* Obietnica + w cenie */
 .mh-of-incl { padding-block: var(--sp-9); }

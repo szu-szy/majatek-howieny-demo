@@ -1,0 +1,73 @@
+/* ============================================================
+   MOTION POLISH — premium mikrointerakcje (globalnie, ładowane na końcu).
+   Tylko transform/opacity/box-shadow. Całość pod prefers-reduced-motion.
+   Cel: „ożywić" stronę bez przeładowania (rustic glamour, powściągliwie).
+   ============================================================ */
+
+@media (prefers-reduced-motion: no-preference) {
+
+	/* ── Reveal: nieco dłuższy dystans wejścia (bardziej wyczuwalne) ── */
+	.iab-js .iab-reveal { transform: translateY(26px); }
+	.iab-js .iab-reveal.is-visible { transform: none; }
+	/* Głębszy stagger dla siatek (4. i 5. element też się „doczekają") */
+	.iab-reveal[data-delay="4"] { transition-delay: 320ms; }
+	.iab-reveal[data-delay="5"] { transition-delay: 400ms; }
+
+	/* ── Przyciski: feedback kliknięcia + „shine" także na accent i secondary ── */
+	.iab-btn { transition: transform .25s var(--ease), box-shadow .3s var(--ease), background .3s var(--ease), border-color .3s var(--ease), color .3s var(--ease); }
+	.iab-btn:active { transform: translateY(0) scale(.985); }
+	.iab-btn--accent, .iab-btn--secondary { position: relative; overflow: hidden; }
+	.iab-btn--accent::after, .iab-btn--secondary::after {
+		content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 1;
+		background: linear-gradient(120deg, transparent 32%, rgba(255,255,255,.22) 50%, transparent 68%);
+		transform: translateX(-130%); transition: transform var(--dur-slow) var(--ease);
+	}
+	.iab-btn--accent:hover::after, .iab-btn--secondary:hover::after { transform: translateX(130%); }
+
+	/* ── Karty/kafelki: płynny lift na hover (spójny w całym serwisie) ── */
+	.mh-plan__item, .mh-menu-aside__box, .mh-sw-incl__item, .iab-price-card,
+	.mh-amen__item, .mh-checklist li, .mh-quote__socials a {
+		transition: transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s var(--ease);
+	}
+	.mh-menu-aside__box:hover, .mh-sw-incl__item:hover, .iab-price-card:hover, .mh-checklist li:hover {
+		transform: translateY(-4px);
+		box-shadow: 0 18px 40px -26px rgba(24,21,18,.4);
+	}
+
+	/* ── Linki: animowane podkreślenie (stopka + treść + listy „zobacz też") ── */
+	.iab-footer a:not(.iab-footer__soc):not(.iab-btn),
+	.mh-menu-aside__links a,
+	.iab-prose a:not(.iab-btn) {
+		background-image: linear-gradient(currentColor, currentColor);
+		background-size: 0% 1px; background-position: 0 100%; background-repeat: no-repeat;
+		transition: background-size .32s var(--ease), color .3s var(--ease);
+	}
+	.iab-footer a:not(.iab-footer__soc):not(.iab-btn):hover,
+	.mh-menu-aside__links a:hover,
+	.iab-prose a:not(.iab-btn):hover { background-size: 100% 1px; }
+
+	/* ── Strzałki „→": delikatny nudge w prawo ── */
+	.mh-menu-aside__links a span,
+	.iab-link-arrow span { display: inline-block; transition: transform .28s var(--ease); }
+	.mh-menu-aside__links a:hover span,
+	.iab-link-arrow:hover span { transform: translateX(5px); }
+
+	/* ── Hero (podstrony + home): powolny ken-burns na zdjęciu tła ── */
+	.mh-hero__media, .mh-phero__media, .mh-of-hero__media,
+	.mh-rs-hero__media, .mh-ob-hero__media {
+		animation: mh-kenburns 22s var(--ease) both;
+	}
+
+	/* ── Eyebrow: istniejąca mosiężna kreska (::after) „wjeżdża" przy odsłonięciu ──
+	   Kolaps TYLKO dla reveal-elementów jeszcze niewidocznych (i tylko przy aktywnym JS),
+	   więc nagłówki bez reveal / bez JS mają kreskę normalnie. */
+	.iab-main .mh-sec-head .mh-eyebrow::after { transition: transform .55s var(--ease) .12s; transform-origin: left center; }
+	.iab-js .iab-main .iab-reveal:not(.is-visible) .mh-eyebrow::after,
+	.iab-js .iab-main .mh-sec-head.iab-reveal:not(.is-visible) .mh-eyebrow::after { transform: scaleX(0); }
+}
+
+/* Ken-burns keyframe (współdzielony) */
+@keyframes mh-kenburns {
+	from { transform: scale(1); }
+	to   { transform: scale(1.08); }
+}

@@ -1,14 +1,15 @@
 /**
- * Modal „Sielskie Wakacje" — klik świecącego linku w nawigacji + AUTO raz na sesję.
+ * Modal „Sielskie Wakacje" — AUTO promo (bez klikania w nawigację).
+ * Wyzwalacze: przewinięcie ≥30% strony LUB exit-intent (kursor ucieka za górę okna).
  * Desktop: centered. Mobile: bottom-sheet. Zamknięcie: X / „Innym razem" / ESC / backdrop.
- * Auto-popup: po 8s LUB 35% scrolla, tylko raz na sesję (sessionStorage), poza
- * stronami z blacklisty (sama /sielskie-wakacje/, /kontakt/, /podziekowanie/, /dziekujemy/).
- * Wzorzec z Magic Gym (Les Mills), motyw Majątku. @package iab
+ * PAMIĘĆ: po zamknięciu zapisujemy trwale (localStorage) → modal NIE pokazuje się
+ * ponownie (żeby nie denerwować). Poza stronami z blacklisty.
+ * @package iab
  */
 const EXIT_MS = 300;
-const SESSION_KEY = 'mh_sw_modal_seen';
-const TIME_MS = 8000;
-const SCROLL_PCT = 35;
+const SESSION_KEY = 'mh_sw_modal_seen';      // pokazany w tej sesji (anty-podwójne wyzwolenie)
+const DISMISS_KEY = 'mh_sw_modal_dismissed'; // zamknięty przez użytkownika → trwale (localStorage)
+const SCROLL_PCT = 30;
 const BLACKLIST = ['/sielskie-wakacje', '/kontakt', '/podziekowanie', '/dziekujemy'];
 
 const reducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -18,6 +19,12 @@ const seenThisSession = () => {
 };
 const markSeen = () => {
 	try { sessionStorage.setItem(SESSION_KEY, '1'); } catch { /* prywatny tryb → ignoruj */ }
+};
+const isDismissed = () => {
+	try { return localStorage.getItem(DISMISS_KEY) === '1'; } catch { return false; }
+};
+const markDismissed = () => {
+	try { localStorage.setItem(DISMISS_KEY, '1'); } catch { /* prywatny tryb → ignoruj */ }
 };
 const isBlacklisted = () => {
 	const path = window.location.pathname.replace(/\/$/, '') || '/';
@@ -54,11 +61,13 @@ export function initSielskieModal() {
 	const hide = () => {
 		if (!shown) return;
 		shown = false;
+		markDismissed(); // zamknięcie = trwała zgoda „nie pokazuj więcej"
 		modal.classList.add('is-closing');
 		if (reducedMotion()) finalize();
 		else setTimeout(finalize, EXIT_MS);
 	};
 
+	// Ręczne wyzwalacze (opcjonalne, np. link „zobacz ofertę" gdzieś w treści)
 	openers.forEach((btn) => {
 		btn.addEventListener('click', (e) => {
 			e.preventDefault();
@@ -66,17 +75,22 @@ export function initSielskieModal() {
 		});
 	});
 
-	// AUTO-POPUP raz na sesję (po czasie lub scrollu), poza blacklistą.
-	if (!seenThisSession() && !isBlacklisted()) {
+	// AUTO-POPUP: scroll ≥30% LUB exit-intent. Nie pokazuj gdy już zamknięty (trwale)
+	// ani gdy już widziany w tej sesji, ani na stronach z blacklisty.
+	if (!isDismissed() && !seenThisSession() && !isBlacklisted()) {
 		let autoFired = false;
-		const autoShow = () => {
-			if (autoFired || shown || seenThisSession()) return;
-			autoFired = true;
-			clearTimeout(timer);
+		const cleanup = () => {
 			window.removeEventListener('scroll', onScroll);
+			document.removeEventListener('mouseout', onExit);
+		};
+		const autoShow = () => {
+			if (autoFired || shown || isDismissed() || seenThisSession()) return;
+			autoFired = true;
+			cleanup();
 			show();
 		};
-		const timer = setTimeout(autoShow, TIME_MS);
+
+		// 1) Próg przewinięcia (działa też na mobile)
 		let rafQueued = false;
 		const onScroll = () => {
 			if (autoFired || rafQueued) return;
@@ -88,6 +102,13 @@ export function initSielskieModal() {
 			});
 		};
 		window.addEventListener('scroll', onScroll, { passive: true });
+
+		// 2) Exit-intent (desktop): kursor ucieka poza górną krawędź okna
+		const onExit = (e) => {
+			if (e.relatedTarget || e.toElement) return; // wciąż w oknie
+			if (e.clientY <= 4) autoShow();
+		};
+		document.addEventListener('mouseout', onExit);
 	}
 
 	// Zamknięcia (X, „Innym razem")
@@ -95,9 +116,9 @@ export function initSielskieModal() {
 		el.addEventListener('click', hide);
 	});
 
-	// CTA — pozwól nawigować, zamknij tło
+	// CTA — pozwól nawigować, zamknij tło (i zapamiętaj — user wszedł w ofertę)
 	modal.querySelectorAll('[data-sw-cta="primary"]').forEach((el) => {
-		el.addEventListener('click', () => { shown = false; });
+		el.addEventListener('click', () => { shown = false; markDismissed(); });
 	});
 
 	// Backdrop
